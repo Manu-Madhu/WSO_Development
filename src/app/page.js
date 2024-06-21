@@ -1,11 +1,13 @@
+import LoginModal from "@/components/Admin/LoginModal";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-       <div>
-         <h1>test</h1>
-       </div>
+      <div>
+        <h1>halo sugamano</h1>
+      </div>
+      <LoginModal />
     </main>
   );
 }
