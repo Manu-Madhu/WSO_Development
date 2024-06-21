@@ -29,7 +29,7 @@ function Page() {
                 <label className="text-base font-semibold w-1/4">
                     Title
                 </label>
-                <input type="text" className="w-1/2 border border-gray-500 mt-1 px-3 py-2 rounded-lg placeholder:text-gray-900" placeholder="Some title here" />
+                <input type="text" className="w-7/12 border border-gray-400 mt-1 px-5 py-3 rounded-lg placeholder:text-gray-400 placeholder:font-light" placeholder="Some title here" />
             </div>
             <div className=" py-5 flex items-start">
                 <div className="flex flex-col  w-1/4">

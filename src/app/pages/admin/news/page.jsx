@@ -24,33 +24,37 @@ function Page() {
                     </Link>
                 </div>
                 <table className='w-full text-base table'>
-                    <tr className='bg-gray-200'>
-                        <th className='px-5 py-3 font-normal'>
-                            No
-                        </th>
-                        <th className='w-full px-5 py-3 font-normal text-start'>
-                            News
-                        </th>
-                        <th className='px-8 py-3 font-normal'>
-                            Action
-                        </th>
-                    </tr>
-                    <tr>
-                        <td className='px-5 py-6'>
-                            1
-                        </td>
-                        <td className='px-5 py-6'>
-                            News 1
-                        </td>
-                        <td className='flex w-full justify-around px-5 py-6'>
-                            <button className=''>
-                                <RiDeleteBin6Line size={20} />
-                            </button>
-                            <button >
-                                <FiEdit2 size={20} />
-                            </button>
-                        </td>
-                    </tr>
+                    <thead className="bg-gray-200" c>
+                        <tr>
+                            <th className='px-5 py-3 font-normal'>
+                                No
+                            </th>
+                            <th className='w-full px-5 py-3 font-normal text-start'>
+                                News
+                            </th>
+                            <th className='px-8 py-3 font-normal'>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td className='px-5 py-6'>
+                                1
+                            </td>
+                            <td className='px-5 py-6'>
+                                News 1
+                            </td>
+                            <td className='flex w-full justify-around px-5 py-6'>
+                                <button className=''>
+                                    <RiDeleteBin6Line size={20} />
+                                </button>
+                                <button >
+                                    <FiEdit2 size={20} />
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
