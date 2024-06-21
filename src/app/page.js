@@ -1,3 +1,4 @@
+import LoginModal from "@/components/Admin/LoginModal";
 import Image from "next/image";
 
 export default function Home() {
