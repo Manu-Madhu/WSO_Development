@@ -1,6 +1,6 @@
 function LoginModal() {
     return (
-        <div className="fixed w-[375px] bg-white right-6 p-12 rounded-lg flex flex-col text-black text-sm items-start">
+        <div className="fixed w-[376px] bg-white right-6 p-12 rounded-lg flex flex-col text-black text-sm items-start">
             <label htmlFor="" className="mb-2">Username</label>
             <input type="text" className="mb-4 p-2 border border-gray-500 rounded w-full" placeholder="Username" />
 
