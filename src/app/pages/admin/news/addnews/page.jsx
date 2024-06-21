@@ -1,4 +1,5 @@
 
+import NewsArea from "@/components/Admin/News/NewsArea";
 
 function Page() {
     return (
@@ -39,7 +40,7 @@ function Page() {
                         Write the news
                     </p>
                 </div>
-                <input type="text" className="w-1/2 border border-gray-500 mt-1 px-3 py-2 rounded-lg placeholder:text-gray-900" placeholder="Some title here" />
+                <NewsArea />
             </div>
         </div>
     )
