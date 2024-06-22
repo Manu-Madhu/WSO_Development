@@ -46,11 +46,11 @@ function SideBar() {
                 {menuItems.map((item, index) => (
                     <li
                         key={index}
-                        className={`p-2 rounded-md ${selectedItem === index ? "bg-gray-200" : ""}`}
+                        className={`p-2 rounded-md ${selectedItem === index ? "bg-[#f4f6f7]" : ""}`}
                     >
                         <Link href={item.href}>
                             <span className="flex text-black items-center font-semibold gap-x-3">
-                                <item.icon className={`text-[#667085] ${selectedItem === index ? "bg-gray-200" : ""}`} size={23} />
+                                <item.icon className={`text-[#667085] ${selectedItem === index ? "bg-[#f4f6f7]" : ""}`} size={23} />
                                 <h1>{item.label}</h1>
                             </span>
                         </Link>

@@ -26,7 +26,7 @@ function Page() {
                     </Link>
                 </div>
                 <table className='w-full text-base table'>
-                    <thead className="bg-gray-200" c>
+                    <thead className="bg-[#f4f6f7]" c>
                         <tr>
                             <th className='px-5 py-3 font-normal'>
                                 No
