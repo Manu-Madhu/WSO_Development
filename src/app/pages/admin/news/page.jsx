@@ -13,10 +13,10 @@ function Page() {
                 <div className='flex p-5 items-center justify-between'>
                     <div>
                         <h2 className="font-semibold text-xl">
-                            New news
+                            Current news
                         </h2>
                         <h5 className="pt-1">
-                            Update your news here
+                            News are managed here
                         </h5>
                     </div>
                     <Link href="/pages/admin/news/addnews">
