@@ -7,7 +7,6 @@ export default function Home() {
       <div>
         <h1>halo sugamano</h1>
       </div>
-      <LoginModal />
     </main>
   );
 }
