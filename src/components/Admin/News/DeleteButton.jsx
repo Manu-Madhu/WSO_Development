@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { RiDeleteBin6Line } from "react-icons/ri";
-import DeleteNews from './DeleteNews';
+import DeleteAlert from '../common/DeleteAlert';
 
 function DeleteButton() {
     const [showAlert, setShowAlert] = useState(false);
@@ -20,7 +20,7 @@ function DeleteButton() {
             <button className='' onClick={() => setShowAlert(true)}>
                 <RiDeleteBin6Line size={20} />
             </button>
-            {showAlert && <DeleteNews onConfirm={handleConfirm} onCancel={handleCancel} />}
+            {showAlert && <DeleteAlert onConfirm={handleConfirm} onCancel={handleCancel} />}
         </>
     );
 }

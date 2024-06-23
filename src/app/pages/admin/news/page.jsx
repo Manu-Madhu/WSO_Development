@@ -21,7 +21,7 @@ function Page() {
                     </div>
                     <Link href="/pages/admin/news/addnews">
                         <button className="bg-primary-green px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
-                            Add newsd
+                            Add news
                         </button>
                     </Link>
                 </div>

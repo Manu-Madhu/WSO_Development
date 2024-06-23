@@ -1,7 +1,7 @@
 
 import { PiWarningCircle } from "react-icons/pi";
 
-function DeleteNews({ onConfirm, onCancel }) {
+function DeleteAlert({ onConfirm, onCancel }) {
     return (
         <div className='fixed top-0 z-50 left-0 w-screen h-screen bg-[#00000088]'>
             <div className='absolute rounded-xl flex flex-col items-center gap-3 m-auto top-0 left-0 right-0 bottom-0 w-fit h-fit p-10 bg-white'>
@@ -23,4 +23,4 @@ function DeleteNews({ onConfirm, onCancel }) {
     )
 }
 
-export default DeleteNews
+export default DeleteAlert
