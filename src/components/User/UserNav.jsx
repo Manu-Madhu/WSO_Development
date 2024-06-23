@@ -10,7 +10,7 @@ const UserNav = () => {
   return (
     <>
       {/* Desktop view */}
-      <div className="max-w-[1280px] mx-auto w-full hidden sm:flex items-center justify-between">
+      <div className="max-w-[1280px] mx-auto w-full hidden md:flex items-center justify-between">
         <div className="logo">
           <Image src={log} alt="logo" className="w-[220px]" />
         </div>
@@ -50,7 +50,7 @@ const UserNav = () => {
       </div>
 
       {/* Mobile view */}
-      <div className="max-w-[1280px] mx-auto w-full sm:hidden flex justify-between items-center">
+      <div className="max-w-[1280px] mx-auto w-full md:hidden flex justify-between items-center">
         <MobileView logo={log} />
       </div> 
     </>
