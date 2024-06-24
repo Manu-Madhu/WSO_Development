@@ -48,7 +48,7 @@ function Page() {
                                 News 1
                             </td>
                             <td className='flex w-full justify-around px-5 py-6'>
-                                <DeleteButton />
+                                <DeleteButton name={"News"} />
                                 <button >
                                     <Link href={{ pathname: '/pages/admin/news/addnews' }}>
                                         <FiEdit2 size={20} />
