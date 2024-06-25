@@ -1,6 +1,7 @@
-import { FiUploadCloud } from "react-icons/fi";
+import { FiEdit2, FiUploadCloud } from "react-icons/fi";
 import Link from 'next/link'
 import { CiImageOn } from "react-icons/ci";
+import DeleteButton from "../News/DeleteButton";
 
 function PNMainPage({ name }) {
     return (
@@ -25,14 +26,17 @@ function PNMainPage({ name }) {
                 <table className='w-full text-base table'>
                     <thead className="text-sm" c>
                         <tr>
-                            <th className='w-[60%] px-6 py-3 font-normal text-start'>
+                            <th className='w-[55%] px-6 py-3 font-normal text-start'>
                                 File name
                             </th>
-                            <th className='px-6 py-3 w-[20%] font-normal clamp'>
+                            <th className='px-6 py-3 w-[15%] font-normal clamp'>
                                 File size
                             </th>
-                            <th className='px-8 py-3 w-[20%] font-normal'>
+                            <th className='px-8 py-3 w-[15%] font-normal'>
                                 Date uploaded
+                            </th>
+                            <th className='px-8 py-3 w-[15%] font-normal'>
+                                Actions
                             </th>
                         </tr>
                     </thead>
@@ -58,6 +62,14 @@ function PNMainPage({ name }) {
                                     </td>
                                     <td className='px-8 py-4 text-center'>
                                         12/12/2021
+                                    </td>
+                                    <td className='flex w-full justify-evenly px-8 py-6'>
+                                        <DeleteButton name={name} />
+                                        <button >
+                                            <Link href={{ pathname: `/pages/admin/${name}/add${name}` }}>
+                                                <FiEdit2 size={20} />
+                                            </Link>
+                                        </button>
                                     </td>
                                 </tr>
                             ))

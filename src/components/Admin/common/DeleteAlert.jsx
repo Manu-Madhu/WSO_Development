@@ -1,7 +1,7 @@
 
 import { PiWarningCircle } from "react-icons/pi";
 
-function DeleteAlert({ onConfirm, onCancel }) {
+function DeleteAlert({ onConfirm, onCancel, name }) {
     return (
         <div className='fixed top-0 z-50 left-0 w-screen h-screen bg-[#00000088]'>
             <div className='absolute rounded-xl flex flex-col items-center gap-3 m-auto top-0 left-0 right-0 bottom-0 w-fit h-fit p-10 bg-white'>
@@ -10,9 +10,9 @@ function DeleteAlert({ onConfirm, onCancel }) {
                         <PiWarningCircle size={25} color="#D92D20" />
                     </div>
                 </div>
-                <h2 className="text-sub-title font-semibold">Delete news</h2>
+                <h2 className="text-sub-title font-semibold">Delete {name.toLowerCase()}</h2>
                 <p className="text-center">
-                    Are you sure you want to delete this news? This <br /> action cannot be undone.
+                    Are you sure you want to delete this {name.toLowerCase()}? This <br /> action cannot be undone.
                 </p>
                 <div className="flex w-full gap-4 mt-2 justify-between">
                     <button className="w-full rounded-lg py-2 border border-gray-400" onClick={onConfirm}>Cancel</button>
