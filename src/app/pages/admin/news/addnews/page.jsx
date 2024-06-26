@@ -1,5 +1,7 @@
 
 import NewsArea from "@/components/Admin/News/NewsArea";
+import SaveButton from "@/components/Admin/common/SaveButton";
+import CancelButton from "@/components/Admin/common/CancelButton";
 
 function Page() {
     return (
@@ -17,12 +19,8 @@ function Page() {
                     </h5>
                 </div>
                 <div className="flex">
-                    <button className="border border-gray-500 px-5 h-fit py-3 text-base font-semibold rounded-lg">
-                        Cancel
-                    </button>
-                    <button className="bg-primary-green px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
-                        Save
-                    </button>
+                    <CancelButton />
+                    <SaveButton title="Add this news?" content={<span>This blog post has been published. Team members <br /> will be able to edit this post and republish changes.</span>} />
                 </div>
             </div>
             <div className="border-y py-5 flex items-start">
