@@ -12,7 +12,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const menuItems = [
     { href: "/pages/admin/news", icon: FiHome, label: "Latest News" },
-    { href: "/pages/admin/dashboard", icon: MdOutlineEqualizer, label: "Manage Members" },
+    { href: "/pages/admin/members", icon: MdOutlineEqualizer, label: "Manage Members" },
     { href: "/pages/admin/publications", icon: ImStack, label: "Publications" },
     { href: "/pages/admin/newsletter", icon: FiCheckSquare, label: "Newsletter" },
     { href: "/pages/admin/events", icon: GrFlag, label: "Events" },

@@ -63,13 +63,15 @@ function PNMainPage({ name }) {
                                     <td className='px-8 py-4 text-center'>
                                         12/12/2021
                                     </td>
-                                    <td className='flex w-full justify-evenly px-8 py-6'>
-                                        <DeleteButton name={name} />
-                                        <button >
-                                            <Link href={{ pathname: `/pages/admin/${name}/add${name}` }}>
-                                                <FiEdit2 size={20} />
-                                            </Link>
-                                        </button>
+                                    <td>
+                                        <div className='flex w-full justify-evenly px-8 py-6'>
+                                            <DeleteButton name={name} />
+                                            <button >
+                                                <Link href={{ pathname: `/pages/admin/${name}/add${name}` }}>
+                                                    <FiEdit2 size={20} />
+                                                </Link>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))

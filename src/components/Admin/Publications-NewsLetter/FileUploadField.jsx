@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from 'react';
-import { FiUploadCloud, FiX } from 'react-icons/fi';
+import { FiUploadCloud } from 'react-icons/fi';
 import { CiCircleRemove } from "react-icons/ci";
 
-const FileUploadField = () => {
+const FileUploadField = ({ fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'], sizeLimit = 20 * 1024 * 1024, typeNames = ['PDF', 'DOC', 'DOCX'] }) => {
     const [file, setFile] = useState(null);
     const [preview, setPreview] = useState(null);
     const [dragging, setDragging] = useState(false);
@@ -38,9 +38,13 @@ const FileUploadField = () => {
 
     const handleFile = (file) => {
         if (file) {
-            // Check file size (max 20MB)
-            if (file.size > 20 * 1024 * 1024) {
-                alert('File size exceeds 20MB limit. Please choose a smaller file.');
+            if (!fileTypes.includes(file.type)) {
+                alert('Invalid file type. Please upload a valid document.');
+                return;
+            }
+
+            if (file.size > sizeLimit) {
+                alert(`File size exceeds ${sizeLimit / (1024 * 1024)}MB limit. Please choose a smaller file.`);
                 return;
             }
 
@@ -56,7 +60,7 @@ const FileUploadField = () => {
         }
     };
 
-    const handleRemoveImage = () => {
+    const handleRemoveFile = () => {
         setFile(null);
         setPreview(null);
     };
@@ -79,14 +83,10 @@ const FileUploadField = () => {
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 {file ? (
                     <>
-                        {file.type.startsWith('image/') ? (
-                            <img src={preview} alt="File preview" className="max-h-64 rounded-lg" />
-                        ) : (
-                            <p>{file.name}</p>
-                        )}
+                        <p>{file.name}</p>
                         <button
                             className="mt-2 text-xs text-black-500 hover:text-black-600 focus:outline-none"
-                            onClick={handleRemoveImage}
+                            onClick={handleRemoveFile}
                         >
                             <CiCircleRemove size={23} className="inline-block mr-1" />
                         </button>
@@ -98,11 +98,11 @@ const FileUploadField = () => {
                                 <FiUploadCloud size={24} strokeWidth={1} className="text-black" />
                             </div>
                         </div>
-                        <p className="mb-2 text-sm text-gray-800font-light">
+                        <p className="mb-2 text-sm text-gray-800 font-light">
                             <span className="font-semibold text-blue-500">Click to upload</span> or drag and drop
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">
-                            Files (any type, max 20MB)
+                            Files ({typeNames.join(', ')}, max {sizeLimit / (1024 * 1024)}MB)
                         </p>
                     </>
                 )}
@@ -112,6 +112,7 @@ const FileUploadField = () => {
                 type="file"
                 className="hidden"
                 onChange={handleFileChange}
+                accept={fileTypes.join(',')}
             />
         </div>
     );
