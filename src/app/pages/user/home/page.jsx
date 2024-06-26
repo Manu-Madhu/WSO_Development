@@ -8,13 +8,13 @@ const Home = () => {
   return (
     <div>
       <LandingPage />
-      <div className="my-6 md:my-20">
+      <div className="my-6 md:my-28">
         <AboutPart />
       </div>
-      <div className="my-6 md:my-20">
+      <div className="my-6 md:my-28">
         <LatestNews />
       </div>
-      <div className="my-6 md:my-20">
+      <div className="my-6 md:my-28">
         <Contact />
       </div>
     </div>
