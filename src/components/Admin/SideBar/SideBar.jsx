@@ -24,6 +24,7 @@ function SideBar() {
     const pathname = usePathname();
 
     useEffect(() => {
+        setSidebarOpen(false);
         menuItems.forEach((item, index) => {
             if (pathname.includes(item.href)) {
                 setSelectedItem(index);
@@ -36,12 +37,12 @@ function SideBar() {
     };
 
     return (
-        <div className="flex">
-            <div className="md:hidden flex bg-white  p-4 text-black">
+        <div className="flex h-screen">
+            <div className="lg:hidden flex bg-white  p-4 text-black fixed w-screen">
                 <GiHamburgerMenu size={24} onClick={toggleSidebar} className="cursor-pointer" />
             </div>
-            <div className={`fixed max-w-fit inset-0 z-40 md:relative transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300 ease-in-out bg-white p-6 min-h-screen border-r border-gray-400`}>
-                <div className="flex flex-col justify-between h-full">
+            <div className={`fixed max-w-fit max-md:w-[80%] inset-0 z-40 lg:relative transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 ease-in-out bg-white p-6 max-md:p-4 min-h-screen border-r border-gray-400`}>
+                <div className="flex flex-col justify-between h-full max-md:h-[90%]">
                     <div className="flex flex-col gap-5">
                         <h1 className="font-[Clash Display] text-xl font-extrabold text-green-900">
                             WSO
@@ -51,7 +52,7 @@ function SideBar() {
                             <input
                                 type="text"
                                 placeholder="Search..."
-                                className="py-2 px-4 rounded-md outline-none text-black placeholder:text-gray-800 placeholder:text-sm"
+                                className="py-2 px-4 rounded-md max-md:w-full  outline-none text-black placeholder:text-gray-800 placeholder:text-sm"
                                 aria-label="Search"
                             />
                         </div>
@@ -64,7 +65,7 @@ function SideBar() {
                                     <Link href={item.href}>
                                         <span className="flex text-black items-center font-semibold gap-x-3">
                                             <item.icon className={`text-[#667085] ${selectedItem === index ? "bg-[#f4f6f7]" : ""}`} size={23} />
-                                            <h1>{item.label}</h1>
+                                            <h1 className="max-md:text-sm">{item.label}</h1>
                                         </span>
                                     </Link>
                                 </li>
@@ -78,17 +79,17 @@ function SideBar() {
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCbLonevQIqBWh2Yh2C1BACaaoMhoJIKHedg&s"
                                 alt="Profile picture"
                             />
-                            <div className="flex flex-col justify-center">
+                            <div className="flex flex-col h-fit justify-center max-md:text-sm">
                                 <h1 className="font-semibold">Olivia Rhye</h1>
                                 <p>hafis@qmark.com</p>
                             </div>
                         </div>
-                        <RxExit size={22} className="text-gray-900" />
+                        <RxExit size={22} className="text-gray-900 cursor-pointer" />
                     </div>
                 </div>
             </div>
             {sidebarOpen && (
-                <div className="fixed inset-0 z-30 bg-black opacity-50 md:hidden" onClick={toggleSidebar}></div>
+                <div className="fixed inset-0 z-30 bg-black opacity-50 lg:hidden" onClick={toggleSidebar}></div>
             )}
         </div>
     );

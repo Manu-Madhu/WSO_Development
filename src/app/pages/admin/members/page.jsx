@@ -30,7 +30,7 @@ function Page() {
     };
 
     return (
-        <div className='flex flex-col bg-white min-h-screen w-full px-10 pt-12 mb-20 text-black'>
+        <div className='flex flex-col bg-white min-h-screen w-full px-10 max-md:px-6 pt-12 max-md:pt-16 mb-20 text-black'>
             <h1 className="font-semibold text-title">
                 Manage Members
             </h1>
@@ -47,73 +47,75 @@ function Page() {
                         </div>
                     </div>
                 </div>
-                <table className='w-full text-base table'>
-                    <thead className="bg-[#f4f6f7]">
-                        <tr>
-                            <th className='py-3 font-normal w-[5%]'>
-                                <input
-                                    type="checkbox"
-                                    className="scale-150 accent-[#266941]"
-                                    checked={isSelectAll}
-                                    onChange={handleSelectAll}
-                                />
-                            </th>
-                            <th className=' py-3 font-normal text-start w-[70%]'>
-                                Name
-                            </th>
-                            <th className='text-start py-3 font-normal w-[15%]'>
-                                Status
-                            </th>
-                            <th className=' py-3 font-normal w-[10%]'>
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Array.from({ length: newsCount }).map((_, index) => (
-                            <tr key={index} className='border-t border-gray-400 '>
-                                <td>
-                                    <div className='flex justify-center'>
-                                        <input
-                                            type="checkbox"
-                                            className="scale-150 accent-[#266941]"
-                                            checked={selectedNews.includes(index)}
-                                            onChange={() => handleSelect(index)}
-                                        />
-                                    </div>
-                                </td>
-                                <td>
-                                    <Link href="/pages/admin/members/addmember">
-                                        <div className=' flex items-center py-5'>
-                                            <img src='' className="h-12 w-12 bg-gray-300 p-3 rounded-full" alt='' />
-                                            <div>
-                                                <h4 className="font-semibold text-base ml-4">
-                                                    Member name
-                                                </h4>
-                                                <h5 className="text-sm ml-4">
-                                                    member@gmail.com
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </td>
-                                <td>
-                                    <StatusIndicator status="Approved" />
-                                </td>
-                                <td >
-                                    <div className='flex w-full justify-around px-5 '>
-                                        <DeleteButton name={"member"} />
-                                        <button>
-                                            <Link href={{ pathname: '/pages/admin/news/addnews' }}>
-                                                <FiEdit2 size={20} />
-                                            </Link>
-                                        </button>
-                                    </div>
-                                </td>
+                <div className='w-full max-md:overflow-x-scroll'>
+                    <table className='w-full max-md:w-fit max-md:overflow-x-scroll text-base table'>
+                        <thead className="bg-[#f4f6f7]">
+                            <tr>
+                                <th className='py-3 max-md:px-3 font-normal w-[5%]'>
+                                    <input
+                                        type="checkbox"
+                                        className="scale-150 max-md:scale-100 accent-[#266941]"
+                                        checked={isSelectAll}
+                                        onChange={handleSelectAll}
+                                    />
+                                </th>
+                                <th className=' py-3 font-normal text-start max-md:text-sm w-[70%]'>
+                                    Name
+                                </th>
+                                <th className='text-start py-3 font-normal max-md:text-sm w-[15%]'>
+                                    Status
+                                </th>
+                                <th className=' py-3 font-normal max-md:text-sm w-[10%]'>
+                                    Action
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {Array.from({ length: newsCount }).map((_, index) => (
+                                <tr key={index} className='border-t border-gray-400 '>
+                                    <td>
+                                        <div className='flex justify-center'>
+                                            <input
+                                                type="checkbox"
+                                                className="scale-150 max-md:scale-100 accent-[#266941]"
+                                                checked={selectedNews.includes(index)}
+                                                onChange={() => handleSelect(index)}
+                                            />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <Link href="/pages/admin/members/addmember">
+                                            <div className=' flex items-center py-5 pr-10'>
+                                                <img src='' className="h-12 w-12 bg-gray-300 p-3 rounded-full" alt='' />
+                                                <div>
+                                                    <h4 className="font-semibold max-md:text-sm text-base ml-4">
+                                                        Member name
+                                                    </h4>
+                                                    <h5 className="text-sm max-md:text-xs ml-4">
+                                                        member@gmail.com
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <StatusIndicator status="Approved" />
+                                    </td>
+                                    <td >
+                                        <div className='flex w-full max-md:gap-3 justify-around px-5 '>
+                                            <DeleteButton name={"member"} />
+                                            <button>
+                                                <Link href={{ pathname: '/pages/admin/news/addnews' }}>
+                                                    <FiEdit2 size={20} />
+                                                </Link>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
