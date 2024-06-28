@@ -33,7 +33,7 @@ const TextEditor = () => {
     };
 
     return (
-        <div className="text-editor w-7/12 rounded-xl">
+        <div className="text-editor w-7/12 max-md:w-full rounded-xl">
             <ReactQuill
                 value={value}
                 onChange={handleChange}
