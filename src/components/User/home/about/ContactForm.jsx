@@ -1,34 +1,98 @@
 "use client";
 
+import { baseUrl, contactRoute } from "@/utils/Endpoint";
+import axios from "axios";
 import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { toast } from "react-toastify";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
+  const [postData, setPostData] = useState({
     name: "",
     email: "",
     company: "",
     address: "",
     designation: "",
-    phoneNumber: "",
+    phone: "",
     comments: "",
   });
 
   //   OnChange Input Handler
   const inputChangeHandler = (e) => {
-    setFormData({
-      ...formData,
+    setPostData({
+      ...postData,
       [e.target.name]: e.target.value,
     });
   };
 
   const handlePhoneChange = (value) => {
-    setFormData({
-      ...formData,
-      phoneNumber: value,
+    setPostData({
+      ...postData,
+      phone: value,
     });
   };
+
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+
+    try {
+
+      const nameRegex = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/
+
+      if (!postData.name.trim()) {
+        toast.error("Name is required")
+        return
+      }
+      else if (!nameRegex.test(postData?.name)) {
+        toast.error("Enter a valid name")
+        return
+      }
+
+      if (!postData.email.trim()) {
+        toast.error("Email is required")
+        return
+      } else if (!/\S+@\S+\.\S+/.test(postData.email)) {
+        toast.error("Email is not valid")
+        return
+
+      }
+
+      if (!postData.company.trim()) {
+        toast.error("Company is required")
+        return
+      }
+
+      if (!postData.comments.trim()) {
+        toast.error("Comment is required")
+        return
+      }
+
+      const response = await axios.post(`${baseUrl}/${contactRoute}`, postData);
+
+      if(response.ok){
+        toast.success('Message Sent');
+
+        setPostData({
+          name: "",
+          email: "",
+          company: "",
+          address: "",
+          designation: "",
+          phone: "",
+          comments: "",
+        })
+        
+      }
+      else{
+        toast.error('Failed to sent message')
+      }
+      
+    } catch (error) {
+      console.log(error)
+      toast.error('Failed to sent message')
+    }
+  }
 
   return (
     <form action="" className="w-full  grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -39,7 +103,7 @@ const ContactForm = () => {
         </label>
         <input
           type="text"
-          value={formData?.name}
+          value={postData?.name}
           onChange={inputChangeHandler}
           name="name"
           required
@@ -55,7 +119,7 @@ const ContactForm = () => {
         </label>
         <input
           type="text"
-          value={formData?.designation}
+          value={postData?.designation}
           onChange={inputChangeHandler}
           name="designation"
           required
@@ -71,7 +135,7 @@ const ContactForm = () => {
         </label>
         <input
           type="email"
-          value={formData?.email}
+          value={postData?.email}
           onChange={inputChangeHandler}
           name="email"
           required
@@ -87,10 +151,10 @@ const ContactForm = () => {
         </label>
         <PhoneInput
           country={"in"}
-          value={formData?.phoneNumber}
+          value={postData?.phone}
           onChange={handlePhoneChange}
           inputProps={{
-            name: "phoneNumber",
+            name: "phone",
             required: true,
             // autoFocus: true,
           }}
@@ -119,7 +183,7 @@ const ContactForm = () => {
         </label>
         <input
           type="text"
-          value={formData?.company}
+          value={postData?.company}
           onChange={inputChangeHandler}
           name="company"
           required
@@ -135,7 +199,7 @@ const ContactForm = () => {
         </label>
         <input
           type="text"
-          value={formData?.address}
+          value={postData?.address}
           onChange={inputChangeHandler}
           name="address"
           required
@@ -151,7 +215,7 @@ const ContactForm = () => {
         </label>
         <textarea
           type="text"
-          value={formData?.comments}
+          value={postData?.comments}
           onChange={inputChangeHandler}
           name="comments"
           required
@@ -162,7 +226,7 @@ const ContactForm = () => {
 
       {/* Button */}
       <div className="flex flex-col gap-1  w-full h-full ">
-        <button className="bg-primaryColor p-2 rounded-lg text-white text-sm">
+        <button onClick={handleSubmit} className="bg-primaryColor p-2 rounded-lg text-white text-sm">
           Get started
         </button>
       </div>
