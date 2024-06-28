@@ -1,5 +1,6 @@
 import UserNav from "@/components/User/UserNav";
 import UserFooter from "@/components/User/footer/UserFooter";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
     title: "WSO",
@@ -14,6 +15,7 @@ export default function Layout({ children }) {
                 <UserNav />
             </div>
             <div>
+                <ToastContainer/>
                 {children}
             </div>
             <div>
