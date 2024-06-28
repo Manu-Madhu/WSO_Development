@@ -1,4 +1,5 @@
 import UserNav from "@/components/User/UserNav";
+import UserFooter from "@/components/User/footer/UserFooter";
 
 export const metadata = {
     title: "WSO",
@@ -15,7 +16,9 @@ export default function Layout({ children }) {
             <div>
                 {children}
             </div>
-            <div> </div>
+            <div>
+                <UserFooter />
+            </div>
         </body>
     )
 }
