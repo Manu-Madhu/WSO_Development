@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import cover from "../../../../public/Assets/user/news/cover.png"
+import Link from "next/link";
 
 const NewsContent = () => {
   const [data, setData] = useState([1, 1, 1, 1]);
@@ -46,7 +47,7 @@ const NewsContent = () => {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-          
+
         }
       },
       {
@@ -72,14 +73,18 @@ const NewsContent = () => {
           {
             data?.map((item, index) => (
               <div key={index}
-                
+                onClick={() => console.log('lower')}
                 className={`w-full h-[400px] sm:h-[500px] relative
                   ${index === slideIndex ? 'slide slide-active' : 'slide'}
                   `}
               >
-                <Image src={cover} className="w-full h-full object-cover rounded-xl" />
+                <Image src={cover} alt="image"
+                  className="w-full h-full object-cover rounded-xl" />
 
-                <div className="absolute top-0 w-full h-[400px] sm:h-[500px] flex flex-col justify-between items-center
+                <Link
+                  href={`/pages/user/news/${index}`}
+                  onClick={(e) => { e.stopPropagation(); console.log('upper') }}
+                  className="absolute top-0 w-full h-[400px] sm:h-[500px] flex flex-col justify-between items-center
                   p-8 ">
                   <div className="w-full flex flex-col gap-4  ">
                     <p className=" text-white font-semibold line-clamp-2 ">
@@ -90,15 +95,15 @@ const NewsContent = () => {
                     </span>
                   </div>
 
-                  <p 
-                  className="w-full h-fit text-white text-sm font-light line-clamp-6 ">
-                  The Spice Industry has seen progress at a rapid pace in the past few decades.Today, it is
-                   a $3.2 billion, 1 million tons industry. The increasing awareness among world-wide 
-                   consumers on the wholesome goodness of spices, development of new products, processes 
-                   and applications have helped the industry scale new heights.
+                  <p
+                    className="w-full h-fit text-white text-sm font-light line-clamp-6 ">
+                    The Spice Industry has seen progress at a rapid pace in the past few decades.Today, it is
+                    a $3.2 billion, 1 million tons industry. The increasing awareness among world-wide
+                    consumers on the wholesome goodness of spices, development of new products, processes
+                    and applications have helped the industry scale new heights.
                   </p>
 
-                </div>
+                </Link>
 
               </div>
 
@@ -110,19 +115,14 @@ const NewsContent = () => {
 
       </div>
 
-      <div className='w-full h-full z-50 cursor-pointer absolute top-0 left-0 bg-opacity-0
-            flex flex-col justify-end pb-12 xl:pb-0 xl:justify-center '>
-        <div className='w-full flex  gap-8 xl:gap-0 justify-between '>
-          <span className=" cursor-pointer" onClick={previous} >
-            <FiArrowLeftCircle size={26} color="#266941" />
-          </span>
-          <span className=" cursor-pointer" onClick={next} >
-            <FiArrowRightCircle size={26} color="#266941" />
-          </span>
-        </div>
-
-      </div>
+      <span className=" z-50 cursor-pointer absolute bottom-20 left-0  " onClick={previous} >
+        <FiArrowLeftCircle size={26} color="#266941" />
+      </span>
+      <span className=" z-50 cursor-pointer absolute bottom-20 right-0" onClick={next} >
+        <FiArrowRightCircle size={26} color="#266941" />
+      </span>
     </div>
+
   )
 }
 
