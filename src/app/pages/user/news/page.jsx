@@ -4,11 +4,11 @@ import React from "react";
 const NewsPage = () => {
   return (
     <div className="max-w-[1280px] mx-auto w-full p-3 flex flex-col items-center justify-center my-5 mb-10 md:mb-20">
-      <h1 className="text-[#101828] font-bold text-xl">News</h1>
-      <div className="my-10">
+      <h1 className=" text-[#101828] font-bold text-xl self-start ">News</h1>
+      <div className=" w-full my-10">
         <NewsContent />
       </div>
-      <div className="text-center w-full md:w-2/3 my-10 text-xs md:text-sm">
+      <div className=" mx-autotext-center w-full md:w-2/3 my-10 text-xs md:text-sm">
         <p>
           WSO owes its genesis to the realisation that there was a need for an
           organised movement of partners from across the globe to build a
