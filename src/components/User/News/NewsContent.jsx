@@ -115,10 +115,10 @@ const NewsContent = () => {
 
       </div>
 
-      <span className=" z-50 cursor-pointer absolute bottom-20 left-0  " onClick={previous} >
+      <span className=" z-50 cursor-pointer absolute top-[200px] sm:top-[250px] left-0  " onClick={previous} >
         <FiArrowLeftCircle size={26} color="#266941" />
       </span>
-      <span className=" z-50 cursor-pointer absolute bottom-20 right-0" onClick={next} >
+      <span className=" z-50 cursor-pointer absolute top-[200px] sm:top-[250px] right-0" onClick={next} >
         <FiArrowRightCircle size={26} color="#266941" />
       </span>
     </div>
