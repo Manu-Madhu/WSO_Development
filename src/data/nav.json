@@ -2,30 +2,55 @@
   "navBar": [
     {
       "id": 1,
-      "Name": "Home",
-      "Link": "/pages/user/home"
+      "title": "Home",
+      "link": "/pages/user/home",
+      "list": []
     },
     {
       "id": 2,
-      "Name": "About",
-      "Link": "/pages/user/about"
+      "title": "About",
+      "link": "/pages/user/about",
+      "list": []
     },
     {
       "id": 3,
-      "Name": "Media",
-      "Link": "/pages/user/media",
-      "subLinks": []
+      "title": "Media",
+      "link": "/pages/user/media",
+      "list": [
+        {
+          "lid": 1,
+          "subTitle":"test1",
+          "subLink":"/pages/user/home"
+        },
+        {
+          "lid": 2,
+          "subTitle":"test2",
+          "subLink":"/pages/user/home"
+        }
+      ]
     },
     {
       "id": 4,
-      "Name": "WSO Initiatives",
-      "Link": "/pages/user/wso-initiatives",
-      "subLinks": []
+      "title": "WSO Initiatives",
+      "link": "/pages/user/wso-initiatives",
+      "list": [
+        {
+          "lid": 1,
+          "subTitle":"NSC",
+          "subLink":"/pages/user/nsc"
+        },
+        {
+          "lid": 2,
+          "subTitle":"NSS",
+          "subLink":"/pages/user/nss"
+        }
+      ]
     },
     {
       "id": 5,
-      "Name": "Contact Us",
-      "Link": "/pages/user/contact-us"
+      "title": "Contact Us",
+      "link": "/pages/user/contact-us",
+      "list": []
     }
   ]
 }
