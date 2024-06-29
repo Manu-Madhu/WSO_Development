@@ -11,7 +11,7 @@ function Page() {
                     News
                 </h1>
                 <div className="sm:hidden">
-                    <Link href="/pages/admin/news/addnews">
+                    <Link href="/admin/news/addnews">
                         <button className="bg-primary-green px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                             Add news
                         </button>
@@ -29,7 +29,7 @@ function Page() {
                         </h5>
                     </div>
                     <div className="max-sm:hidden">
-                        <Link href="/pages/admin/news/addnews">
+                        <Link href="/admin/news/addnews">
                             <button className="bg-primary-green px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                                 Add news
                             </button>
@@ -62,7 +62,7 @@ function Page() {
                                 <td className='flex w-full justify-around px-5 py-6'>
                                     <DeleteButton name={"News"} />
                                     <button >
-                                        <Link href={{ pathname: '/pages/admin/news/addnews' }}>
+                                        <Link href={{ pathname: '/admin/news/addnews' }}>
                                             <FiEdit2 size={20} />
                                         </Link>
                                     </button>
