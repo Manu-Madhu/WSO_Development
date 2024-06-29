@@ -19,13 +19,13 @@
       "list": [
         {
           "lid": 1,
-          "subTitle":"test1",
-          "subLink":"/pages/user/home"
+          "subTitle":"news",
+          "subLink":"/pages/user/news"
         },
         {
           "lid": 2,
-          "subTitle":"test2",
-          "subLink":"/pages/user/home"
+          "subTitle":"events",
+          "subLink":"/pages/user/events"
         }
       ]
     },
