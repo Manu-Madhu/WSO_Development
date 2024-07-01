@@ -46,6 +46,7 @@ const NSS = () => {
                 <Image
                     src={mill}
                     className='w-full lg:w-2/5 h-50 object-cover'
+                    alt='banner'
                 />
 
             </div>

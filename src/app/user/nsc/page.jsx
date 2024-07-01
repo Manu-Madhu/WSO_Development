@@ -44,7 +44,7 @@ const NSC = async () => {
           </button>
         </div>
 
-        <Image src={hall} className="w-full lg:w-2/5 h-50 object-cover" />
+        <Image src={hall} className="w-full lg:w-2/5 h-50 object-cover" alt="banner"/>
       </div>
     </div>
   );

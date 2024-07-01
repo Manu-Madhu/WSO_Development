@@ -114,7 +114,7 @@ const LoginPage = ({ modal }) => {
         {/* Sign-up link */}
         <div>
           <h4 className="text-[#000000]/50 text-sm">
-            Don't have a account?{" "}
+            Don&apos;t have a account?{" "}
             <Link
               href={"/page/user/register"}
               className="font-semibold text-primaryColor "

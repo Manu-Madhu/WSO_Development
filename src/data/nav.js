@@ -1,5 +1,4 @@
- {
-  "navBar": [
+export const navBar =  [
     {
       "id": 1,
       "title": "Home",
@@ -53,4 +52,4 @@
       "list": []
     }
   ]
-}
+

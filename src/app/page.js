@@ -13,7 +13,7 @@ export default function Page() {
       <div className="">
         <HomePage />
       </div>
-      
+
       <div>
         <UserFooter />
       </div>

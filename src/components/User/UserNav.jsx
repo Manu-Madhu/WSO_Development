@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import log from "@/../../public/Assets/user/nav/logo.png";
-import { navBar } from "@/data/nav.json";
 import Image from "next/image";
 import Link from "next/link";
 import LoginPage from "../Common/Login";
 import Dropdown from "./navBar/Dropdown";
-import { usePathname, useRouter } from "next/navigation";
 
+import {navBar} from "@/data/nav.js";
+import { usePathname, useRouter } from "next/navigation";
 import { FiMenu } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { getSession, signOut } from "next-auth/react";

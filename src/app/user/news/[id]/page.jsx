@@ -1,5 +1,5 @@
 import React from 'react';
-import cover from "../../../../../../public/Assets/user/news/cover.png"
+import cover from "@/../../public/Assets/user/news/cover.png"
 import Image from 'next/image';
 
 const NewsDetailed = () => {

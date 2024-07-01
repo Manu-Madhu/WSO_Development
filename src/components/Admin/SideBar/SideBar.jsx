@@ -110,13 +110,13 @@ function SideBar() {
                 <img
                   className="w-12 h-12 rounded-full"
                   src={userData?.image}
-                  alt="Profile picture"
+                  alt="ProfilePicture"
                 />
               ) : (
                 <img
                   className="w-12 h-12 rounded-full"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCbLonevQIqBWh2Yh2C1BACaaoMhoJIKHedg&s"
-                  alt="Profile picture"
+                  alt="ProfilePicture"
                 />
               )}
               <div className="flex flex-col h-fit justify-center max-md:text-sm">
