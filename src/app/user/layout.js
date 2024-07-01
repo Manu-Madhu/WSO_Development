@@ -1,26 +1,29 @@
+import { Inter } from "next/font/google";
+import { AuthProvider } from "@/app/Providers";
+import { ToastContainer } from "react-toastify";
 import UserNav from "@/components/User/UserNav";
 import UserFooter from "@/components/User/footer/UserFooter";
-import { ToastContainer } from "react-toastify";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
     title: "WSO",
     description: "World Spice Organization (WSO)",
 };
 
-
 export default function Layout({ children }) {
     return (
-        <body>
+        <>
             <div className="w-full bg-white">
                 <UserNav />
             </div>
             <div>
-                <ToastContainer/>
+                <ToastContainer />
                 {children}
             </div>
             <div>
                 <UserFooter />
             </div>
-        </body>
-    )
+        </>
+    );
 }
