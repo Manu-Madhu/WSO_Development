@@ -1,5 +1,5 @@
-import NormalTextField from '@/components/Admin/Members/NormalTextField'
-import FileUploadField from '@/components/Admin/Publications-NewsLetter/FileUploadField'
+import NormalTextField from '@/components/Common/NormalTextField'
+import FileUploadField from '@/components/Common/FileUploadField'
 import React from 'react'
 
 function Page() {

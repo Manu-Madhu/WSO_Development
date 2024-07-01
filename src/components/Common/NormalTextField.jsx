@@ -1,8 +1,8 @@
 import React from 'react';
 
-function NormalTextField({ type, label, placeholder }) {
+function NormalTextField({ type, label, placeholder, editable = false, top = false }) {
     return (
-        <div className='flex max-md:flex-col border-t w-10/12 max-md:w-full border-gray-3 00 py-5 justify-between'>
+        <div className={`flex max-md:flex-col  ${editable ? 'w-full' : 'w-10/12'} max-md:w-full ${top ? '' : 'border-t'} border-gray-300 py-5 justify-between`}>
             <div className='w-[35%] max-md:w-full font-medium'>
                 <h2>{label}</h2>
             </div>
@@ -11,13 +11,15 @@ function NormalTextField({ type, label, placeholder }) {
                     <textarea
                         className="w-full border border-gray-400 mt-1 px-4 py-3 rounded-lg placeholder:text-gray-400 placeholder:font-light"
                         placeholder={placeholder}
+                        readOnly={!editable}
                         rows="4"
                     />
                 ) : (
                     <input
                         type={type}
-                        className="w-full border border-gray-400 mt-1 px-4 py-3 rounded-lg placeholder:text-gray-400 placeholder:font-light"
+                        className="w-full border border-gray-400 mt-1 px-4 py-[.6rem] rounded-lg placeholder:text-gray-400 placeholder:font-light"
                         placeholder={placeholder}
+                        readOnly={!editable}
                     />
                 )}
             </div>

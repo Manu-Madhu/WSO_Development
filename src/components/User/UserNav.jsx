@@ -36,7 +36,7 @@ const UserNav = () => {
 
         {/* Buttons */}
         <div className="buttons flex gap-3 text-black text-[13px] font-medium capitalize">
-          <Link href={"/"}>
+          <Link href={"/pages/user/membership"}>
             <button className=" border-2 border-primaryColor p-2 px-5 rounded-lg">
               Register as member
             </button>
@@ -52,7 +52,7 @@ const UserNav = () => {
       {/* Mobile view */}
       <div className="max-w-[1280px] mx-auto w-full md:hidden flex justify-between items-center">
         <MobileView logo={log} />
-      </div> 
+      </div>
     </>
   );
 };

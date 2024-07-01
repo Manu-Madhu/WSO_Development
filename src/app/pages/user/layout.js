@@ -13,7 +13,7 @@ export default function Layout({ children }) {
             <div className="w-full bg-white">
                 <UserNav />
             </div>
-            <div>
+            <div className="w-full relative">
                 {children}
             </div>
             <div>
