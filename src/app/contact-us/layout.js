@@ -1,10 +1,5 @@
-import { Inter } from "next/font/google";
-import { AuthProvider } from "@/app/Providers";
-// import { ToastContainer } from "react-toastify";
 import UserNav from "@/components/User/UserNav";
 import UserFooter from "@/components/User/footer/UserFooter";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
     title: "WSO",
@@ -18,7 +13,6 @@ export default function Layout({ children }) {
                 <UserNav />
             </div>
             <div>
-                {/* <ToastContainer /> */}
                 {children}
             </div>
             <div>
