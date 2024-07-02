@@ -18,9 +18,14 @@ const LandingPage = () => {
           <span className="italic  text-primaryColor">Spice</span> Organisation
         </h1>
         <p className="mt-5 sm:w-1/2 text-wrap text-xs sm:text-sm">
-          The World Spice Organisation is a common platform for all the
-          stakeholders of the spice industry—farmers, processors, academia and
-          end-users—to work towards sustainable development.
+          The World Spice Organisation is a collaborative platform that unites
+          all stakeholders in the spice industry—farmers, processors, academics,
+          and end-users. Its mission is to work collectively towards sustainable
+          development.
+        </p>
+        <p className="mt-5 sm:w-1/2 text-wrap text-xs sm:text-sm">
+          improving agricultural practices, processing methods, research,
+          education, and product quality across the entire spice supply chain.
         </p>
       </div>
     </div>

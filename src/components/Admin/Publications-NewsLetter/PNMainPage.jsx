@@ -11,7 +11,7 @@ function PNMainPage({ name }) {
                     {name}
                 </h1>
                 <div className="sm:hidden">
-                    <Link href={`/pages/admin/${name.toLowerCase()}/add${name.toLowerCase()}`}>
+                    <Link href={`/admin/${name.toLowerCase()}/add${name.toLowerCase()}`}>
                         <button className="bg-primary-green flex items-center gap-2 px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                             <FiUploadCloud size={23} strokeWidth={2} />
                             <h4>Upload</h4>
@@ -27,7 +27,7 @@ function PNMainPage({ name }) {
                         </h2>
                     </div>
                     <div className="max-sm:hidden">
-                        <Link href={`/pages/admin/${name.toLowerCase()}/add${name.toLowerCase()}`}>
+                        <Link href={`/admin/${name.toLowerCase()}/add${name.toLowerCase()}`}>
                             <button className="bg-primary-green flex items-center gap-2 px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                                 <FiUploadCloud size={23} strokeWidth={2} />
                                 <h4>Upload</h4>

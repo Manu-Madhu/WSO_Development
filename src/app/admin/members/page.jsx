@@ -84,7 +84,7 @@ function Page() {
                                         </div>
                                     </td>
                                     <td>
-                                        <Link href="/pages/admin/members/addmember">
+                                        <Link href="/admin/members/addmember">
                                             <div className=' flex items-center py-5 pr-10'>
                                                 <img src='' className="h-12 w-12 bg-gray-300 p-3 rounded-full" alt='' />
                                                 <div>
@@ -105,7 +105,7 @@ function Page() {
                                         <div className='flex w-full max-md:gap-3 justify-around px-5 '>
                                             <DeleteButton name={"member"} />
                                             <button>
-                                                <Link href={{ pathname: '/pages/admin/news/addnews' }}>
+                                                <Link href={{ pathname: '/admin/news/addnews' }}>
                                                     <FiEdit2 size={20} />
                                                 </Link>
                                             </button>

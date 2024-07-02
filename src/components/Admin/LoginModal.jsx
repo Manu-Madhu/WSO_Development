@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 function LoginModal() {
     return (
         <div className="fixed w-[376px] bg-white right-6 p-12 rounded-lg flex flex-col text-black text-sm items-start">
@@ -11,7 +13,7 @@ function LoginModal() {
                 Sign in
             </button>
             <p className="mt-6 text-center w-full">
-                Dont't have an account? <a href="#" className="text-primary-green font-semibold">Sign up</a>
+                don&apos;t have an account? <Link href="#" className="text-primary-green font-semibold">Sign up</Link>
             </p>
         </div>
     )

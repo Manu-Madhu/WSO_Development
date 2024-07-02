@@ -1,13 +1,23 @@
-import LoginModal from "@/components/Admin/LoginModal";
-import Home from "@/components/User/Home";
-import Image from "next/image";
+import HomePage from '@/components/User/home/page'
+import UserNav from "@/components/User/UserNav";
+import UserFooter from "@/components/User/footer/UserFooter";
 
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        <Home />
+    <>
+      <div className="w-full bg-white">
+        <UserNav />
       </div>
-    </main>
+
+      {/* User Side */}
+      <div className="">
+        <HomePage />
+      </div>
+
+      <div>
+        <UserFooter />
+      </div>
+    </>
+
   );
 }
