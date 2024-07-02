@@ -1,6 +1,6 @@
 import CancelButton from '../common/CancelButton'
 import SaveButton from '../common/SaveButton'
-import FileUploadField from './FileUploadField'
+import FileUploadField from '../../Common/FileUploadField'
 
 function PNAddNewPage({ name }) {
     return (

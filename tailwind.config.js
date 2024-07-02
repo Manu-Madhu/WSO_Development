@@ -22,8 +22,11 @@ module.exports = {
         "title": " 1.875rem",
         "sub-title": "1.25rem",
       },
-      colors:{
-        primaryColor:"#266941"
+      colors: {
+        primaryColor: "#266941"
+      },
+      maxWidth: {
+        "common": "1280px"
       }
     },
   },

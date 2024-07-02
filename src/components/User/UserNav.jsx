@@ -109,8 +109,8 @@ const UserNav = () => {
 
         {/* Buttons */}
         <div className="buttons flex gap-3 text-black text-[13px] font-medium capitalize">
-          <Link href={"/"}>
-            <button className=" border-2 border-primaryColor p-2 px-5 rounded-lg font-semibold">
+          <Link href={"/pages/user/membership"}>
+            <button className=" border-2 border-primaryColor p-2 px-5 rounded-lg">
               Register as member
             </button>
           </Link>
