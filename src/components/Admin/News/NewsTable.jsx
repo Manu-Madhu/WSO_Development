@@ -1,0 +1,76 @@
+"use client";
+import React, { useEffect, useState } from 'react';
+import { FiEdit2 } from "react-icons/fi";
+import Link from "next/link";
+import DeleteButton from "@/components/Admin/News/DeleteButton";
+import axios from '@/axios-folder/axios';
+import { getAllNewsRoute } from '@/utils/Endpoint';
+
+const NewsTable = () => {
+    const [data, setData] = useState([]);
+
+    const getNews = async()=>{
+        try {
+            const response = await axios.get(getAllNewsRoute);
+            console.log({response})
+            if(response.status === 200){
+                setData(response?.data?.news)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=>{
+        getNews()
+    }, [])
+
+  return (
+    <>
+    <table className="w-full text-base max-md:text-sm table">
+            <thead className="bg-[#f4f6f7]">
+              <tr>
+                <th className="px-5 py-3 font-normal text-start">No</th>
+                <th className="px-5 py-3 font-normal text-start">
+                  Title
+                </th>
+                <th className=" px-5 py-3 font-normal text-start">
+                  Description
+                </th>
+                <th className="px-8 py-3 font-normal">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {
+                    data?.length > 0 
+                    &&
+                    data?.map((item ,i)=>(
+                        <tr>
+                            <td className="px-5 py-6">{i+1}</td>
+                            <td className="px-5 py-6">{item?.title}</td>
+                            <td className="px-5 py-6">{item?.description}</td>
+                            <td className="flex w-full justify-around px-5 py-6">
+                            <DeleteButton name={"News"} />
+                            <button>
+                                <Link href={{ pathname: "/admin/news/addnews" }}>
+                                <FiEdit2 size={20} />
+                                </Link>
+                            </button>
+                            </td>
+                        </tr>
+
+                    ))
+                }
+            </tbody>
+          </table>
+
+    {
+        data?.length === 0 
+        &&
+        <p className='mx-auto w-fit py-5'>No available data</p>
+    }
+    </>
+  )
+}
+
+export default NewsTable

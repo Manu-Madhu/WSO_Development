@@ -2,6 +2,7 @@ import { FiEdit2, FiUploadCloud } from "react-icons/fi";
 import Link from 'next/link'
 import { CiImageOn } from "react-icons/ci";
 import DeleteButton from "../News/DeleteButton";
+import PublicationTable from "./PublicationTable";
 
 function PNMainPage({ name }) {
     return (
@@ -36,7 +37,8 @@ function PNMainPage({ name }) {
                     </div>
                 </div>
                 <div className="w-full max-md:overflow-x-scroll">
-                    <table className='w-full text-base table'>
+
+                    {/* <table className='w-full text-base table'>
                         <thead className="text-sm" >
                             <tr>
                                 <th className='w-[55%] max-md:w-fit px-6 py-3 font-normal text-start text-nowrap'>
@@ -92,7 +94,20 @@ function PNMainPage({ name }) {
                                 ))
                             }
                         </tbody>
-                    </table>
+                    </table> */}
+
+                    {
+                        name === "Publications"
+                        &&
+                        <PublicationTable name="Publications" />
+                    }
+
+                    {
+                        name === "Newsletter"
+                        &&
+                        <PublicationTable name="Newsletter" />
+                    }
+
                 </div>
             </div>
         </div>

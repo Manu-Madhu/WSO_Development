@@ -5,9 +5,24 @@ import { SessionProvider, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Oval } from 'react-loader-spinner';
+import { Provider } from "react-redux";
+import { persistor, store } from "@/redux/Store";
+import { PersistGate } from "redux-persist/integration/react";
 
 export const AuthProvider = ({ children }) => {
-    return <SessionProvider>{children}</SessionProvider>
+    return (
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor} >
+                <SessionProvider>
+
+                    {children}
+
+                </SessionProvider>
+
+            </PersistGate>
+        </Provider>
+
+    )
 }
 
 export const AdminProvider = ({ children }) => {
