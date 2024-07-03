@@ -4,7 +4,7 @@ import { FiEdit2 } from "react-icons/fi";
 import Link from "next/link";
 import DeleteButton from "@/components/Admin/News/DeleteButton";
 import axios from '@/axios-folder/axios';
-import {  getAllNewsletterRoute } from '@/utils/Endpoint';
+import {  memberNewsletterRoute } from '@/utils/Endpoint';
 import { CiImageOn } from "react-icons/ci";
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 
@@ -16,7 +16,7 @@ const NewsletterTable = ({name}) => {
 
     const getNewsletters = async()=>{
         try {
-            const response = await axiosPrivate.get(getAllNewsletterRoute);
+            const response = await axiosPrivate.get(memberNewsletterRoute);
             console.log({response})
             if(response.status === 200){
                 setData(response?.data?.newsletters)

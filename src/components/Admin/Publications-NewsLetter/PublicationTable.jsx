@@ -4,7 +4,7 @@ import { FiEdit2 } from "react-icons/fi";
 import Link from "next/link";
 import DeleteButton from "@/components/Admin/News/DeleteButton";
 import axios from '@/axios-folder/axios';
-import {  getAllPublicationRoute } from '@/utils/Endpoint';
+import { memberPublicationRoute } from '@/utils/Endpoint';
 import { CiImageOn } from "react-icons/ci";
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 
@@ -16,7 +16,7 @@ const PublicationTable = ({name}) => {
 
     const getPublications = async()=>{
         try {
-            const response = await axiosPrivate.get(getAllPublicationRoute);
+            const response = await axiosPrivate.get(memberPublicationRoute);
             console.log({response})
             if(response.status === 200){
                 setData(response?.data?.publications)
