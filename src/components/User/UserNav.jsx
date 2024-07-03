@@ -6,7 +6,7 @@ import Link from "next/link";
 import LoginPage from "../Common/Login";
 import Dropdown from "./navBar/Dropdown";
 
-import {navBar} from "@/data/nav.js";
+import { navBar } from "@/data/nav.js";
 import { usePathname, useRouter } from "next/navigation";
 import { FiMenu } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
@@ -109,7 +109,7 @@ const UserNav = () => {
 
         {/* Buttons */}
         <div className="buttons flex gap-3 text-black text-[13px] font-medium capitalize">
-          <Link href={"/pages/user/membership"}>
+          <Link href={"/user/membership"}>
             <button className=" border-2 border-primaryColor p-2 px-5 rounded-lg">
               Register as member
             </button>

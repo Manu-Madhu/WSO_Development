@@ -10,7 +10,7 @@ const options = [
 ]
 function MembershipForm() {
     return (
-        <div className='flex flex-col w-full px-10 border-separate rounded-xl border max-md:pt-20 mr-10 pb-10'>
+        <div className='flex flex-col w-full px-10 max-md:p-4 border-separate rounded-xl border  mr-10 max-md:mr-0 pb-10'>
             <NormalTextField editable label="Username" placeholder="Username" key='usename' top />
             <NormalTextField editable label="Password" placeholder="Password" type='password' key="password" />
             <NormalTextField editable label="Name of the Applicant" placeholder="Name of the Applicant" key="name" />
@@ -41,7 +41,7 @@ function MembershipForm() {
                 <div className='w-[35%] max-md:w-full font-medium'>
                     <h2>Attach Identity Proof File</h2>
                 </div>
-                <div className='w-[64%]'>
+                <div className='w-[64%] max-md:w-full'>
                     <FileUploadField fileTypes={['image/jpeg', 'image/png', 'image/gif', 'applicatin/pdf']} />
                 </div>
             </div>

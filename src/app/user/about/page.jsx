@@ -9,8 +9,8 @@ function Page() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const banners = [AboutBanner, AboutBanner, AboutBanner, AboutBanner, MembersBanner]
     return (
-        <div className='max-w-screen-xl mx-auto relative flex flex-col'>
-            <h1 className='text-title font-semibold my-3'>About Us</h1>
+        <div className='max-w-screen-xl max-lg:w-10/12 max-sm:w-full  mx-auto relative flex flex-col'>
+            <h1 className='text-title font-semibold my-3 max-sm:w-10/12 max-sm:mx-auto'>About Us</h1>
             <Image className='w-full' src={banners[currentIndex]} />
             <AboutContent
                 currentIndex={currentIndex}
