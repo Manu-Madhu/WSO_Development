@@ -8,8 +8,8 @@ const ReactQuill = dynamic(() => import('react-quill'), {
     loading: () => <input className="py-3" placeholder="Loading editor..." disabled />,
 });
 
-const TextEditor = () => {
-    const [value, setValue] = useState('');
+const TextEditor = ({value, setValue}) => {
+    // const [value, setValue] = useState('');
 
     const handleChange = (content) => {
         if (content.replace(/<[^>]*>/g, '').length <= 300) {

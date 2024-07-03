@@ -3,11 +3,12 @@
 import React, { useState } from 'react';
 import SaveAlert from './SaveAlert';
 
-function SaveButton({ title, content }) {
+function SaveButton({ title, content , submitHandler}) {
     const [showAlert, setShowAlert] = useState(false);
     const handleConfirm = () => {
         console.log(title + " Saved");
         setShowAlert(false);
+        submitHandler()
     };
 
     const handleCancel = () => {

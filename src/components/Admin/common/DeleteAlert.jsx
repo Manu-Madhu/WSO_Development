@@ -15,8 +15,8 @@ function DeleteAlert({ onConfirm, onCancel, name }) {
                     Are you sure you want to delete this {name.toLowerCase()}? <br /> This action cannot be undone.
                 </p>
                 <div className="flex w-full gap-4 mt-2 justify-between">
-                    <button className="w-full rounded-lg py-2 border border-gray-400" onClick={onConfirm}>Cancel</button>
-                    <button className="w-full rounded-lg py-2 bg-[#D92D20] text-white" onClick={onCancel}>Delete</button>
+                    <button className="w-full rounded-lg py-2 border border-gray-400" onClick={onCancel}>Cancel</button>
+                    <button className="w-full rounded-lg py-2 bg-[#D92D20] text-white" onClick={onConfirm} >Delete</button>
                 </div>
             </div>
         </div>

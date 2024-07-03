@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { CiImageOn } from "react-icons/ci";
 import DeleteButton from "../News/DeleteButton";
 import PublicationTable from "./PublicationTable";
+import NewsletterTable from "./NewsletterTable";
 
 function PNMainPage({ name }) {
     return (
@@ -105,7 +106,7 @@ function PNMainPage({ name }) {
                     {
                         name === "Newsletter"
                         &&
-                        <PublicationTable name="Newsletter" />
+                        <NewsletterTable name="Newsletter" />
                     }
 
                 </div>

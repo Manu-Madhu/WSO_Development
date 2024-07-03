@@ -1,10 +1,19 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import { CiCircleRemove } from "react-icons/ci";
 
-const FileUploadField = ({ fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'], sizeLimit = 20 * 1024 * 1024, typeNames = ['PDF', 'DOC', 'DOCX'] }) => {
-    const [file, setFile] = useState(null);
+const FileUploadField = ({ 
+    file, setFile,
+    fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'image/png','image/jpeg',
+    ], 
+    sizeLimit = 20 * 1024 * 1024, 
+    typeNames = ['PDF', 'DOC', 'DOCX', 'PNG', 'JPEG',] }) => {
+
+    const inputRef = useRef()
+
+    // const [file, setFile] = useState(null);
     const [preview, setPreview] = useState(null);
     const [dragging, setDragging] = useState(false);
 
@@ -66,7 +75,7 @@ const FileUploadField = ({ fileTypes = ['application/pdf', 'application/msword',
     };
 
     const handleUploadClick = () => {
-        document.getElementById('dropzone-file').click();
+        inputRef.current.click();
     };
 
     return (
@@ -108,7 +117,7 @@ const FileUploadField = ({ fileTypes = ['application/pdf', 'application/msword',
                 )}
             </div>
             <input
-                id="dropzone-file"
+                ref={inputRef}
                 type="file"
                 className="hidden"
                 onChange={handleFileChange}

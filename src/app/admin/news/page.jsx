@@ -5,7 +5,7 @@ import NewsTable from "@/components/Admin/News/NewsTable";
 
 
   return (
-    <div className="flex flex-col bg-white min-h-screen w-full px-10 max-md:px-6 pt-12 max-md:pt-16 text-black">
+    <div className="flex flex-col bg-white min-h-screen w-full px-10 max-md:px-6 py-12 max-md:pt-16 text-black">
       <div className="flex justify-between">
         <h1 className="font-semibold text-title">News</h1>
         <div className="sm:hidden">

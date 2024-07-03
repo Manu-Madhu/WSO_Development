@@ -4,14 +4,18 @@ import { FiEdit2 } from "react-icons/fi";
 import Link from "next/link";
 import DeleteButton from "@/components/Admin/News/DeleteButton";
 import axios from '@/axios-folder/axios';
-import { getAllNewsRoute } from '@/utils/Endpoint';
+import { guestNewsRoute } from '@/utils/Endpoint';
+import useAxiosPrivate from '@/hooks/useAxiosPrivate';
+import parse from 'html-react-parser';
 
 const NewsTable = () => {
     const [data, setData] = useState([]);
 
+    const axiosPrivate = useAxiosPrivate()
+
     const getNews = async()=>{
         try {
-            const response = await axios.get(getAllNewsRoute);
+            const response = await axiosPrivate.get(guestNewsRoute);
             console.log({response})
             if(response.status === 200){
                 setData(response?.data?.news)
@@ -48,11 +52,11 @@ const NewsTable = () => {
                         <tr>
                             <td className="px-5 py-6">{i+1}</td>
                             <td className="px-5 py-6">{item?.title}</td>
-                            <td className="px-5 py-6">{item?.description}</td>
+                            <td className="px-5 py-6">{parse(item?.description)}</td>
                             <td className="flex w-full justify-around px-5 py-6">
-                            <DeleteButton name={"News"} />
+                            <DeleteButton name={"news"} id={item?._id} data={data} setData={setData} />
                             <button>
-                                <Link href={{ pathname: "/admin/news/addnews" }}>
+                                <Link href={{ pathname: `/admin/news/edit/${item?._id}` }}>
                                 <FiEdit2 size={20} />
                                 </Link>
                             </button>

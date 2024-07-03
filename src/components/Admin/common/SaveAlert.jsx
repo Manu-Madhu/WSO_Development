@@ -14,8 +14,8 @@ function SaveAlert({ onConfirm, onCancel, title, content }) {
                     {content}
                 </p>
                 <div className="flex w-full gap-4 mt-2 justify-between">
-                    <button className="w-full rounded-lg py-2 border border-gray-400" onClick={onConfirm}>Cancel</button>
-                    <button className="w-full rounded-lg py-2 bg-[#266941] text-white" onClick={onCancel}>Confirm</button>
+                    <button className="w-full rounded-lg py-2 border border-gray-400" onClick={onCancel}>Cancel</button>
+                    <button className="w-full rounded-lg py-2 bg-[#266941] text-white" onClick={onConfirm}>Confirm</button>
                 </div>
             </div>
         </div>

@@ -4,12 +4,15 @@ import useRefreshToken from "./useRefreshToken";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/AuthSlicer";
 import { setRefreshToken } from "../redux/slices/TokenReducer";
+import { useSession } from 'next-auth/react'
 
 const useAxiosPrivate = () => {
     const refresh = useRefreshToken();
-    const accessToken = useSelector((state) => state?.token?.accessToken);
+    // const accessToken = useSelector((state) => state?.token?.accessToken);
     // console.log("accessToken", accessToken)
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
+    const { data: session, status } = useSession();
+    const accessToken = session?.user?.accessToken;
 
     useEffect(() => {
 
@@ -32,8 +35,8 @@ const useAxiosPrivate = () => {
                     prevRequest.sent = true;
 
                     if (prevRequest.url === "/api/auth/refresh-token") {
-                        dispatch(setRefreshToken(null))
-                        dispatch(logout());
+                        // dispatch(setRefreshToken(null))
+                        // dispatch(logout());
                         return
                     }
 

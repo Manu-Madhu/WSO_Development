@@ -2,13 +2,19 @@
 import NewsArea from "@/components/Admin/News/NewsArea";
 import SaveButton from "@/components/Admin/common/SaveButton";
 import CancelButton from "@/components/Admin/common/CancelButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
-import { adminNewsRoute } from "@/utils/Endpoint";
+import { adminNewsRoute, guestNewsRoute } from "@/utils/Endpoint";
 import FileUploadField from "@/components/Admin/Publications-NewsLetter/FileUploadField";
+import { useRouter } from "next/navigation";
 
-function Page() {
+function Page({params}) {
+    const axiosPrivate = useAxiosPrivate();
+
+    const router = useRouter();
+    const {id} = params;
+
     const [data,setData] = useState({
         title:"",
         description:"",
@@ -16,7 +22,26 @@ function Page() {
         thumbnail: null,
     })
 
-    const axiosPrivate = useAxiosPrivate();
+    const fetchData = async()=>{
+        try {
+            const response = await axiosPrivate.get(`${guestNewsRoute}/${id}`)
+
+            if(response.status === 200){
+                const news = response?.data?.news;
+                console.log({fetchednews: news})
+
+                setData((prev)=>({
+                    title: news?.title,
+                    description: news?.description,
+                    // document: news?.document,
+                    // thumbnail: news?.thumbnail,
+                }))
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     const changeHandler = (e)=>{
         setData((prev)=> ({
@@ -33,7 +58,7 @@ function Page() {
             formData.append("document", data?.document);
             formData.append("thumbnail", data?.thumbnail);
 
-            const response = await axiosPrivate.post(adminNewsRoute, formData,
+            const response = await axiosPrivate.put(`${adminNewsRoute}/${id}`, formData,
                 {
                     headers: {
                       'Content-Type': 'multipart/form-data'
@@ -42,13 +67,8 @@ function Page() {
             )
 
             if(response.status === 200){
-                toast.success("Data Added")
-                setData({
-                    title:"",
-                    description:"",
-                    document: null,
-                    thumbnail: null,
-                })
+                toast.success("Data Updated")
+                router.push("/admin/news")
             }
         } catch (error) {
             console.log(error)
@@ -58,10 +78,14 @@ function Page() {
 
     console.log({data})
 
+    useEffect(()=>{
+        fetchData()
+    },[])
+
     return (
         <div className="flex flex-col bg-white min-h-screen w-full px-10 max-md:px-5 pt-12 max-md:pt-16 mb-6 text-black">
             <h1 className="font-semibold text-title">
-                Add news
+                Edit news
             </h1>
             <div className="flex justify-between mt-2 py-5">
                 <div>

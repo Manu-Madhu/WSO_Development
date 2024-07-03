@@ -11,16 +11,16 @@ import { PersistGate } from "redux-persist/integration/react";
 
 export const AuthProvider = ({ children }) => {
     return (
-        <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor} >
+        // <Provider store={store}>
+        //     <PersistGate loading={null} persistor={persistor} >
                 <SessionProvider>
 
                     {children}
 
                 </SessionProvider>
 
-            </PersistGate>
-        </Provider>
+        //     </PersistGate>
+        // </Provider>
 
     )
 }

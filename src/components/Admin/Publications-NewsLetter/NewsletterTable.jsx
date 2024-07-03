@@ -6,17 +6,20 @@ import DeleteButton from "@/components/Admin/News/DeleteButton";
 import axios from '@/axios-folder/axios';
 import {  getAllNewsletterRoute } from '@/utils/Endpoint';
 import { CiImageOn } from "react-icons/ci";
+import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 
 const NewsletterTable = ({name}) => {
 
     const [data, setData] = useState([]);
 
+    const axiosPrivate = useAxiosPrivate()
+
     const getNewsletters = async()=>{
         try {
-            const response = await axios.get(getAllNewsletterRoute);
+            const response = await axiosPrivate.get(getAllNewsletterRoute);
             console.log({response})
             if(response.status === 200){
-                setData(response?.data?.Newsletter)
+                setData(response?.data?.newsletters)
             }
         } catch (error) {
             console.log(error)
@@ -31,7 +34,7 @@ const NewsletterTable = ({name}) => {
     return (
         <>
             <table className='w-full text-base table'>
-                <thead className="text-sm" >
+                <thead className="bg-[#f4f6f7]" >
                     <tr>
                         <th className='px-6 py-3 font-normal text-start text-nowrap'>
                             File name
@@ -70,13 +73,13 @@ const NewsletterTable = ({name}) => {
                                     1.2 MB
                                 </td>
                                 <td className='px-8 py-4 text-center'>
-                                    {item?.createdAt}
+                                {item?.createdAt ? new Date(item?.createdAt)?.toLocaleDateString("en-IN") : 'NIL'}
                                 </td>
                                 <td>
                                     <div className='flex w-full justify-evenly max-md:gap-3 px-8 py-6'>
                                         <DeleteButton name={name} />
                                         <button >
-                                            <Link href={{ pathname: `/pages/admin/${name}/add${name}` }}>
+                                            <Link href={{ pathname: `/admin/newsletter/addnewsletter` }}>
                                                 <FiEdit2 size={20} />
                                             </Link>
                                         </button>
@@ -87,6 +90,12 @@ const NewsletterTable = ({name}) => {
                     }
                 </tbody>
             </table>
+
+            {
+        data?.length === 0 
+        &&
+        <p className='mx-auto w-fit py-5'>No available data</p>
+    }
         </>
     )
 }
