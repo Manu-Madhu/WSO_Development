@@ -1,5 +1,5 @@
 function StatusIndicator({ status }) {
-    let containerClass = "flex items-center gap-2 px-2 py-1 rounded-full w-fit max-md:mr-6";
+    let containerClass = "flex items-center gap-2 px-2 py-1 rounded-full w-fit max-md:mr-6 capitalize";
     let dotClass = "size-2 rounded-full";
     let textClass = "text-sm font-medium";
 

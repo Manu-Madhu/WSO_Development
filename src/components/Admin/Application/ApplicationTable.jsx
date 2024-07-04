@@ -59,7 +59,7 @@ const ApplicationTable = () => {
 
                                 <td >
                                     <div className='w-fit flex items-center px-3 py-3 '>
-                                        <img src='' className="h-12 w-12 bg-gray-300 p-3 rounded-full" alt='' />
+                                        <img src={item?.idProof?.location} className="h-12 w-12 bg-gray-300 object-contain rounded-full" alt='' />
                                         <div className='ml-4'>
                                             <h4 className="font-semibold max-md:text-sm text-base capitalize">
                                                 {item?.applicantName ?? 'NIL'}
@@ -93,7 +93,7 @@ const ApplicationTable = () => {
 
                                 <td > 
                                 <Link href={{ pathname: `/admin/applications/view/${item?._id}` }}>
-                                    <TbArrowsDiagonal size={22} color='blue' className='cursor-pointer' />
+                                    <TbArrowsDiagonal size={22}  className='cursor-pointer text-blue-500 ' />
                                 </Link>
                                 </td>
                             </tr>

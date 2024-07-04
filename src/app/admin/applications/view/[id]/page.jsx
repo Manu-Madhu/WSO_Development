@@ -1,5 +1,8 @@
 "use client"
+import ApproveBtn from '@/components/Admin/Buttons/ApproveBtn';
+import RejectBtn from '@/components/Admin/Buttons/RejectBtn';
 import NormalTextField from '@/components/Admin/Members/NormalTextField'
+import StatusIndicator from '@/components/Admin/Members/StatusIndicator';
 import FileUploadField from '@/components/Admin/Publications-NewsLetter/FileUploadField'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import { adminApplicationRoute } from '@/utils/Endpoint';
@@ -68,9 +71,15 @@ function Page({ params }) {
     console.log(data)
     return (
         <div className='flex flex-col w-full px-10 pt-12 max-md:pt-20 mb-28'>
-            <h1 className="font-semibold text-title pb-10">
-                View Application
-            </h1>
+            <div className='flex flex-col sm:flex-row sm:items-center gap-5 mb-6 '>
+                <span className="font-semibold text-title ">
+                    View Application
+                </span>
+                <div className=''>
+
+                    <StatusIndicator status={data?.status} />
+                </div>
+            </div>
 
             {
                 fieldData?.map((item, index) => (
@@ -82,10 +91,16 @@ function Page({ params }) {
 
             <div className='flex justify-between border-t w-10/12 max-md:w-full border-gray-3 py-5'>
                 <div className='w-[35%] max-md:w-fit font-medium'>
-                    <h2>Including Renewal Payment</h2>
+                    <h2>Includes Renewal Payment</h2>
                 </div>
                 <div className='w-[64%] max-md:w-fit'>
-                    <input type="checkbox" checked={data?.hasRenewalPay} className="scale-150 accent-[#266941]" />
+                    {data?.hasRenewalPay
+                        ?
+                        <span className='text-green-500'>Yes</span>
+                        :
+                        <span className='text-red-500'>No</span>
+                    }
+
                 </div>
                 <div>
 
@@ -97,7 +112,13 @@ function Page({ params }) {
                     <h2>Identity Proof </h2>
                 </div>
                 <div className='w-[64%] max-md:w-full'>
-                    <img className='max-h-20 cursor-pointer' src={data?.idProof?.location} alt="" />
+                    {
+                        data?.idProof?.location
+                        ?
+                        <img className='max-h-20 cursor-pointer' src={data?.idProof?.location} alt="" />
+                        :
+                        <span>NIL</span>
+                    }
                 </div>
             </div>
 
@@ -110,14 +131,15 @@ function Page({ params }) {
                 ))
             }
 
-            <div>
-                <button className="border border-[#DB3636] text-[#DB3636] bg-[#F9DFDF] font-semibold px-5 py-2 rounded-lg mt-5">
-                    Reject
-                </button>
-                <button className="bg-[#266941] text-white px-5 py-2 font-semibold rounded-lg mt-5 ml-5">
-                    Approve
-                </button>
-            </div>
+            {
+                data?.status === 'pending'
+                &&
+                <div>
+                    <RejectBtn main="/admin/applications" id={id} route={adminApplicationRoute} title="Reject application" content="Click Reject to reject this application" />
+                    <ApproveBtn main="/admin/applications" id={id} route={adminApplicationRoute} title="Approve application" content="Click Confirm to approve this application" />
+                </div>
+            }
+
         </div>
     )
 }
