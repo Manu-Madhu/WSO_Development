@@ -1,11 +1,23 @@
-import Image from "next/image";
+import HomePage from '@/components/User/home/page'
+import UserNav from "@/components/User/UserNav";
+import UserFooter from "@/components/User/footer/UserFooter";
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-       <div>
-         <h1>halo sugamano</h1>
-       </div>
-    </main>
+    <>
+      <div className="w-full bg-white">
+        <UserNav />
+      </div>
+
+      {/* User Side */}
+      <div className="">
+        <HomePage />
+      </div>
+
+      <div>
+        <UserFooter />
+      </div>
+    </>
+
   );
 }
