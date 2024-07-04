@@ -4,7 +4,7 @@ import ReactFlagsSelect from "react-flags-select";
 
 function CountrySelector({ selected, onSelect }) {
     return (
-        <div className='w-[64%] max-md:w-full relative'>
+        <div className='w-[64%] text-sm max-md:w-full relative'>
             <ReactFlagsSelect
                 selected={selected}
                 selectButtonClassName="rounded-lg "

@@ -13,10 +13,10 @@ const NSC = async () => {
     test()
   return (
     <div
-      className="max-w-[1280px] mx-auto w-full flex flex-col py-5 xl:py-10 px-4 xl:px-0
+      className="max-w-[1280px] mx-auto w-full flex flex-col p-3 py-5 xl:py-10 px-4 xl:px-0
     gap-12 "
     >
-      <h1 className="text-xl sm:text-3xl text-black font-semibold">
+      <h1 className="text-[#101828] font-bold text-2xl self-start ">
         NSC (National Spice Conference)
       </h1>
 
@@ -39,7 +39,7 @@ const NSC = async () => {
             ))}
           </div>
 
-          <button className=" w-full lg:w-fit bg-primaryColor text-white px-3 py-2 rounded-md">
+          <button className=" w-full lg:w-fit bg-primaryColor text-white p-2 text-sm  px-5 rounded-md">
             Visit NSC
           </button>
         </div>
