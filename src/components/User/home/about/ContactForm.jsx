@@ -1,6 +1,6 @@
 "use client";
 
-import { baseUrl, contactRoute } from "@/utils/Endpoint";
+import { baseUrl, contactRoute, register } from "@/utils/Endpoint";
 import axios from "axios";
 import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
@@ -33,7 +33,7 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -68,9 +68,9 @@ const ContactForm = () => {
         return
       }
 
-      const response = await axios.post(`${baseUrl}/${contactRoute}`, postData);
+      const response = await axios.post(`${baseUrl}/${register}`, postData);
 
-      if(response.ok){
+      if (response.ok) {
         toast.success('Message Sent');
 
         setPostData({
@@ -82,12 +82,12 @@ const ContactForm = () => {
           phone: "",
           comments: "",
         })
-        
+
       }
-      else{
+      else {
         toast.error('Failed to sent message')
       }
-      
+
     } catch (error) {
       console.log(error)
       toast.error('Failed to sent message')
