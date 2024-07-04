@@ -2,60 +2,12 @@ import Select from 'react-select';
 
 function MembershipDropdown({ options, placeholder, value, onChange }) {
     return (
-        <div className='flex flex-col w-full md:px-10 max-md:p-4 border-separate rounded-xl border md:mr-10 mr-0 pb-10 py-10'>
-            <NormalTextField editable label="Username" placeholder="Username" key='usename' top />
-            <NormalTextField editable label="Password" placeholder="Password" type='password' key="password" />
-            <NormalTextField editable label="Name of the Applicant" placeholder="Name of the Applicant" key="name" />
-            <NormalTextField editable label="Address" placeholder="Address" type="textarea" key="address" />
-            <NormalTextField editable label="State/Province" placeholder="State" key="state" />
-            <div className='flex max-md:flex-col border-t w-full border-gray-3 00 py-5 justify-between'>
-                <div className='w-[35%] text-sm max-md:w-full font-medium'>
-                    <h2>Country</h2>
-                </div>
-                <CountrySelector />
         <div className='flex max-md:flex-col border-t w-full border-gray-300 py-5 justify-between'>
-            <div className='w-[35%] max-md:w-full font-medium'>
+            <div className='w-[35%] max-md:w-full text-sm font-medium'>
                 <h2>{placeholder}</h2>
             </div>
-            <NormalTextField editable label="Telephone" placeholder="Telephone" key="Telephone" type="tel" />
-            <NormalTextField editable label="Fax" placeholder="Fax" key="fax" />
-            <NormalTextField editable label="Email" placeholder="Email" key="email" type="email" />
-            <NormalTextField editable label="Website" placeholder="Website" key="Website" type="url" />
-            <NormalTextField editable label="Contact Person" placeholder="Contact Person" key="person" />
-            <NormalTextField editable label="Telephone" placeholder="Telephone" key="Telephone" type="tel" />
-            <NormalTextField editable label="Nature of business/product line" placeholder="Nature of business" key="Nature of business" />
-            <MembershipDropdown options={options} placeholder={"Membership applied for"} />
-            <NormalTextField editable label="Name of the business/entity associated with" placeholder="business" key="business" />
-            <NormalTextField editable label="Address of the business/entity" placeholder="Address here" type="textarea" key="Address of the business" />
-            <NormalTextField editable label="Registration number business/entity" placeholder="Registration number business/entity" key="regno" />
-            <NormalTextField editable label="Registration date of business/entity" key="regdate" type="date" />
-            <NormalTextField editable label="Date of commencement of business/entity" key="comdate" type="date" />
-            <NormalTextField editable label="Name of the authorized person representing business/entity" placeholder="Name" key="business person name" />
-            <NormalTextField editable label="Name of person authorized to attend meetings" placeholder="Position" key="position" />
-            <div className='flex max-md:flex-col justify-between border-t w-full border-gray-3 py-5'>
-                <div className='w-[35%] text-sm max-md:w-full font-medium'>
-                    <h2>Attach Identity Proof File</h2>
-                </div>
-                <div className='w-[64%] max-md:w-full text-sm overflow-hidden'>
-                    <FileUploadField fileTypes={['image/jpeg', 'image/png', 'image/gif', 'applicatin/pdf']} />
-                </div>
-            </div>
-            <div className='flex justify-between border-t w-full border-gray-3 py-5'>
-                <div className='w-[35%] max-md:w-fit font-medium'>
-                    <h2>Including Renewal Payment</h2>
-                </div>
-                <div className='w-[64%] max-md:w-fit'>
-                    <input type="checkbox" className="scale-150 accent-[#266941]" />
-                </div>
-            </div>
-            <MembershipDropdown options={options} placeholder={"Payment Mode"} />
-            <div>
-                <button className="bg-[#266941] text-sm text-white px-5 p-3 font-semibold rounded-lg mt-5">
-                    Register as a Member
-                </button>
-            </div>
             <Select
-                className='w-[64%] max-md:w-full max-md:mt-2 placeholder:text-gray-300 rounded-lg'
+                className='w-[64%] max-md:w-full text-sm max-md:mt-2 placeholder:text-gray-300 rounded-lg'
                 options={options}
                 placeholder={placeholder}
                 value={value}  // Ensure value is properly passed and defined
