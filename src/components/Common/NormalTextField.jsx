@@ -1,8 +1,6 @@
-import React from 'react';
-
-function NormalTextField({ type, label, placeholder, editable = false, top = false }) {
+function NormalTextField({ type, label, placeholder, editable = false, top = false, value, onChange }) {
     return (
-        <div className={`flex max-md:flex-col  ${editable ? 'w-full' : 'w-10/12'} max-md:w-full ${top ? '' : 'border-t'} border-gray-300 py-5 justify-between`}>
+        <div className={`flex max-md:flex-col ${editable ? 'w-full' : 'w-10/12'} max-md:w-full ${top ? '' : 'border-t'} border-gray-300 py-5 justify-between`}>
             <div className='w-[35%] max-md:w-full font-medium'>
                 <h2>{label}</h2>
             </div>
@@ -13,6 +11,8 @@ function NormalTextField({ type, label, placeholder, editable = false, top = fal
                         placeholder={placeholder}
                         readOnly={!editable}
                         rows="4"
+                        value={value}
+                        onChange={onChange}
                     />
                 ) : (
                     <input
@@ -20,6 +20,8 @@ function NormalTextField({ type, label, placeholder, editable = false, top = fal
                         className="w-full border border-gray-400 mt-1 px-4 py-[.6rem] rounded-lg placeholder:text-gray-400 placeholder:font-light"
                         placeholder={placeholder}
                         readOnly={!editable}
+                        value={value}
+                        onChange={onChange}
                     />
                 )}
             </div>
@@ -30,7 +32,9 @@ function NormalTextField({ type, label, placeholder, editable = false, top = fal
 NormalTextField.defaultProps = {
     type: 'text',
     label: 'Label',
-    placeholder: ''
+    placeholder: '',
+    value: '',
+    onChange: () => { }
 };
 
 export default NormalTextField;
