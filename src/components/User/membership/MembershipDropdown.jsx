@@ -10,14 +10,14 @@ const options = [
 ]
 function MembershipForm() {
     return (
-        <div className='flex flex-col w-full px-10 max-md:p-4 border-separate rounded-xl border  mr-10 max-md:mr-0 pb-10'>
+        <div className='flex flex-col w-full md:px-10 max-md:p-4 border-separate rounded-xl border md:mr-10 mr-0 pb-10 py-10'>
             <NormalTextField editable label="Username" placeholder="Username" key='usename' top />
             <NormalTextField editable label="Password" placeholder="Password" type='password' key="password" />
             <NormalTextField editable label="Name of the Applicant" placeholder="Name of the Applicant" key="name" />
             <NormalTextField editable label="Address" placeholder="Address" type="textarea" key="address" />
             <NormalTextField editable label="State/Province" placeholder="State" key="state" />
             <div className='flex max-md:flex-col border-t w-full border-gray-3 00 py-5 justify-between'>
-                <div className='w-[35%] max-md:w-full font-medium'>
+                <div className='w-[35%] text-sm max-md:w-full font-medium'>
                     <h2>Country</h2>
                 </div>
                 <CountrySelector />
@@ -38,10 +38,10 @@ function MembershipForm() {
             <NormalTextField editable label="Name of the authorized person representing business/entity" placeholder="Name" key="business person name" />
             <NormalTextField editable label="Name of person authorized to attend meetings" placeholder="Position" key="position" />
             <div className='flex max-md:flex-col justify-between border-t w-full border-gray-3 py-5'>
-                <div className='w-[35%] max-md:w-full font-medium'>
+                <div className='w-[35%] text-sm max-md:w-full font-medium'>
                     <h2>Attach Identity Proof File</h2>
                 </div>
-                <div className='w-[64%] max-md:w-full'>
+                <div className='w-[64%] max-md:w-full text-sm overflow-hidden'>
                     <FileUploadField fileTypes={['image/jpeg', 'image/png', 'image/gif', 'applicatin/pdf']} />
                 </div>
             </div>
@@ -55,7 +55,7 @@ function MembershipForm() {
             </div>
             <MembershipDropdown options={options} placeholder={"Payment Mode"} />
             <div>
-                <button className="bg-[#266941] text-white px-5 py-2 font-semibold rounded-lg mt-5">
+                <button className="bg-[#266941] text-sm text-white px-5 p-3 font-semibold rounded-lg mt-5">
                     Register as a Member
                 </button>
             </div>

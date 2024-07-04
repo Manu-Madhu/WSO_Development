@@ -8,7 +8,7 @@ const NSS = () => {
         <div className='max-w-[1280px] mx-auto w-full flex flex-col py-5 xl:py-10 px-4 xl:px-0
     gap-12 '>
 
-            <h1 className='text-xl sm:text-3xl text-black font-semibold'>NSS(National Sustainability Summit)</h1>
+            <h1 className='text-xl sm:text-2xl text-black font-semibold'>NSS(National Sustainability Summit)</h1>
 
             <div className='w-full h-full flex flex-col-reverse lg:flex-row gap-5'>
 
