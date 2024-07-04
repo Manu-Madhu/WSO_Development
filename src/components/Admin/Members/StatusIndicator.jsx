@@ -4,17 +4,17 @@ function StatusIndicator({ status }) {
     let textClass = "text-sm font-medium";
 
     switch (status) {
-        case "Pending":
+        case "pending":
             containerClass += " bg-[#ECFDF3]";
             dotClass += " bg-[#BCBCBC]";
             textClass += " text-[#626262]";
             break;
-        case "Approved":
+        case "approved":
             containerClass += " bg-[#ECFDF3]";
             dotClass += " bg-[#12B76A]";
             textClass += " text-[#027A48]";
             break;
-        case "Rejected":
+        case "rejected":
             containerClass += " bg-[#FDECEC]";
             dotClass += " bg-[#B71212]";
             textClass += " text-[#7A0202]";

@@ -10,11 +10,13 @@ import { usePathname } from "next/navigation";
 import { RxExit } from "react-icons/rx";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { getSession, signOut } from "next-auth/react";
+import { IoMdPerson } from "react-icons/io";
 import Image from "next/image";
 
 const menuItems = [
   { href: "/admin/news", icon: FiHome, label: "Latest News" },
-  { href: "/admin/members", icon: MdOutlineEqualizer, label: "Manage Members" },
+  { href: "/admin/members", icon: IoMdPerson, label: "Manage Members" },
+  { href: "/admin/applications", icon: MdOutlineEqualizer, label: "Manage Applications" },
   { href: "/admin/publication", icon: ImStack, label: "Publications" },
   { href: "/admin/newsletter", icon: FiCheckSquare, label: "Newsletter" },
   { href: "/admin/events", icon: GrFlag, label: "Events" },
