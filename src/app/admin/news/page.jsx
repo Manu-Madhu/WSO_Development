@@ -9,7 +9,7 @@ import NewsTable from "@/components/Admin/News/NewsTable";
       <div className="flex justify-between">
         <h1 className="font-semibold text-title">News</h1>
         <div className="sm:hidden">
-          <Link href="/admin/news/addnews">
+          <Link href="/admin/news/add">
             <button className="bg-primary-green px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
               Add news
             </button>
@@ -23,7 +23,7 @@ import NewsTable from "@/components/Admin/News/NewsTable";
             <h5 className="pt-1">News are managed here</h5>
           </div>
           <div className="max-sm:hidden">
-            <Link href="/admin/news/addnews">
+            <Link href="/admin/news/add">
               <button className="bg-primary-green px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                 Add news
               </button>

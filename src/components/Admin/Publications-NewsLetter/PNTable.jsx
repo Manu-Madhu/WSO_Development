@@ -4,11 +4,11 @@ import { FiEdit2 } from "react-icons/fi";
 import Link from "next/link";
 import DeleteButton from "@/components/Admin/News/DeleteButton";
 import axios from '@/axios-folder/axios';
-import { memberPublicationRoute } from '@/utils/Endpoint';
+import { memberNewsletterRoute, memberPublicationRoute } from '@/utils/Endpoint';
 import { CiImageOn } from "react-icons/ci";
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 
-const PublicationTable = ({name}) => {
+const PNTable = ({name}) => {
 
     const [data, setData] = useState([]);
 
@@ -16,10 +16,11 @@ const PublicationTable = ({name}) => {
 
     const getPublications = async()=>{
         try {
-            const response = await axiosPrivate.get(memberPublicationRoute);
+            const getRoute = (name === "publication") ? memberPublicationRoute : memberNewsletterRoute;
+            const response = await axiosPrivate.get(getRoute);
             console.log({response})
             if(response.status === 200){
-                setData(response?.data?.publications)
+                setData(response?.data[name])
             }
         } catch (error) {
             console.log(error)
@@ -77,9 +78,9 @@ const PublicationTable = ({name}) => {
                                 </td>
                                 <td>
                                     <div className='flex w-full justify-evenly max-md:gap-3 px-8 py-6'>
-                                        <DeleteButton name={name} />
+                                        <DeleteButton name={name} id={item?._id} data={data} setData={setData} />
                                         <button >
-                                            <Link href={{ pathname: `/admin/publications/addpublications` }}>
+                                            <Link href={{ pathname: `/admin/${name}/edit/${item?._id}` }}>
                                                 <FiEdit2 size={20} />
                                             </Link>
                                         </button>
@@ -100,4 +101,4 @@ const PublicationTable = ({name}) => {
     )
 }
 
-export default PublicationTable
+export default PNTable

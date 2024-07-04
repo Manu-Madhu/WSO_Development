@@ -2,18 +2,17 @@ import { FiEdit2, FiUploadCloud } from "react-icons/fi";
 import Link from 'next/link'
 import { CiImageOn } from "react-icons/ci";
 import DeleteButton from "../News/DeleteButton";
-import PublicationTable from "./PublicationTable";
-import NewsletterTable from "./NewsletterTable";
+import PNTable from "./PNTable";
 
 function PNMainPage({ name }) {
     return (
         <div className='flex flex-col bg-white min-h-screen w-full px-10 max-md:px-5 max-md:pt-16 py-12 text-black'>
             <div className="flex justify-between">
-                <h1 className="font-semibold text-title">
-                    {name}
+                <h1 className="font-semibold text-title capitalize">
+                    {`${name}s`}
                 </h1>
                 <div className="sm:hidden">
-                    <Link href={`/admin/${name.toLowerCase()}/add${name.toLowerCase()}`}>
+                    <Link href={`/admin/${name.toLowerCase()}/add`}>
                         <button className="bg-primary-green flex items-center gap-2 px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                             <FiUploadCloud size={23} strokeWidth={2} />
                             <h4>Upload</h4>
@@ -29,7 +28,7 @@ function PNMainPage({ name }) {
                         </h2>
                     </div>
                     <div className="max-sm:hidden">
-                        <Link href={`/admin/${name.toLowerCase()}/add${name.toLowerCase()}`}>
+                        <Link href={`/admin/${name.toLowerCase()}/add`}>
                             <button className="bg-primary-green flex items-center gap-2 px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                                 <FiUploadCloud size={23} strokeWidth={2} />
                                 <h4>Upload</h4>
@@ -97,17 +96,7 @@ function PNMainPage({ name }) {
                         </tbody>
                     </table> */}
 
-                    {
-                        name === "Publications"
-                        &&
-                        <PublicationTable name="Publications" />
-                    }
-
-                    {
-                        name === "Newsletter"
-                        &&
-                        <NewsletterTable name="Newsletter" />
-                    }
+                    <PNTable name={name} />
 
                 </div>
             </div>

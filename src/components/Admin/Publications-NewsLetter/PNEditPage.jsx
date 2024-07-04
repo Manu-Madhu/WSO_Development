@@ -3,11 +3,11 @@ import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import CancelButton from '../common/CancelButton'
 import SaveButton from '../common/SaveButton'
 import FileUploadField from './FileUploadField'
-import { useState } from 'react';
-import { adminNewsletterRoute, adminPublicationRoute } from '@/utils/Endpoint';
+import { useEffect, useState } from 'react';
+import { adminNewsletterRoute, adminPublicationRoute, memberNewsletterRoute, memberPublicationRoute } from '@/utils/Endpoint';
 import { toast } from 'react-toastify';
 
-function PNAddNewPage({ name }) {
+function PNEditPage({ name, id }) {
 
     const [data,setData] = useState({
         title:"",
@@ -15,6 +15,25 @@ function PNAddNewPage({ name }) {
     })
 
     const axiosPrivate = useAxiosPrivate();
+
+    const fetchData = async()=>{
+        try {
+            const getRoute = (name === "publication") ? memberPublicationRoute : memberNewsletterRoute;
+            const response = await axiosPrivate.get(`${getRoute}/${id}`)
+
+            if(response.status === 200){
+                const data = response?.data[name]
+
+                setData((prev)=>({
+                    title: data?.title,
+                    // file: data?.file,
+                   
+                }))
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const changeHandler = (e)=>{
         setData((prev)=> ({
@@ -29,9 +48,9 @@ function PNAddNewPage({ name }) {
             formData.append("title", data?.title)
             formData.append("file", data?.file);
 
-            const postRoute = (name === "publication") ? adminPublicationRoute : adminNewsletterRoute;
+            const putRoute = (name === "publication") ? adminPublicationRoute : adminNewsletterRoute;
            
-            const response = await axiosPrivate.post(postRoute, formData,
+            const response = await axiosPrivate.put(`${putRoute}/${id}`, formData,
                 {
                     headers: {
                       'Content-Type': 'multipart/form-data'
@@ -40,7 +59,7 @@ function PNAddNewPage({ name }) {
             )
 
             if(response.status === 200){
-                toast.success("Data Added")
+                toast.success("Data Updated")
                 setData({
                     title:"",
                    file:null,
@@ -53,15 +72,20 @@ function PNAddNewPage({ name }) {
     }
 
     console.log({data})
+
+    useEffect(()=>{
+        fetchData()
+    },[])
+
     return (
         <div className="flex flex-col bg-white min-h-screen w-full px-10 max-md:px-6 pt-12 max-md:pt-16 text-black">
             <h1 className="font-semibold text-title capitalize">
-                Add {name}
+                Edit {name}
             </h1>
             <div className="flex justify-between mt-2 py-5">
                 <div>
                     <h2 className="font-semibold text-xl">
-                        New {name}
+                        Edit {name}
                     </h2>
                     <h5 className="pt-1">
                         Update your {name} here
@@ -71,7 +95,7 @@ function PNAddNewPage({ name }) {
                     <CancelButton />
                     <SaveButton 
                     submitHandler={submitHandler}
-                    title={`Add this ${name}?`} content={<span>This post has been published. Team members <br /> will be able to edit this post and republish changes.</span>} />
+                    title={`Edit this ${name}?`} content={<span>This post has been published. Team members <br /> will be able to edit this post and republish changes.</span>} />
                 </div>
             </div>
             <div className="border-y py-5 flex items-start max-md:flex-col">
@@ -88,7 +112,7 @@ function PNAddNewPage({ name }) {
             <div className=" py-5 flex items-start max-md:flex-col max-md:gap-y-2">
                 <div className="flex flex-col w-4/12 max-md:w-full">
                     <label className="text-base font-semibold">
-                        Add pdf
+                        Edit pdf
                     </label>
                     <p>
                         This will be diaplayed on your website
@@ -103,10 +127,10 @@ function PNAddNewPage({ name }) {
                 <CancelButton />
                 <SaveButton 
                 submitHandler={submitHandler}
-                title={`Add this ${name}?`} content={<span>This post has been published. Team members <br /> will be able to edit this post and republish changes.</span>} />
+                title={`Edit this ${name}?`} content={<span>This post has been published. Team members <br /> will be able to edit this post and republish changes.</span>} />
             </div>
         </div>
     )
 }
 
-export default PNAddNewPage
+export default PNEditPage

@@ -15,7 +15,7 @@ import Image from "next/image";
 const menuItems = [
   { href: "/admin/news", icon: FiHome, label: "Latest News" },
   { href: "/admin/members", icon: MdOutlineEqualizer, label: "Manage Members" },
-  { href: "/admin/publications", icon: ImStack, label: "Publications" },
+  { href: "/admin/publication", icon: ImStack, label: "Publications" },
   { href: "/admin/newsletter", icon: FiCheckSquare, label: "Newsletter" },
   { href: "/admin/events", icon: GrFlag, label: "Events" },
 ];
