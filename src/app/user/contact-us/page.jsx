@@ -3,7 +3,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='my-14'>
+    <div className='my-14 md:my-32 '>
         <Contact/>
     </div>
   )
