@@ -5,5 +5,8 @@ export const contactRoute = '/api/contact'
 export const login = '/api/auth/admin/login'
 export const register = '/api/register'
 
-// evetns
+// events
 export const getAllEvents = '/api/event'
+
+// news
+export const getAllNews = '/api/news'
