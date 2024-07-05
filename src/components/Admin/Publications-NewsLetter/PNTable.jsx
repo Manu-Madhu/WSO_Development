@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { FiEdit2 } from "react-icons/fi";
 import Link from "next/link";
 import DeleteButton from "@/components/Admin/News/DeleteButton";
-import axios from '@/axios-folder/axios';
 import { memberNewsletterRoute, memberPublicationRoute } from '@/utils/Endpoint';
 import { CiImageOn } from "react-icons/ci";
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
+import { LiaFileDownloadSolid } from "react-icons/lia";
 
 const PNTable = ({name}) => {
 
@@ -61,7 +61,7 @@ const PNTable = ({name}) => {
                                         href={item?.file?.location}
                                         download={item?.file?.name}
                                         className="bg-[#F4EBFF] p-3 rounded-full">
-                                             <CiImageOn size={22} />
+                                             <LiaFileDownloadSolid size={24} />
                                         </Link>
                                         <div>
                                             <h4 className="font-semibold text-base ml-4 text-nowrap line-clamp-1 max-w-[30rem] max-lg:max-w-72 max-md:max-w-56">
