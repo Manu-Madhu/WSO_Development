@@ -8,7 +8,7 @@ function CountrySelector({ selected, onSelect }) {
             <ReactFlagsSelect
                 selected={selected}
                 selectButtonClassName="rounded-lg "
-                className="rounded-xl border-red-400 outline-none"
+                className="rounded-xl border-red-400 outline-none text-xs"
                 onSelect={onSelect}
                 searchable={true}
             />

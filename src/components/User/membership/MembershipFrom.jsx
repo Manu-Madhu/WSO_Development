@@ -152,7 +152,7 @@ function MembershipForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className='flex flex-col w-full px-10 max-md:p-4 border-separate rounded-xl border mr-10 max-md:mr-0 pb-10'>
+        <form onSubmit={handleSubmit} className='flex flex-col w-full px-10 max-md:p-4 border-separate text-sm rounded-xl border mr-10 max-md:mr-0 pb-10'>
             <NormalTextField
                 editable
                 label="Username"
@@ -192,7 +192,7 @@ function MembershipForm() {
                 onChange={(e) => handleChange('state', e.target.value)}
             />
             <div className='flex max-md:flex-col border-t w-full border-gray-300 py-5 justify-between'>
-                <div className='w-[35%] max-md:w-full font-medium'>
+                <div className='w-[35%] max-md:w-full font-medium text-sm' >
                     <h2>Country</h2>
                 </div>
                 <CountrySelector
@@ -302,7 +302,7 @@ function MembershipForm() {
                 onChange={(e) => handleChange('business.meetAuthRep', e.target.value)}
             />
             <div className='flex max-md:flex-col justify-between border-t w-full border-gray-300 py-5'>
-                <div className='w-[35%] max-md:w-full font-medium'>
+                <div className='w-[35%] max-md:w-full font-medium text-sm'>
                     <h2>Attach Identity Proof File</h2>
                 </div>
                 <div className='w-[64%] max-md:w-full'>
@@ -316,7 +316,7 @@ function MembershipForm() {
                 </div>
             </div>
             <div className='flex justify-between border-t w-full border-gray-300 py-5'>
-                <div className='w-[35%] max-md:w-fit font-medium'>
+                <div className='w-[35%] max-md:w-fit font-medium text-sm'>
                     <h2>Including Renewal Payment</h2>
                 </div>
                 <div className='w-[64%] max-md:w-fit'>
@@ -335,7 +335,7 @@ function MembershipForm() {
                 onChange={(value) => handleChange('payMode', value)}
             />
             <div>
-                <button className="bg-[#266941] text-white px-5 py-2 font-semibold rounded-lg mt-5" type='submit'>
+                <button className="bg-[#266941] text-white px-5 p-3 text-xs  rounded-lg mt-5" type='submit'>
                     Register as a Member
                 </button>
             </div>
