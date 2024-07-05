@@ -45,19 +45,19 @@ const MemberTable = () => {
                         <th className='pl-5 text-start py-3 font-normal max-md:text-sm '>
                             Name
                         </th>
-                        <th className='text-start py-3 font-normal max-md:text-sm '>
+                        <th className='px-5 text-start py-3 font-normal max-md:text-sm '>
                             Phone
                         </th>
-                        <th className='text-start py-3 font-normal max-md:text-sm '>
+                        <th className='px-5 text-start py-3 font-normal max-md:text-sm '>
                             Membership
                         </th>
-                        <th className='text-start py-3 font-normal max-md:text-sm '>
+                        <th className='px-5 text-start py-3 font-normal max-md:text-sm '>
                             Status
                         </th>
-                        <th className='text-start py-3 font-normal max-md:text-sm w-[10%]'>
+                        <th className='px-5 text-start py-3 font-normal max-md:text-sm w-[10%]'>
                             Action
                         </th>
-                        <th className='text-start py-3 font-normal max-md:text-sm '>
+                        <th className='pr-5 text-start py-3 font-normal max-md:text-sm '>
                             View
                         </th>
                     </tr>
@@ -66,8 +66,8 @@ const MemberTable = () => {
                     {
                         data?.map((item, index) => (
                             <tr key={index} className='border-t border-gray-400 '>
-                                <td >
-                                    <div className='flex items-center px-3 py-3 '>
+                                <td className='pl-5'>
+                                    <div className='flex items-center py-3 '>
                                         <img src={item?.idProof?.location} className="h-12 w-12 bg-gray-300 object-contain rounded-full" alt='' />
                                         <div className='ml-4 truncate'>
                                             <h4 className="font-semibold max-md:text-sm text-base capitalize">
@@ -79,17 +79,17 @@ const MemberTable = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td className=''>
+                                <td className='px-5'>
                                     {item?.phone ?? 'NIL'}
                                 </td>
-                                <td className='capitalize'>
+                                <td className='capitalize px-5'>
                                     {item?.membershipType ?? 'NIL'}
                                 </td>
-                                <td className='capitalize'>
+                                <td className='capitalize px-5'>
                                     <StatusIndicator status={item?.isActive ? 'active' : 'inactive'} />
                                 </td>
 
-                                <td >
+                                <td className='px-5'>
                                     <div>
                                         {item?.isActive ? 
                                         (
@@ -106,7 +106,7 @@ const MemberTable = () => {
                                     </div>
                                 </td>
 
-                                <td >
+                                <td className='pr-5'>
                                     <Link href={{ pathname: `/admin/members/view/${item?._id}` }}>
                                         <TbArrowsDiagonal size={22} className='cursor-pointer text-blue-500 ' />
                                     </Link>

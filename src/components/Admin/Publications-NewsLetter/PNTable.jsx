@@ -57,9 +57,12 @@ const PNTable = ({name}) => {
                             <tr className="border-t border-gray-400" key={index} style={{ backgroundColor: (index + 1) % 2 === 0 ? '#f4f6f7' : 'transparent' }}>
                                 <td>
                                     <div className='px-6 py-4 max-w-[90%]  max-md:max-w-52 flex items-center max-md:overflow-clip'>
-                                        <div className="bg-[#F4EBFF] p-3 rounded-full">
+                                        <Link 
+                                        href={item?.file?.location}
+                                        download={item?.file?.name}
+                                        className="bg-[#F4EBFF] p-3 rounded-full">
                                              <CiImageOn size={22} />
-                                        </div>
+                                        </Link>
                                         <div>
                                             <h4 className="font-semibold text-base ml-4 text-nowrap line-clamp-1 max-w-[30rem] max-lg:max-w-72 max-md:max-w-56">
                                                 {item?.title}

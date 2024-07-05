@@ -35,9 +35,9 @@ const ApplicationTable = () => {
 
     return (
         <>
-            <div className='flex p-5 items-center justify-between'>
+            <div className='flex flex-col sm:flex-row p-5 gap-4 items-center justify-between'>
                 <div className="flex items-center gap-2">
-                    <h2 className="font-semibold text-xl">
+                    <h2 className="font-semibold text-lg sm:text-xl">
                         Application requests
                     </h2>
 
@@ -73,16 +73,16 @@ const ApplicationTable = () => {
                             <th className='pl-5 text-start py-3 font-normal max-md:text-sm '>
                                 Name
                             </th>
-                            <th className='text-start py-3 font-normal max-md:text-sm '>
+                            <th className='px-5 text-start py-3 font-normal max-md:text-sm '>
                                 Phone
                             </th>
-                            <th className='text-start py-3 font-normal max-md:text-sm '>
+                            <th className='px-5 text-start py-3 font-normal max-md:text-sm '>
                                 Membership
                             </th>
-                            <th className='text-start py-3 font-normal max-md:text-sm '>
+                            <th className='px-5 text-start py-3 font-normal max-md:text-sm '>
                                 Status
                             </th>
-                            <th className='text-start py-3 font-normal max-md:text-sm '>
+                            <th className='pr-5 text-start py-3 font-normal max-md:text-sm '>
                                 View
                             </th>
                         </tr>
@@ -92,10 +92,10 @@ const ApplicationTable = () => {
                             data?.map((item, index) => (
                                 <tr key={index} className='border-t border-gray-400 '>
 
-                                    <td >
-                                        <div className='w-fit flex items-center px-3 py-3 '>
+                                    <td className='pl-5'>
+                                        <div className='w-fit flex items-center py-3 '>
                                             <img src={item?.idProof?.location} className="h-12 w-12 bg-gray-300 object-contain rounded-full" alt='' />
-                                            <div className='ml-4'>
+                                            <div className='ml-4 truncate'>
                                                 <h4 className="font-semibold max-md:text-sm text-base capitalize">
                                                     {item?.applicantName ?? 'NIL'}
                                                 </h4>
@@ -105,17 +105,17 @@ const ApplicationTable = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className=''>
+                                    <td className='px-5'>
                                         {item?.phone ?? 'NIL'}
                                     </td>
-                                    <td className='capitalize'>
+                                    <td className='capitalize px-5'>
                                         {item?.membershipType ?? 'NIL'}
                                     </td>
-                                    <td className='capitalize'>
+                                    <td className='capitalize px-5'>
                                         <StatusIndicator status={item?.status} />
                                     </td>
 
-                                    <td >
+                                    <td className='pr-5'>
                                         <Link href={{ pathname: `/admin/applications/view/${item?._id}` }}>
                                             <TbArrowsDiagonal size={22} className='cursor-pointer text-blue-500 ' />
                                         </Link>
