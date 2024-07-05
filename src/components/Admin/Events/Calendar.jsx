@@ -8,8 +8,10 @@ import {
   startOfMonth,
   sub,
 } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CalendarCell from "./CalendarCell";
+import { guestEventRoute } from "@/utils/Endpoint";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 
 const dayOfTheWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = [
@@ -27,6 +29,10 @@ const months = [
   "December",
 ];
 function Calendar() {
+  const axiosPrivate = useAxiosPrivate();
+
+  const [data, setData] = useState([])
+
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const eventdata = {
@@ -56,6 +62,28 @@ function Calendar() {
   const nextMonth = () => {
     setSelectedDate(add(selectedDate, { months: 1 }));
   };
+
+  const fetchData = async () => {
+    try {
+      const response = await axiosPrivate.get(guestEventRoute)
+
+      if (response.status === 200) {
+        const event = response?.data?.event;
+        console.log({ fetchedevent: event })
+
+        setData([...event])
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  console.log({ data })
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
     <div className="border rounded-xl border-gray-400 flex max-lg:flex-col justify-between">
       <div className="p-6 font-semibold felx flex-col items-center">
@@ -77,6 +105,7 @@ function Calendar() {
       </div>
       <div className="max-sm:p-3">
         <div className="grid grid-cols-7 m-6  max-sm:m-0  w-fit  max-sm:w-full border-r">
+
           {dayOfTheWeek.map((day, index) => (
             <div
               key={index}
@@ -85,6 +114,7 @@ function Calendar() {
               <h4>{day}</h4>
             </div>
           ))}
+
           {Array.from({ length: prefixDays }).map((_, index) =>
             index === 0 ? (
               <CalendarCell
@@ -101,6 +131,7 @@ function Calendar() {
               />
             )
           )}
+
           {Array.from({ length: numDays }).map((_, index) =>
             index === 0 ? (
               <CalendarCell
@@ -132,6 +163,7 @@ function Calendar() {
               />
             )
           )}
+
           {Array.from({ length: nextMonthDays }).map((_, index) =>
             index === 0 ? (
               <CalendarCell
@@ -144,6 +176,7 @@ function Calendar() {
               <CalendarCell current={false} date={index} key={index} />
             )
           )}
+          
         </div>
       </div>
     </div>
