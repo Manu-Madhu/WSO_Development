@@ -19,6 +19,16 @@ function StatusIndicator({ status }) {
             dotClass += " bg-[#B71212]";
             textClass += " text-[#7A0202]";
             break;
+        case "active":
+            containerClass += " bg-[#ECFDF3]";
+            dotClass += " bg-[#12B76A]";
+            textClass += " text-[#027A48]";
+            break;
+        case "inactive":
+            containerClass += " bg-[#FDECEC]";
+            dotClass += " bg-[#B71212]";
+            textClass += " text-[#7A0202]";
+            break;
         default:
             // Default case to handle unknown statuses
             containerClass += " bg-[#ecfef5]";

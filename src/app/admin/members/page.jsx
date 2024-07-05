@@ -6,6 +6,7 @@ import { FiEdit2 } from "react-icons/fi";
 import Link from 'next/link';
 import DeleteButton from "@/components/Admin/News/DeleteButton";
 import StatusIndicator from '@/components/Admin/Members/StatusIndicator';
+import MemberTable from '@/components/Admin/Members/MemberTable';
 
 function Page() {
     const [selectedNews, setSelectedNews] = useState([]);
@@ -38,17 +39,13 @@ function Page() {
                 <div className='flex p-5 items-center justify-between'>
                     <div className="flex items-center gap-2">
                         <h2 className="font-semibold text-xl">
-                            Member requests
+                            Member list
                         </h2>
-                        <div className="px-2 py-1 rounded-full bg-[#F5FFFA]">
-                            <h5 className="text-sm text-[#266941]">
-                                7 requests
-                            </h5>
-                        </div>
+                        
                     </div>
                 </div>
                 <div className='w-full max-md:overflow-x-scroll'>
-                    <table className='w-full max-md:w-fit max-md:overflow-x-scroll text-base table'>
+                    {/* <table className='w-full max-md:w-fit max-md:overflow-x-scroll text-base table'>
                         <thead className="bg-[#f4f6f7]">
                             <tr>
                                 <th className='py-3 max-md:px-3 font-normal w-[5%]'>
@@ -114,7 +111,9 @@ function Page() {
                                 </tr>
                             ))}
                         </tbody>
-                    </table>
+                    </table> */}
+
+                    <MemberTable/>
                 </div>
             </div>
         </div>

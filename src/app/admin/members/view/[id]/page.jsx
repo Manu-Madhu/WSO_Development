@@ -1,11 +1,9 @@
 "use client"
-import ApproveBtn from '@/components/Admin/Buttons/ApproveBtn';
-import RejectBtn from '@/components/Admin/Buttons/RejectBtn';
 import NormalTextField from '@/components/Admin/Members/NormalTextField'
 import StatusIndicator from '@/components/Admin/Members/StatusIndicator';
 import FileUploadField from '@/components/Admin/Publications-NewsLetter/FileUploadField'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
-import { adminApplicationRoute } from '@/utils/Endpoint';
+import { adminMemberRoute } from '@/utils/Endpoint';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -21,14 +19,14 @@ function Page({ params }) {
 
     const fetchData = async () => {
         try {
-            const response = await axiosPrivate.get(`${adminApplicationRoute}/${id}`)
+            const response = await axiosPrivate.get(`${adminMemberRoute}/${id}`)
 
             if (response.status === 200) {
-                const appln = response?.data?.application;
-                console.log({ fetchedappln: appln })
+                const member = response?.data?.member;
+                console.log({ fetchedmember: member })
 
                 setData((prev) => ({
-                    ...appln
+                    ...member
                 }))
             }
         } catch (error) {
@@ -53,7 +51,6 @@ function Page({ params }) {
         { label: "Website", placeholder: "Website", key: "website", type: "url" },
         { label: "Contact Person", placeholder: "Contact Person", key: "contactPerson" },
         { label: "Membership applied for", placeholder: "Membership applied for", key: 'membershipType' },
-        { label: "Mode of Payment", placeholder: "Mode of Payment", key: "payMode" },
     ]
 
     const businessFields = [
@@ -71,13 +68,12 @@ function Page({ params }) {
     console.log(data)
     return (
         <div className='flex flex-col w-full px-10 pt-12 max-md:pt-20 mb-28'>
-            <div className='flex flex-col sm:flex-row sm:items-center gap-5 mb-6 '>
+                <div className='flex flex-col sm:flex-row sm:items-center gap-5 mb-6 '>
                 <span className="font-semibold text-title ">
-                    View Application
+                    View Member
                 </span>
                 <div className=''>
-
-                    <StatusIndicator status={data?.status} />
+                    <StatusIndicator status={data?.isActive ? 'active' : 'inactive'} />
                 </div>
             </div>
 
@@ -88,22 +84,6 @@ function Page({ params }) {
 
                 ))
             }
-
-            <div className='flex justify-between border-t w-10/12 max-md:w-full border-gray-3 py-5'>
-                <div className='w-[35%] max-md:w-fit font-medium'>
-                    <h2>Includes Renewal Payment</h2>
-                </div>
-                <div className='w-[64%] max-md:w-fit'>
-                    {data?.hasRenewalPay
-                        ?
-                        <span className='text-green-500'>Yes</span>
-                        :
-                        <span className='text-red-500'>No</span>
-                    }
-
-                </div>
-                
-            </div>
 
             <div className='flex max-md:flex-col justify-between border-t w-10/12 max-md:w-full border-gray-3 py-5'>
                 <div className='w-[35%] max-md:w-full font-medium'>
@@ -127,15 +107,6 @@ function Page({ params }) {
                         type={item?.type} value={data?.business?.[item?.key]} disabled={true} />
 
                 ))
-            }
-
-            {
-                data?.status === 'pending'
-                &&
-                <div>
-                    <RejectBtn main="/admin/applications" id={id} route={adminApplicationRoute} title="Reject application" content="Click Reject to reject this application" />
-                    <ApproveBtn main="/admin/applications" id={id} route={adminApplicationRoute} title="Approve application" content="Click Confirm to approve this application" />
-                </div>
             }
 
         </div>

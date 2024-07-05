@@ -19,7 +19,7 @@ function SaveButton({ title, content , submitHandler}) {
     return (
         <>
             <button className='bg-primary-green px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg' onClick={() => setShowAlert(true)}>
-                save
+                Save
             </button>
             {showAlert && <SaveAlert title={title} content={content} onConfirm={handleConfirm} onCancel={handleCancel} />}
         </>
