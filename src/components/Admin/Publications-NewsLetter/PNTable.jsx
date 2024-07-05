@@ -38,7 +38,7 @@ const PNTable = ({name}) => {
                 <thead className="bg-[#f4f6f7]" >
                     <tr>
                         <th className='px-6 py-3 font-normal text-start text-nowrap'>
-                            File name
+                            Title
                         </th>
                         <th className='px-6 py-3 font-normal clamp text-nowrap'>
                             File size
@@ -58,20 +58,20 @@ const PNTable = ({name}) => {
                                 <td>
                                     <div className='px-6 py-4 max-w-[90%]  max-md:max-w-52 flex items-center max-md:overflow-clip'>
                                         <div className="bg-[#F4EBFF] p-3 rounded-full">
-                                            <CiImageOn size={22} />
+                                             <CiImageOn size={22} />
                                         </div>
                                         <div>
                                             <h4 className="font-semibold text-base ml-4 text-nowrap line-clamp-1 max-w-[30rem] max-lg:max-w-72 max-md:max-w-56">
                                                 {item?.title}
                                             </h4>
                                             <h5 className="text-sm ml-4">
-                                                16 MB
+                                                {item?.file?.name}
                                             </h5>
                                         </div>
                                     </div>
                                 </td>
                                 <td className='px-6 py-4 text-center'>
-                                    1.2 MB
+                                    {item?.file?.size ? `${parseFloat(item?.file?.size / (1024*1024))?.toFixed(2)} MB` : 'NIL'}
                                 </td>
                                 <td className='px-8 py-4 text-center'>
                                     {item?.createdAt ? new Date(item?.createdAt)?.toLocaleDateString("en-IN") : 'NIL'}

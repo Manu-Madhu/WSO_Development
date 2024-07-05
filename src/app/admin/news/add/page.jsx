@@ -12,7 +12,6 @@ function Page() {
     const [data,setData] = useState({
         title:"",
         description:"",
-        document: null,
         thumbnail: null,
     })
 
@@ -30,7 +29,6 @@ function Page() {
             const formData = new FormData();
             formData.append("title", data?.title)
             formData.append("description", data?.description);
-            formData.append("document", data?.document);
             formData.append("thumbnail", data?.thumbnail);
 
             const response = await axiosPrivate.post(adminNewsRoute, formData,
@@ -46,7 +44,6 @@ function Page() {
                 setData({
                     title:"",
                     description:"",
-                    document: null,
                     thumbnail: null,
                 })
             }
@@ -76,7 +73,7 @@ function Page() {
                     <CancelButton />
                     <SaveButton 
                     submitHandler={submitHandler}
-                    title="Add this news?" content={<span>This blog post has been published. Team members <br /> will be able to edit this post and republish changes.</span>} />
+                    title="Add this news?" content={`Click confirm to save this news`} />
                 </div>
             </div>
             <div className="border-y py-5 flex max-md:flex-col items-start">
@@ -102,21 +99,6 @@ function Page() {
                 <NewsArea value={data?.description} setValue={(el)=> setData((prev)=> ({...prev, description : el}))} />
             </div>
 
-            <div className="border-b py-5 flex items-start max-md:flex-col max-md:gap-y-2">
-                <div className="flex flex-col w-4/12 max-md:w-full">
-                    <label className="text-base font-semibold">
-                        Add pdf
-                    </label>
-                    <p>
-                        This will be diaplayed on your website
-                    </p>
-
-                </div>
-                <div className="w-6/12 max-md:w-full">
-                    <FileUploadField file={data?.document} setFile={(el)=> setData((prev)=> ({...prev, document: el}))} />
-                </div>
-            </div>
-
             <div className=" py-5 flex items-start max-md:flex-col max-md:gap-y-2">
                 <div className="flex flex-col w-4/12 max-md:w-full">
                     <label className="text-base font-semibold">
@@ -136,7 +118,7 @@ function Page() {
                 <CancelButton />
                 <SaveButton 
                 submitHandler={submitHandler}
-                title="Add this news?" content={<span>This blog post has been published. Team members <br /> will be able to edit this post and republish changes.</span>} />
+                title="Add this news?" content={`Click confirm to save this news`} />
             </div>
         </div>
     )
