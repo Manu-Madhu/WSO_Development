@@ -1,7 +1,7 @@
-import { about_us } from "@/data/about_us.json"
+import { about_us } from "@/data/about_us.js"
 import MemberCard from "./MemberCard";
-function AboutContent({ currentIndex, setCurrentIndex }) {
 
+function AboutContent({ currentIndex, setCurrentIndex }) {
     return (
         <div className="w-full flex max-lg:flex-col  mt-10">
             <div className="w-4/12 max-sm:w-10/12 max-lg:w-full max-md:mx-auto">
