@@ -10,3 +10,9 @@ export const getAllEvents = '/api/event'
 
 // news
 export const getAllNews = '/api/news'
+
+// publications
+export const getAllPublications = '/api/member/publication'
+
+// newsletter
+export const getAllNewsletters = '/api/member/newsletter'
