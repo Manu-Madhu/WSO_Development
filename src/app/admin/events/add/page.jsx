@@ -108,7 +108,7 @@ function Page() {
                         Description
                     </label>
                     <p>
-                        Write the news
+                        Write the description
                     </p>
                 </div>
                 <textarea

@@ -27,7 +27,7 @@ function CalendarCell({ date, events = [], current = true, monthname, isToday = 
                 <div className="h-fit overflow-hidden max-sm:hidden">
                     {
                         events.map((event, index) => (
-                            <p key={index} className="line-clamp-1 text-right text-xs">{event}</p>
+                            <p key={index} className="line-clamp-1 text-right text-xs">{event?.title}</p>
                         ))
                     }
                 </div>

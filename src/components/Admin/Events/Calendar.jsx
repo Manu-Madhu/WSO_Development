@@ -6,7 +6,8 @@ import {
   endOfMinute,
   endOfMonth,
   startOfMonth,
-  sub,
+  sub, parse, getMonth, getYear, getISODay,
+  format
 } from "date-fns";
 import { useEffect, useState } from "react";
 import CalendarCell from "./CalendarCell";
@@ -35,7 +36,8 @@ function Calendar() {
 
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const eventdata = {
+
+  const [eventdata, setEventdata] = useState({
     1: [
       "New Year",
       "Holiday",
@@ -47,21 +49,53 @@ function Calendar() {
       "Holiday",
     ],
     26: ["Republic Day"],
-  };
+    30: ["Test Day"],
+  })
+
   let startDate = startOfMonth(selectedDate);
   let endDate = endOfMonth(selectedDate);
   let prefixDays = startDate.getDay();
   let nextMonthDays = 6 - endDate.getDay();
   let numDays = differenceInDays(endDate, startDate) + 1;
-  let prevMonthDays =
-    differenceInDays(startDate, startOfMonth(sub(startDate, { months: 1 }))) -
-    1;
+  let prevMonthDays = differenceInDays(startDate, startOfMonth(sub(startDate, { months: 1 }))) - 1;
+
   const prevMonth = () => {
     setSelectedDate(sub(selectedDate, { months: 1 }));
   };
   const nextMonth = () => {
     setSelectedDate(add(selectedDate, { months: 1 }));
   };
+
+  const testFn = (events) => {
+    // console.log({ testevents: events })
+    // console.log({ cm: selectedDate.getMonth() })
+    // console.log({ cy: selectedDate.getFullYear() })
+    // const first = events[0]
+    // const date = getMonth(first?.date)
+    // console.log({ ddd: getISODay(first?.date), mdd: date, myy: getYear(first?.date) })
+
+    const currMonthEvents = events?.filter((item, i) => getMonth(item?.date) === selectedDate.getMonth() && getYear(item?.date) === selectedDate.getFullYear())
+
+    // console.log({ currMonthEvents })
+
+    const xyz = {}
+
+    currMonthEvents.forEach((item, i) => {
+
+      const day = Number(format(item?.date, 'dd'));
+
+      // console.log({ day })
+
+      if (!Array?.isArray(xyz[day])) {
+        xyz[day] = [];
+      }
+      xyz[day]?.push({ title: item?.title, _id: item?._id })
+
+    })
+
+    // console.log({ xyz })
+    setEventdata(xyz)
+  }
 
   const fetchData = async () => {
     try {
@@ -72,6 +106,8 @@ function Calendar() {
         console.log({ fetchedevent: event })
 
         setData([...event])
+
+        testFn(event)
       }
     } catch (error) {
       console.log(error)
@@ -79,10 +115,11 @@ function Calendar() {
   }
 
   console.log({ data })
+  console.log({ selectedDate })
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [selectedDate])
 
   return (
     <div className="border rounded-xl border-gray-400 flex max-lg:flex-col justify-between">
@@ -115,6 +152,7 @@ function Calendar() {
             </div>
           ))}
 
+          {/* Previous Month dates in display */}
           {Array.from({ length: prefixDays }).map((_, index) =>
             index === 0 ? (
               <CalendarCell
@@ -132,6 +170,7 @@ function Calendar() {
             )
           )}
 
+          {/* Current Month */}
           {Array.from({ length: numDays }).map((_, index) =>
             index === 0 ? (
               <CalendarCell
@@ -164,6 +203,7 @@ function Calendar() {
             )
           )}
 
+          {/* Next Month dates in display */}
           {Array.from({ length: nextMonthDays }).map((_, index) =>
             index === 0 ? (
               <CalendarCell
@@ -176,7 +216,7 @@ function Calendar() {
               <CalendarCell current={false} date={index} key={index} />
             )
           )}
-          
+
         </div>
       </div>
     </div>
