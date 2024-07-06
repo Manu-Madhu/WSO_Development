@@ -24,15 +24,13 @@ function CalendarEventModal({ events, date, year, monthNo, setShowModal }) {
                                             <p className="text-left w-fit max-sm:text-sm">{event?.title}</p>
 
                                             <div className='flex gap-2'>
-                                            
-                                            <DeleteButton name={"event"} id={event?._id} data={data} setData={setData} />
-                    <Link href={{ pathname: `/admin/events/edit/${event?._id}` }}>
-                      <FiEdit2 size={20} className='cursor-pointer text-blue-500 ' />
-                    </Link>
+                                                <Link href={{ pathname: `/admin/events/edit/${event?._id}` }}>
+                                                    <FiEdit2 size={20} className='cursor-pointer text-blue-500 ' />
+                                                </Link>
 
-                                            <Link href={{ pathname: `/admin/events/view/${event?._id}` }}>
-                                                <TbArrowsDiagonal size={20} className='cursor-pointer text-green-500 ' />
-                                            </Link>
+                                                <Link href={{ pathname: `/admin/events/view/${event?._id}` }}>
+                                                    <TbArrowsDiagonal size={20} className='cursor-pointer text-green-500 ' />
+                                                </Link>
                                             </div>
                                         </div>
                                     </li>

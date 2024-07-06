@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { LiaFileDownloadSolid } from "react-icons/lia";
 import Link from "next/link";
+import DeleteButton from "@/components/Admin/News/DeleteButton";
 
 function Page({ params }) {
     const axiosPrivate = useAxiosPrivate();
@@ -60,13 +61,12 @@ function Page({ params }) {
                 View event
             </h1>
             <div className="flex  justify-between mt-2 py-5 max-md:py-3">
-                <div>
                     
                     <h5 className="pt-1">
                         View your event here
                     </h5>
-                </div>
                
+                    <DeleteButton name={"event"} id={id} />
             </div>
 
             <div className=" py-5 flex items-start max-md:flex-col max-md:gap-y-2">

@@ -3,10 +3,9 @@
 import {
   add,
   differenceInDays,
-  endOfMinute,
   endOfMonth,
   startOfMonth,
-  sub, parse, getMonth, getYear, getISODay,
+  sub, getMonth, getYear,
   format
 } from "date-fns";
 import { useEffect, useState } from "react";
@@ -37,20 +36,7 @@ function Calendar() {
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const [eventdata, setEventdata] = useState({
-    1: [
-      "New Year",
-      "Holiday",
-      "New Year",
-      "Holiday",
-      "New Year",
-      "Holiday",
-      "New Year",
-      "Holiday",
-    ],
-    26: ["Republic Day"],
-    30: ["Test Day"],
-  })
+  const [eventdata, setEventdata] = useState({})
 
   let startDate = startOfMonth(selectedDate);
   let endDate = endOfMonth(selectedDate);
@@ -67,24 +53,14 @@ function Calendar() {
   };
 
   const testFn = (events) => {
-    // console.log({ testevents: events })
-    // console.log({ cm: selectedDate.getMonth() })
-    // console.log({ cy: selectedDate.getFullYear() })
-    // const first = events[0]
-    // const date = getMonth(first?.date)
-    // console.log({ ddd: getISODay(first?.date), mdd: date, myy: getYear(first?.date) })
 
     const currMonthEvents = events?.filter((item, i) => getMonth(item?.date) === selectedDate.getMonth() && getYear(item?.date) === selectedDate.getFullYear())
-
-    // console.log({ currMonthEvents })
 
     const xyz = {}
 
     currMonthEvents.forEach((item, i) => {
 
       const day = Number(format(item?.date, 'dd'));
-
-      // console.log({ day })
 
       if (!Array?.isArray(xyz[day])) {
         xyz[day] = [];
@@ -93,7 +69,6 @@ function Calendar() {
 
     })
 
-    // console.log({ xyz })
     setEventdata(xyz)
   }
 

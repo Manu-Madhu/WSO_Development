@@ -5,10 +5,12 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import DeleteAlert from '../common/DeleteAlert';
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 function DeleteButton({ name, id ,data, setData}) {
     const [showAlert, setShowAlert] = useState(false);
     const axiosPrivate = useAxiosPrivate();
+    const router = useRouter()
 
     const handleConfirm = async () => {
         console.log("confirm click")
@@ -16,9 +18,14 @@ function DeleteButton({ name, id ,data, setData}) {
             const response = await axiosPrivate.delete(`/api/admin/${name}/${id}`)
     
             if(response.status === 200){
-                toast.success(`Deleted ${name} `)
-                const newData = data?.filter((item)=> item._id !== id)
-                setData(newData)
+                toast.success(`Deleted the ${name} `)
+
+                if(data && Array?.isArray(data)){
+                    const newData = data?.filter((item)=> item._id !== id)
+                    setData(newData)
+                }else{
+                    router.back()
+                }
             }
     
             setShowAlert(false);
