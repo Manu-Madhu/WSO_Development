@@ -22,7 +22,6 @@ const authOptions = {
                         console.log("User from the auth option", user);
                         return user;
                     }
-
                     console.error("Authorization failed", res.status, user);
                     return null;
                 } catch (error) {

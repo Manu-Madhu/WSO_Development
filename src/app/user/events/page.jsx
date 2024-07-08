@@ -1,6 +1,5 @@
 import EventCard from '@/components/User/events/EventCard'
 import { baseUrl, getAllEvents } from '@/utils/Endpoint'
-import axios from 'axios'
 async function getData() {
     console.log("get data")
     try {

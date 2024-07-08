@@ -67,9 +67,13 @@ const ContactForm = () => {
         toast.error("Comment is required")
         return
       }
-
-      const response = await axios.post(`${baseUrl}/${register}`, postData);
-
+      const response = await fetch(
+        `${baseUrl}${contactRoute}`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
       if (response.ok) {
         toast.success('Message Sent');
 
@@ -166,6 +170,7 @@ const ContactForm = () => {
             borderRadius: "8px",
             border: "1px solid #ccc",
             padding: "12px 14px",
+            paddingLeft: "40px",
             fontSize: "14px",
             color: "black",
           }}

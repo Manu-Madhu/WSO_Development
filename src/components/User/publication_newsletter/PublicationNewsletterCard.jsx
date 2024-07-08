@@ -10,7 +10,7 @@ function PublicationNewsletterCard({ title, date, location }) {
                 <h1 className='text-base font-medium ml-2'>{title}</h1>
             </div>
             <p className="font-medium">2024-04-12</p>
-            <a href="#">
+            <a href={location}>
                 <GoArrowUpRight size={20} className="absolute bottom-4 right-3 cursor-pointer" />
             </a>
         </div>
