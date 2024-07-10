@@ -6,13 +6,14 @@ import React, { useState } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { login } from "@/utils/Endpoint";
 
 const LoginPage = ({ modal }) => {
   const router = useRouter();
 
   // Login Modal Form Data Part
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -27,17 +28,21 @@ const LoginPage = ({ modal }) => {
   // Submit Handler
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (!formData?.username?.trim()) return toast.warning("Enter valid username")
+    if (!formData?.password?.trim()) return toast.warning("Enter password")
+
     try {
       const res = await signIn("credentials", {
-        email: formData?.email,
+        username: formData?.username,
         password: formData?.password,
+        route: login,
         redirect: false,
       });
 
       console.log(res);
 
-      if (res?.error) {
-        console.log("Invalid Credentials", error);
+      if (res?.status === 401) {
+        console.log("Invalid Credentials", res?.error);
         toast.error("Invalid Credentials")
         return;
       }
@@ -45,16 +50,14 @@ const LoginPage = ({ modal }) => {
       // Get the user data from the session
       const session = await getSession();
 
-      if (session?.user?.userInfo?.role === "admin") {
-        modal(false);
-        return router.replace("/admin/news");
-      } else {
+      if (session?.user?.userInfo?.role === "member") {
         modal(false);
         return router.replace("/user/news");
-      }
+      } 
+      
     } catch (error) {
       console.log("Error throwing while we try to login", error);
-      toast.error(error?.response?.data?.msg)
+      toast.error("Something went wrong")
     }
   };
 
@@ -77,14 +80,14 @@ const LoginPage = ({ modal }) => {
             className="text-sm font-semibold text-[#000000]/80 "
             htmlFor=""
           >
-            Email
+            Username
           </label>
           <input
-            type="email"
-            name="email"
-            value={formData?.email}
+            type="text"
+            name="username"
+            value={formData?.username}
             onChange={inputChangeHandler}
-            placeholder="Email"
+            placeholder="Username"
             className="p-3 text-sm text-[#000000]/50 border border-[#000000]/20 w-full rounded-lg focus:outline-none"
           />
         </div>
@@ -109,9 +112,9 @@ const LoginPage = ({ modal }) => {
 
         {/* Button */}
         <div className="w-full">
-          <button 
-          type="submit"
-          className="p-3 bg-primaryColor text-white text-sm rounded-lg w-full">
+          <button
+            type="submit"
+            className="p-3 bg-primaryColor text-white text-sm rounded-lg w-full">
             Sign in
           </button>
         </div>

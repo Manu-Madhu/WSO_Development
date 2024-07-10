@@ -1,7 +1,8 @@
 export const baseUrl = 'http://localhost:8800'
 
 //auth
-export const login = '/api/auth/admin/login'
+export const login = '/api/auth/login'
+export const adminLogin = '/api/auth/admin/login'
 
 // Guest Routes
 export const contactRoute = '/api/contact'

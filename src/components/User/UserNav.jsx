@@ -118,9 +118,9 @@ const UserNav = () => {
             {userData ? (
               <button
                 onClick={() => signOut({ callbackUrl: "/" })}
-                className=" text-white bg-primaryColor p-2 px-5 rounded-lg"
+                className=" text-white bg-red-600 p-2 px-5 rounded-lg"
               >
-                Log Out
+                Logout
               </button>
             ) : (
               <button
@@ -201,14 +201,14 @@ const UserNav = () => {
                       Register as member
                     </button>
                   </Link>
-                  {/* Login Log Out */}
+                  {/* Login Logout */}
                   <div className="w-full flex items-center  justify-center">
                     {userData ? (
                       <button
                         onClick={() => signOut({ callbackUrl: "/" })}
-                        className=" w-1/2 text-white bg-primaryColor p-2 px-5 rounded-lg"
+                        className=" w-1/2 text-white bg-red-600 p-2 px-5 rounded-lg"
                       >
-                        Log Out
+                        Logout
                       </button>
                     ) : (
                       <button

@@ -4,6 +4,7 @@ import { getSession, signIn } from "next-auth/react";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { adminLogin } from "@/utils/Endpoint";
 
 function AdminLoginPage() {
 
@@ -33,6 +34,7 @@ function AdminLoginPage() {
       const res = await signIn("credentials", {
         email: formData?.email,
         password: formData?.password,
+        route: adminLogin,
         redirect: false,
       });
 
@@ -50,8 +52,9 @@ function AdminLoginPage() {
       if (session?.user?.userInfo?.role === "admin") {
         return router.replace("/admin/news");
       } else {
-        return router.replace("/user/news");
+        return router.replace("/");
       }
+      
     } catch (error) {
       console.log("Error throwing while we try to login", error);
       toast.error("Something went wrong")
