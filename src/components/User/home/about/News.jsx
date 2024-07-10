@@ -7,7 +7,7 @@ const NewsComponent = ({ News }) => {
 
   return (
     <>
-      {News.map((item) => {
+      {News?.map((item) => {
         const date = new Date(item?.createdAt);
         let formattedDate = null;
         if (!isNaN(date)) {

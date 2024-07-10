@@ -15,7 +15,7 @@ async function getData() {
     const data = await res.json()
     return data.news
   } catch (error) {
-    toast.error("Something went wrong")
+    console.error("Something went wrong")
   }
 }
 const LatestNews = async () => {
