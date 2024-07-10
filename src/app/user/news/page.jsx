@@ -1,10 +1,11 @@
 import NewsContent from "@/components/User/News/NewsContent";
+import Link from "next/link";
 import React from "react";
 
 const NewsPage = () => {
   return (
     <div className="max-w-[1280px] mx-auto w-full p-3 flex flex-col items-center justify-center my-5 mb-10 md:mb-20">
-      <h1 className=" text-[#101828] font-bold text-xl self-start ">News</h1>
+      <h1 className=" text-[#101828] font-bold text-2xl self-start ">Latest News</h1>
       <div className=" w-full my-10">
         <NewsContent />
       </div>
@@ -23,6 +24,12 @@ const NewsPage = () => {
           increase production and productivity through eco-friendly methods.
         </p>
       </div>
+      <Link
+        href={"/user/news/allnews"}
+        className="text-lg text-primaryColor font-semibold underline"
+      >
+        <h4>See all news</h4>
+      </Link>
     </div>
   );
 };

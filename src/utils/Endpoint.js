@@ -1,5 +1,6 @@
 export const baseUrl = 'http://localhost:8800'
 
+//auth
 export const login = '/api/auth/admin/login'
 
 // Guest Routes
@@ -25,3 +26,17 @@ export const adminPublicationRoute = "/api/admin/publication";
 export const adminNewsletterRoute = "/api/admin/newsletter";
 export const adminApplicationRoute = "/api/admin/application";
 export const adminMemberRoute = "/api/admin/member";
+
+export const register = '/api/register'
+
+// events
+export const getAllEvents = '/api/event'
+
+// news
+export const getAllNews = '/api/news'
+
+// publications
+export const getAllPublications = '/api/member/publication'
+
+// newsletter
+export const getAllNewsletters = '/api/member/newsletter'

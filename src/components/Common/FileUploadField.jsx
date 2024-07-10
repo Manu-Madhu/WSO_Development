@@ -1,21 +1,24 @@
-"use client";
-import React, { useRef, useState } from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import { CiCircleRemove } from "react-icons/ci";
 
-const FileUploadField = ({ 
-    file, setFile,
-    fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        'image/png','image/jpeg',
-    ], 
-    sizeLimit = 20 * 1024 * 1024, 
-    typeNames = ['PDF', 'DOC', 'DOCX', 'PNG', 'JPEG',] }) => {
-
-    const inputRef = useRef()
-
-    // const [file, setFile] = useState(null);
-    const [preview, setPreview] = useState(null);
+const FileUploadField = ({
+    fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+    sizeLimit = 20 * 1024 * 1024,
+    typeNames = ['PDF', 'DOC', 'DOCX'],
+    value,
+    onChange
+}) => {
     const [dragging, setDragging] = useState(false);
+    const [preview, setPreview] = useState(value ? URL.createObjectURL(value) : null);
+
+    useEffect(() => {
+        // Revoke the URL to avoid memory leaks
+        return () => {
+            if (preview) URL.revokeObjectURL(preview);
+        };
+    }, [preview]);
 
     const handleDragEnter = (e) => {
         e.preventDefault();
@@ -35,7 +38,6 @@ const FileUploadField = ({
     const handleDrop = (e) => {
         e.preventDefault();
         setDragging(false);
-
         const droppedFile = e.dataTransfer.files[0];
         handleFile(droppedFile);
     };
@@ -48,7 +50,7 @@ const FileUploadField = ({
     const handleFile = (file) => {
         if (file) {
             if (!fileTypes.includes(file.type)) {
-                alert('Invalid file type. Please upload a valid document.');
+                alert('Invalid file type. Please upload a valid document or image.');
                 return;
             }
 
@@ -57,32 +59,28 @@ const FileUploadField = ({
                 return;
             }
 
-            setFile(file);
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                setPreview(e.target.result);
-            };
-            reader.readAsDataURL(file);
+            if (onChange) onChange(file);
+            setPreview(file.type.startsWith('image/') ? URL.createObjectURL(file) : null);
         } else {
-            setFile(null);
+            if (onChange) onChange(null);
             setPreview(null);
         }
     };
 
     const handleRemoveFile = () => {
-        setFile(null);
+        if (onChange) onChange(null);
         setPreview(null);
     };
 
     const handleUploadClick = () => {
-        inputRef.current.click();
+        document.getElementById('dropzone-file').click();
     };
 
     return (
         <div
             className={`flex flex-col items-center justify-center w-full p-0 border-2 border-gray-300 rounded-lg cursor-pointer 
-        ${dragging ? 'border-blue-500' : ''}
-      `}
+            ${dragging ? 'border-blue-500' : ''}
+          `}
             onDragEnter={handleDragEnter}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
@@ -90,9 +88,13 @@ const FileUploadField = ({
             onClick={handleUploadClick}
         >
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                {file ? (
+                {value ? (
                     <>
-                        <p>{file.name}</p>
+                        {preview ? (
+                            <img src={preview} alt="Preview" className="max-w-full h-auto mb-2" />
+                        ) : (
+                            <p>{value.name}</p>
+                        )}
                         <button
                             className="mt-2 text-xs text-black-500 hover:text-black-600 focus:outline-none"
                             onClick={handleRemoveFile}
@@ -117,7 +119,7 @@ const FileUploadField = ({
                 )}
             </div>
             <input
-                ref={inputRef}
+                id="dropzone-file"
                 type="file"
                 className="hidden"
                 onChange={handleFileChange}

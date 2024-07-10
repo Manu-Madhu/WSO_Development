@@ -1,18 +1,52 @@
 'use client'
-import React, { useRef, useState } from "react";
-import { FiArrowLeftCircle } from "react-icons/fi";
-import { FiArrowRightCircle } from "react-icons/fi";
+import React, { useEffect, useRef, useState } from "react";
+import { IoIosArrowDropleft } from "react-icons/io";
+import { IoIosArrowDropright } from "react-icons/io";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import cover from "../../../../public/Assets/user/news/cover.png"
 import Link from "next/link";
+import { toast } from "react-toastify";
+import { baseUrl, getAllNews } from "@/utils/Endpoint";
+import Loader from "@/app/loading";
 
 const NewsContent = () => {
-  const [data, setData] = useState([1, 1, 1, 1]);
   const [slideIndex, setSlideIndex] = useState(0)
+  const [news, setNews] = useState([])
+  const [loading, setLoading] = useState(true)
 
+  const getNews = async () => {
+    try {
+      const res = await fetch(`${baseUrl}${getAllNews}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (res.ok) {
+        const data = await res.json()
+        if (data.news.length > 4) {
+          setNews(data.news.slice(0, 4))
+        } else {
+          setNews(data.news)
+        }
+        setLoading(false)
+      } else {
+        toast.error('Failed to load news')
+        setLoading(false)
+      }
+
+    } catch (error) {
+      console.log("error" + error)
+      toast.error('Failed to load news')
+      setLoading(false)
+    }
+  }
+  useEffect(() => {
+    getNews()
+  }, [])
   let sliderRef = useRef(null);
   const next = () => {
     sliderRef?.slickNext();
@@ -60,68 +94,83 @@ const NewsContent = () => {
       }
     ],
   };
-
+  function formatDate(createdAt) {
+    const date = new Date(createdAt);
+    let formattedDate = null;
+    if (!isNaN(date)) {
+      const day = String(date.getUTCDate()).padStart(2, '0');
+      const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+      const year = date.getUTCFullYear();
+      formattedDate = `${day}/${month}/${year}`;
+      return formattedDate;
+    }
+    return ''
+  }``
   return (
-    <div className='w-full relative '>
-      <div className=" mx-auto slider-container relative ">
-        <Slider
-          ref={slider => {
-            sliderRef = slider;
-          }}
-          {...settings}
-        >
-          {
-            data?.map((item, index) => (
-              <div key={index}
-                onClick={() => console.log('lower')}
-                className={`w-full h-[400px] sm:h-[500px] relative
+    loading ?
+      <div className="fixed h-screen w-screen inset-0 ">
+        <Loader />
+      </div> :
+      <div className='w-full relative '>
+        <div className=" mx-auto slider-container relative ">
+          <Slider
+            ref={slider => {
+              sliderRef = slider;
+            }}
+
+            {...settings}
+          >
+            {
+              news?.map((item, index) => (
+                <div key={index}
+                  onClick={() => console.log('lower')}
+                  className={`w-full h-[400px] sm:h-[500px] relative
                   ${index === slideIndex ? 'slide slide-active' : 'slide'}
                   `}
-              >
-                <Image src={cover} alt="image"
-                  className="w-full h-full object-cover rounded-xl" />
+                >
+                  <Image src={cover} alt="image"
+                    className="w-full h-full object-cover rounded-xl" />
 
-                <Link
-                  href={`/pages/user/news/${index}`}
-                  onClick={(e) => { e.stopPropagation(); console.log('upper') }}
-                  className="absolute top-0 w-full h-[400px] sm:h-[500px] flex flex-col justify-between items-center
+                  <Link
+                    href={`/user/news/${item._id}`}
+                    onClick={(e) => { e.stopPropagation(); console.log('upper') }}
+                    className="absolute top-0 w-full h-[400px] sm:h-[500px] flex flex-col justify-between items-center
                   p-8 ">
-                  <div className="w-full flex flex-col gap-4  ">
-                    <p className=" text-white font-semibold line-clamp-2 ">
-                      The Spice Industry has seen progress at a rapid pace in the past
-                    </p>
-                    <span className="w-fit py-1 px-2 rounded-full bg-primaryColor text-sm text-white ">
-                      10/12/2024
-                    </span>
-                  </div>
+                    <div className="w-full flex flex-col gap-4  ">
+                      <p className=" text-white font-semibold line-clamp-2 ">
+                        {item?.title}
+                      </p>
+                      <span className="w-fit py-1 px-2 rounded-full bg-primaryColor text-sm text-white ">
+                        {
+                          formatDate(item?.createdAt)
+                        }
+                      </span>
+                    </div>
 
-                  <p
-                    className="w-full h-fit text-white text-sm font-light line-clamp-6 ">
-                    The Spice Industry has seen progress at a rapid pace in the past few decades.Today, it is
-                    a $3.2 billion, 1 million tons industry. The increasing awareness among world-wide
-                    consumers on the wholesome goodness of spices, development of new products, processes
-                    and applications have helped the industry scale new heights.
-                  </p>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: item?.description }}
+                      className="w-full h-fit text-white text-sm font-light line-clamp-6 "
+                    />
 
-                </Link>
+                  </Link>
 
-              </div>
+                </div>
 
-            ))
+              ))
 
-          }
+            }
 
-        </Slider>
+          </Slider>
 
+        </div>
+
+        <span className=" z-50 cursor-pointer absolute top-[200px] sm:top-[250px] left-0  " onClick={previous} >
+          <IoIosArrowDropleft size={40} color="#266941" />
+        </span>
+        <span className=" z-50 cursor-pointer absolute top-[200px] sm:top-[250px] right-0" onClick={next} >
+          <IoIosArrowDropright size={40} color="#266941" />
+        </span>
       </div>
-
-      <span className=" z-50 cursor-pointer absolute top-[200px] sm:top-[250px] left-0  " onClick={previous} >
-        <FiArrowLeftCircle size={26} color="#266941" />
-      </span>
-      <span className=" z-50 cursor-pointer absolute top-[200px] sm:top-[250px] right-0" onClick={next} >
-        <FiArrowRightCircle size={26} color="#266941" />
-      </span>
-    </div>
 
   )
 }

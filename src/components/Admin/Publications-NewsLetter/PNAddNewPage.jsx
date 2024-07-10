@@ -2,7 +2,7 @@
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import CancelButton from '../common/CancelButton'
 import SaveButton from '../common/SaveButton'
-import FileUploadField from './FileUploadField'
+import FileUploadField from '../../Common/FileUploadField'
 import { useState } from 'react';
 import { adminNewsletterRoute, adminPublicationRoute } from '@/utils/Endpoint';
 import { toast } from 'react-toastify';
