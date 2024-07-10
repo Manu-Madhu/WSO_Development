@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
 import { adminNewsRoute, guestNewsRoute } from "@/utils/Endpoint";
-import FileUploadField from "@/components/Admin/Publications-NewsLetter/FileUploadField";
+import FileUploadField from "@/components/Common/FileUploadField";
 import { useRouter } from "next/navigation";
 
 function Page({ params }) {

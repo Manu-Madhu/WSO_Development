@@ -3,7 +3,6 @@ import ApproveBtn from '@/components/Admin/Buttons/ApproveBtn';
 import RejectBtn from '@/components/Admin/Buttons/RejectBtn';
 import NormalTextField from '@/components/Admin/Members/NormalTextField'
 import StatusIndicator from '@/components/Admin/Members/StatusIndicator';
-import FileUploadField from '@/components/Admin/Publications-NewsLetter/FileUploadField'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import { adminApplicationRoute } from '@/utils/Endpoint';
 import { useRouter } from 'next/navigation';

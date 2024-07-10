@@ -1,7 +1,6 @@
 "use client"
 import NormalTextField from '@/components/Admin/Members/NormalTextField'
 import StatusIndicator from '@/components/Admin/Members/StatusIndicator';
-import FileUploadField from '@/components/Admin/Publications-NewsLetter/FileUploadField'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import { adminMemberRoute } from '@/utils/Endpoint';
 import { useRouter } from 'next/navigation';

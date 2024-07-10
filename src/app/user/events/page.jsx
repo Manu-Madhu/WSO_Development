@@ -1,5 +1,6 @@
 import EventCard from '@/components/User/events/EventCard'
 import { baseUrl, getAllEvents } from '@/utils/Endpoint'
+
 async function getData() {
     console.log("get data")
     try {
@@ -10,14 +11,15 @@ async function getData() {
             },
         })
         const data = await res.json()
-        console.log(data)
-        return data.events
+        console.log({data})
+        return data?.event
     } catch (error) {
         console.log("error" + error)
     }
 }
 const Events = async () => {
     const data = await getData()
+
 
     return (
         <div className="max-w-[1280px] mx-auto w-full p-3 flex flex-col items-center justify-center 
@@ -27,7 +29,7 @@ const Events = async () => {
             <div className='w-full flex flex-wrap justify-around gap-4 '>
                 {
                     data?.map((item, i) => (
-                        <EventCard key={i} name={item.title} description={item.description} date={item.date} />
+                        <EventCard key={i} data={item} />
                     ))
                 }
             </div>

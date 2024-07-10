@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
+import cardpic from '../../../../../public/Assets/user/events/cardpic.png';
 
 const NewsComponent = ({ News }) => {
 
@@ -22,13 +23,19 @@ const NewsComponent = ({ News }) => {
             className="w-full sm:min-w-[300px] min-h-[280px] border-rounded-xl relative "
           >
             <div className="bg-primaryColor rounded-xl w-full h-full">
-              <Link href={item?._id}>
+              <Link href={`/user/news/${item?._id}`}>
                 <GoArrowUpRight
                   size={16}
                   className="absolute top-2 right-2 text-white"
                 />
               </Link>{" "}
-              <Image src={item?.thumbnail} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
+              {
+                item?.thumbnail
+                ?
+                <img src={item?.thumbnail?.location} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
+                :
+                <Image src={cardpic} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
+              }
               <div className=" p-3 text-white">
                 <div className="flex items-center justify-between">
                   <h1 className="text-nowrap text-sm">{item?.title}</h1>

@@ -26,8 +26,15 @@ const NewsDetailed = async ({ params }) => {
             <h1 className=" text-[#101828] font-bold text-xl self-start ">{News.title}</h1>
 
             <div className='w-full flex flex-col sm:flex-row gap-8'>
-                <Image src={News?.thumbnail} alt="image"
-                    className="w-full sm:w-1/2 h-[400px] object-cover rounded-lg" />
+                {
+                    News?.thumbnail
+                    ?
+                    <img src={News?.thumbnail?.location} alt="image"
+                        className="w-full sm:w-1/2 h-[400px] object-cover rounded-lg" />
+                        :
+                        <Image src={cover} alt="image"
+                            className="w-full sm:w-1/2 h-[400px] object-cover rounded-lg" />
+                }
 
                 <div className='w-full sm:w-1/2 flex flex-col gap-4 '>
                     <div

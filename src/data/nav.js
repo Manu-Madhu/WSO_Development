@@ -8,7 +8,7 @@ export const navBar =  [
     {
       "id": 2,
       "title": "About",
-      "link": "/about",
+      "link": "/user/about",
       "list": []
     },
     {

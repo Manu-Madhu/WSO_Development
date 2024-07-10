@@ -1,7 +1,7 @@
 'use client'
 import SaveButton from "@/components/Admin/common/SaveButton";
 import CancelButton from "@/components/Admin/common/CancelButton";
-import FileUploadField from "@/components/Admin/Publications-NewsLetter/FileUploadField";
+import FileUploadField from "@/components/Common/FileUploadField";
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { adminEventRoute, guestEventRoute } from "@/utils/Endpoint";

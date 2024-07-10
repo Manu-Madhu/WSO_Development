@@ -6,7 +6,7 @@ import { useState } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
 import { adminNewsRoute } from "@/utils/Endpoint";
-import FileUploadField from "@/components/Admin/Publications-NewsLetter/FileUploadField";
+import FileUploadField from "@/components/Common/FileUploadField";
 
 function Page() {
     const [data,setData] = useState({
