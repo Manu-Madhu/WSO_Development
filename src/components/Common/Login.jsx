@@ -106,7 +106,9 @@ const LoginPage = ({ modal }) => {
 
         {/* Button */}
         <div className="w-full">
-          <button className="p-3 bg-primaryColor text-white text-sm rounded-lg w-full">
+          <button 
+          type="submit"
+          className="p-3 bg-primaryColor text-white text-sm rounded-lg w-full">
             Sign in
           </button>
         </div>

@@ -2,16 +2,17 @@ import { FiEdit2, FiUploadCloud } from "react-icons/fi";
 import Link from 'next/link'
 import { CiImageOn } from "react-icons/ci";
 import DeleteButton from "../News/DeleteButton";
+import PNTable from "./PNTable";
 
 function PNMainPage({ name }) {
     return (
         <div className='flex flex-col bg-white min-h-screen w-full px-10 max-md:px-5 max-md:pt-16 py-12 text-black'>
             <div className="flex justify-between">
-                <h1 className="font-semibold text-title">
-                    {name}
+                <h1 className="font-semibold text-title capitalize">
+                    {`${name}s`}
                 </h1>
                 <div className="sm:hidden">
-                    <Link href={`/admin/${name.toLowerCase()}/add${name.toLowerCase()}`}>
+                    <Link href={`/admin/${name.toLowerCase()}/add`}>
                         <button className="bg-primary-green flex items-center gap-2 px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                             <FiUploadCloud size={23} strokeWidth={2} />
                             <h4>Upload</h4>
@@ -27,7 +28,7 @@ function PNMainPage({ name }) {
                         </h2>
                     </div>
                     <div className="max-sm:hidden">
-                        <Link href={`/admin/${name.toLowerCase()}/add${name.toLowerCase()}`}>
+                        <Link href={`/admin/${name.toLowerCase()}/add`}>
                             <button className="bg-primary-green flex items-center gap-2 px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                                 <FiUploadCloud size={23} strokeWidth={2} />
                                 <h4>Upload</h4>
@@ -36,7 +37,8 @@ function PNMainPage({ name }) {
                     </div>
                 </div>
                 <div className="w-full max-md:overflow-x-scroll">
-                    <table className='w-full text-base table'>
+
+                    {/* <table className='w-full text-base table'>
                         <thead className="text-sm" >
                             <tr>
                                 <th className='w-[55%] max-md:w-fit px-6 py-3 font-normal text-start text-nowrap'>
@@ -92,7 +94,10 @@ function PNMainPage({ name }) {
                                 ))
                             }
                         </tbody>
-                    </table>
+                    </table> */}
+
+                    <PNTable name={name} />
+
                 </div>
             </div>
         </div>

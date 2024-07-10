@@ -2,29 +2,39 @@ import Image from 'next/image'
 import React from 'react'
 import cardpic from '../../../../public/Assets/user/events/cardpic.png';
 import { HiOutlineDownload } from "react-icons/hi";
+import Link from 'next/link';
 
-const EventCard = ({ name, description, date }) => {
+const EventCard = ({ data }) => {
+
     return (
         <div className='w-full sm:w-[300px] h-[260px] flex flex-col rounded-lg overflow-hidden relative'>
-            <Image src={cardpic} alt=''
-                className='w-full h-[180px] object-cover'
-            />
+
+
+            {
+                data?.thumbnail
+                    ?
+                    <img src={data?.thumbnail?.location} alt=''
+                        className='w-full h-[180px] object-cover'
+                    />
+                    :
+                    <Image src={cardpic} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
+            }
 
             <div className='w-full h-[80px] bg-primaryColor text-white flex flex-col justify-center px-3 gap-2' >
                 <div className='w-full flex justify-between items-center'>
-                    <span className='truncate'>{name}</span>
-                    <span className='text-sm font-light'>{date}</span>
+                    <span className='truncate'>{data?.title}</span>
+                    <span className='text-sm font-light'>{data?.date}</span>
                 </div>
 
                 <p className='text-sm font-light truncate'>
-                    {description}
+                    {data?.description}
                 </p>
 
             </div>
 
-            <span className='absolute top-4 right-4 cursor-pointer'>
+            <Link href={data?.document.location ?? ''} className='absolute top-4 right-4 cursor-pointer'>
                 <HiOutlineDownload size={32} color='#777' />
-            </span>
+            </Link>
         </div>
     )
 }

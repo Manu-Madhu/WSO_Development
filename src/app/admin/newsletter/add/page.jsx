@@ -3,7 +3,7 @@ import PNAddNewPage from "@/components/Admin/Publications-NewsLetter/PNAddNewPag
 function Page() {
     return (
         <>
-            <PNAddNewPage name={"Publication"} />
+            <PNAddNewPage name={"newsletter"} />
         </>
     )
 }

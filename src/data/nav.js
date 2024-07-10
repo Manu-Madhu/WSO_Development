@@ -48,7 +48,7 @@ export const navBar =  [
     {
       "id": 5,
       "title": "Contact Us",
-      "link": "/user/contact-us",
+      "link": "/contact-us",
       "list": []
     }
   ]

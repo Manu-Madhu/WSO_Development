@@ -3,13 +3,15 @@
 import {
   add,
   differenceInDays,
-  endOfMinute,
   endOfMonth,
   startOfMonth,
-  sub,
+  sub, getMonth, getYear,
+  format
 } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CalendarCell from "./CalendarCell";
+import { guestEventRoute } from "@/utils/Endpoint";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 
 const dayOfTheWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = [
@@ -27,35 +29,73 @@ const months = [
   "December",
 ];
 function Calendar() {
+  const axiosPrivate = useAxiosPrivate();
+
+  const [data, setData] = useState([])
+
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const eventdata = {
-    1: [
-      "New Year",
-      "Holiday",
-      "New Year",
-      "Holiday",
-      "New Year",
-      "Holiday",
-      "New Year",
-      "Holiday",
-    ],
-    26: ["Republic Day"],
-  };
+
+  const [eventdata, setEventdata] = useState({})
+
   let startDate = startOfMonth(selectedDate);
   let endDate = endOfMonth(selectedDate);
   let prefixDays = startDate.getDay();
   let nextMonthDays = 6 - endDate.getDay();
   let numDays = differenceInDays(endDate, startDate) + 1;
-  let prevMonthDays =
-    differenceInDays(startDate, startOfMonth(sub(startDate, { months: 1 }))) -
-    1;
+  let prevMonthDays = differenceInDays(startDate, startOfMonth(sub(startDate, { months: 1 }))) - 1;
+
   const prevMonth = () => {
     setSelectedDate(sub(selectedDate, { months: 1 }));
   };
   const nextMonth = () => {
     setSelectedDate(add(selectedDate, { months: 1 }));
   };
+
+  const testFn = (events) => {
+
+    const currMonthEvents = events?.filter((item, i) => getMonth(item?.date) === selectedDate.getMonth() && getYear(item?.date) === selectedDate.getFullYear())
+
+    const xyz = {}
+
+    currMonthEvents.forEach((item, i) => {
+
+      const day = Number(format(item?.date, 'dd'));
+
+      if (!Array?.isArray(xyz[day])) {
+        xyz[day] = [];
+      }
+      xyz[day]?.push({ title: item?.title, _id: item?._id })
+
+    })
+
+    setEventdata(xyz)
+  }
+
+  const fetchData = async () => {
+    try {
+      const response = await axiosPrivate.get(guestEventRoute)
+
+      if (response.status === 200) {
+        const event = response?.data?.event;
+        console.log({ fetchedevent: event })
+
+        setData([...event])
+
+        testFn(event)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  console.log({ data })
+  console.log({ selectedDate })
+
+  useEffect(() => {
+    fetchData()
+  }, [selectedDate])
+
   return (
     <div className="border rounded-xl border-gray-400 flex max-lg:flex-col justify-between">
       <div className="p-6 font-semibold felx flex-col items-center">
@@ -77,6 +117,7 @@ function Calendar() {
       </div>
       <div className="max-sm:p-3">
         <div className="grid grid-cols-7 m-6  max-sm:m-0  w-fit  max-sm:w-full border-r">
+
           {dayOfTheWeek.map((day, index) => (
             <div
               key={index}
@@ -85,6 +126,8 @@ function Calendar() {
               <h4>{day}</h4>
             </div>
           ))}
+
+          {/* Previous Month dates in display */}
           {Array.from({ length: prefixDays }).map((_, index) =>
             index === 0 ? (
               <CalendarCell
@@ -101,6 +144,8 @@ function Calendar() {
               />
             )
           )}
+
+          {/* Current Month */}
           {Array.from({ length: numDays }).map((_, index) =>
             index === 0 ? (
               <CalendarCell
@@ -132,6 +177,8 @@ function Calendar() {
               />
             )
           )}
+
+          {/* Next Month dates in display */}
           {Array.from({ length: nextMonthDays }).map((_, index) =>
             index === 0 ? (
               <CalendarCell
@@ -144,6 +191,7 @@ function Calendar() {
               <CalendarCell current={false} date={index} key={index} />
             )
           )}
+
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ function Page() {
                         </h5>
                     </div>
                     <div className='max-sm:hidden'>
-                        <Link href="/admin/events/addevent">
+                        <Link href="/admin/events/add">
                             <button className="bg-primary-green px-5 h-fit py-3 ml-4 text-white text-base font-semibold rounded-lg">
                                 Add event
                             </button>
