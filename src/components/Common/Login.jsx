@@ -54,7 +54,7 @@ const LoginPage = ({ modal }) => {
         modal(false);
         return router.replace("/user/news");
       } 
-      
+
     } catch (error) {
       console.log("Error throwing while we try to login", error);
       toast.error("Something went wrong")
@@ -124,7 +124,7 @@ const LoginPage = ({ modal }) => {
           <h4 className="text-[#000000]/50 text-sm">
             Don&apos;t have a account?{" "}
             <Link
-              href={"/page/user/register"}
+              href={"/user/membership"}
               className="font-semibold text-primaryColor "
             >
               Sign up

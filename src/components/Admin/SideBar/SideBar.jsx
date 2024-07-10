@@ -127,7 +127,7 @@ function SideBar() {
               </div>
             </div>
             <RxExit
-              onClick={() => signOut({ callbackUrl: "/" })}
+              onClick={() => signOut({ callbackUrl: "/admin-login" })}
               size={22}
               className="text-gray-900 cursor-pointer"
             />

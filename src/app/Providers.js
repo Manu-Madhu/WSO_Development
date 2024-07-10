@@ -40,7 +40,10 @@ export const AdminProvider = ({ children }) => {
 
     // Or render a loading spinner
     if (status === 'loading' || !session || session?.user?.userInfo?.role !== 'admin') {
-        return <><LoaderData /></>;
+        return (
+        <div className='h-screen w-full grid place-items-center'>
+        <LoaderData />
+        </div>);
     }
 
     return <>{children}</>

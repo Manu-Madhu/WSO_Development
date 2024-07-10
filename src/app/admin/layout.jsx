@@ -3,14 +3,16 @@ import { AdminProvider } from "../Providers";
 
 function Layout({ children }) {
   return (
+    <AdminProvider>
     <div className="flex fixed w-full h-screen bg-white">
       <SideBar />
       <div className="w-full overflow-y-scroll">
         <div className="h-fit">
-          <AdminProvider>{children}</AdminProvider>
+          {children}
         </div>
       </div>
     </div>
+    </AdminProvider>
   );
 }
 

@@ -1,12 +1,10 @@
-
 'use client'
 import React from "react";
-import { FallingLines } from "react-loader-spinner";
+import { FallingLines, Oval } from "react-loader-spinner";
 
 const LoaderData = () => {
   return (
-    <div>
-      <FallingLines
+      <Oval
         visible={true}
         height="80"
         width="80"
@@ -15,7 +13,6 @@ const LoaderData = () => {
         wrapperStyle={{}}
         wrapperClass=""
       />
-    </div>
   );
 };
 

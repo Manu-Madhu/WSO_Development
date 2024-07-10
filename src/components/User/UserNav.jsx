@@ -109,11 +109,15 @@ const UserNav = () => {
 
         {/* Buttons */}
         <div className="buttons flex gap-3 text-black text-[13px] font-medium capitalize">
-          <Link href={"/user/membership"}>
-            <button className=" border-2 border-primaryColor p-2 px-5 rounded-lg">
-              Register as member
-            </button>
-          </Link>
+          {
+            !userData
+            &&
+            <Link href={"/user/membership"}>
+              <button className=" border-2 border-primaryColor p-2 px-5 rounded-lg">
+                Register as member
+              </button>
+            </Link>
+          }
           <div>
             {userData ? (
               <button
@@ -193,14 +197,20 @@ const UserNav = () => {
                 </div>
 
                 <div className="buttons w-full flex flex-col items-center justify-center mt-5 gap-3 text-black text-[13px] font-medium capitalize">
-                  <Link
-                    href={"/"}
-                    className="w-full flex items-center  justify-center"
-                  >
-                    <button className="w-1/2 border-2 border-primaryColor p-2 px-5 rounded-lg">
-                      Register as member
-                    </button>
-                  </Link>
+                  {
+                    !userData
+                    &&
+                    <Link
+                      href={"/"}
+                      className="w-full flex items-center  justify-center"
+                    >
+                      <button className="w-1/2 border-2 border-primaryColor p-2 px-5 rounded-lg">
+                        Register as member
+                      </button>
+                    </Link>
+
+                  }
+
                   {/* Login Logout */}
                   <div className="w-full flex items-center  justify-center">
                     {userData ? (
