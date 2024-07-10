@@ -5,6 +5,7 @@ import { getSession, signIn } from "next-auth/react";
 import React, { useState } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const LoginPage = ({ modal }) => {
   const router = useRouter();
@@ -37,6 +38,7 @@ const LoginPage = ({ modal }) => {
 
       if (res?.error) {
         console.log("Invalid Credentials", error);
+        toast.error("Invalid Credentials")
         return;
       }
 
@@ -52,11 +54,12 @@ const LoginPage = ({ modal }) => {
       }
     } catch (error) {
       console.log("Error throwing while we try to login", error);
+      toast.error(error?.response?.data?.msg)
     }
   };
 
   return (
-    <div className="fixed z-50   top-18 right-0 md:right-[8%] bg-white shadow rounded w-full md:w-[300px] p-5 md:p-10">
+    <div className="fixed z-50  top-18 right-0 md:right-[8%] bg-white shadow rounded w-full md:w-[300px] p-5 md:p-10">
       <form
         onSubmit={submitHandler}
         action=""
