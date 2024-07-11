@@ -62,9 +62,10 @@ function PublicationNewsletterPage({ name }) {
                     (
                         (status === "authenticated")
                             ?
-                            <div className='w-full grid grid-cols-4 max-sm:grid-cols-1 max-md:grid-cols-2 gap-x-4 gap-y-8 max-sm:gap-y-5'>
-                                {
-                                    data?.map((item, index) => {
+                            data?.length > 0
+                                ?
+                                <div className='w-full grid grid-cols-4 max-sm:grid-cols-1 max-md:grid-cols-2 gap-x-4 gap-y-8 max-sm:gap-y-5'>
+                                    {data?.map((item, index) => {
                                         return (
                                             <PublicationNewsletterCard
                                                 key={index}
@@ -73,8 +74,10 @@ function PublicationNewsletterPage({ name }) {
                                             />
                                         )
                                     })
-                                }
-                            </div>
+                                    }
+                                </div>
+                                :
+                                <p className="w-full grid place-items-center min-h-[45vh]">No data available</p>
 
                             :
                             <div className='w-full grid place-items-center my-16 '>
