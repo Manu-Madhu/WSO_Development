@@ -28,7 +28,7 @@ const LatestNews = async () => {
       </div>
       <div className="w-full flex items-center justify-center mt-5 underline">
         <h2 className="font-semibold text-primaryColor  cursor-pointer ">
-          <Link href={"/"}>Read More</Link>
+          <Link href={"/user/news/all"}>Read More</Link>
         </h2>
       </div>
     </div>

@@ -3,6 +3,8 @@ import Image from "next/image";
 import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
 import cardpic from '../../../../../public/Assets/user/events/cardpic.png';
+import cover from "../../../../../public/Assets/user/news/cover.png"
+
 
 const NewsComponent = ({ News }) => {
 
@@ -34,7 +36,7 @@ const NewsComponent = ({ News }) => {
                 ?
                 <img src={item?.thumbnail?.location} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
                 :
-                <Image src={cardpic} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
+                <Image src={cover} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
               }
               <div className=" p-3 text-white">
                 <div className="flex items-center justify-between">

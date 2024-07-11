@@ -1,11 +1,11 @@
 'use client'
 import LoginPage from '@/components/Common/Login';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
 const FootBtns = () => {
-    const [LoginModal, setLoginModal] = useState(true);
+    const [LoginModal, setLoginModal] = useState(false);
 
     const { data: session, status } = useSession();
     const router = useRouter();
@@ -18,7 +18,8 @@ const FootBtns = () => {
                 &&
                 <div className="my-5 gap-3 flex items-center justify-center">
                     <button
-                        onClick={() => setLoginModal(true)}
+                        onClick={() => setLoginModal(!LoginModal)}
+                        // onClick={() => console.log(LoginModal)}
                         className="border rounded-lg p-2 md:p-3 px-5">Login</button>
 
 
