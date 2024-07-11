@@ -26,7 +26,7 @@ const Events = async () => {
     my-5 mb-10 md:mb-20 gap-8">
         <h1 className=" text-[#101828] font-bold text-2xl self-start ">Events and Meetings</h1>
 
-            <div className='w-full flex flex-wrap justify-around gap-4 '>
+            <div className='w-full flex flex-wrap  gap-4 '>
                 {
                     data?.map((item, i) => (
                         <EventCard key={i} data={item} />

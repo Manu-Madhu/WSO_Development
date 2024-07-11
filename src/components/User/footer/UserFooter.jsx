@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Logo from "@/../../public/Assets/user/nav/logo.png";
+import FootBtns from "./FootBtns";
 
 const UserFooter = () => {
   return (
@@ -21,12 +22,8 @@ const UserFooter = () => {
             <span className="font-semibold">secretary@wsospice.org</span>
           </p>
 
-          <div className="my-5 gap-3 flex items-center justify-center">
-            <button className="border rounded-lg p-2 md:p-3 px-5">Login</button>
-            <button className="border rounded-lg p-2 md:p-3 px-5 bg-primaryColor text-white">
-              Register as a Member
-            </button>
-          </div>
+           <FootBtns/>
+
         </div>
 
         <p className="text-xs md:text-sm">

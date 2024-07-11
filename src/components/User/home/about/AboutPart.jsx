@@ -1,6 +1,12 @@
 import React from "react";
 import TopBanner from "./TopBanner";
 import ScrollLogo from "./ScrollLogo";
+import Link from "next/link";
+
+import element1 from "@/../../public/Assets/user/home/Contact/bottom 1.png";
+import element2 from "@/../../public/Assets/user/home/Contact/bottom 2.png";
+
+import Image from "next/image";
 
 const AboutPart = () => {
   return (
@@ -36,7 +42,7 @@ const AboutPart = () => {
 
           {/* Right side Green part */}
           <div className="w-full md:w-2/5">
-            <div className=" bg-primaryColor p-7 rounded-lg">
+            <div className="relative bg-primaryColor p-7 rounded-lg overflow-clip">
               <h1 className="text-white font-semibold text-[27px] ">
                 Want to be a member?
               </h1>
@@ -45,16 +51,36 @@ const AboutPart = () => {
                 for an organized movement of partners from across the globe to
                 build a healthy (content for this)
               </p>
-              <button className="p-2 px-5 text-primaryColor rounded-lg font-[600] bg-white text-xs">
+              <Link href={`/user/membership`} className="p-2 px-5 text-primaryColor rounded-lg font-[600] bg-white text-xs">
                 Register as a Member
-              </button>
+              </Link>
+
+              {/* Elements  */}
+              <div className="absolute bottom-0 right-0 rounded-br-lg">
+                <Image
+                  src={element1}
+                  alt="element1"
+                  className="w-16 object-contain"
+                />
+              </div>
+              <div className="absolute bottom-6 right-6">
+                <Image
+                  src={element2}
+                  alt="element1"
+                  className="w-12 object-contain"
+                />
+              </div>
             </div>
+
+
+
           </div>
+
         </div>
       </div>
-      <button className="bg-primaryColor text-white text-xs md:text-sm p-3 px-5 rounded-lg mt-5 ">
+      <Link href={`/user/about`} className="bg-primaryColor text-white text-xs md:text-sm p-3 px-5 rounded-lg mt-5 ">
         Learn More
-      </button>
+      </Link>
     </div>
   );
 };

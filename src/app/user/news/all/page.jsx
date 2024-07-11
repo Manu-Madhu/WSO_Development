@@ -28,7 +28,7 @@ async function Page() {
             <h1 className='text-title py-8 font-semibold'>
                 News
             </h1>
-            <div className='w-full grid grid-cols-4 gap-x-4 gap-y-6'>
+            <div className='w-full flex flex-wrap  gap-4 '>
                 {
                     Newses.map((news) => (<NewsCard News={news} />))
                 }

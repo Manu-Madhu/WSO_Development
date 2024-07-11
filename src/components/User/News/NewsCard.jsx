@@ -1,14 +1,27 @@
 import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
+import cover from "../../../../public/Assets/user/news/cover.png"
+import Image from "next/image";
 
 function NewsCard({ News }) {
     return (
-        <div className="max-w-sm rounded overflow-hidden relative">
-            <img
-                className="w-full rounded-lg aspect-[4/3]"
-                src={"https://img.freepik.com/free-photo/abstract-autumn-beauty-multi-colored-leaf-vein-pattern-generated-by-ai_188544-9871.jpg"}
-                alt="Spices"
-            />
+        <div className="w-full sm:max-w-sm rounded overflow-hidden relative">
+            {
+                News?.thumbnail?.location
+                ?
+                <img
+                    className="w-full rounded-lg aspect-[4/3]"
+                    src={News?.thumbnail?.location}
+                    alt="Spices"
+                />
+                :
+                <Image
+                    className="w-full rounded-lg aspect-[4/3]"
+                    src={cover}
+                    alt="Spices"
+                />
+
+            }
             <div className="pt-2 relative">
                 <p className="mb-2 line-clamp-2 overflow-hidden">{News.title}</p>
                 <Link

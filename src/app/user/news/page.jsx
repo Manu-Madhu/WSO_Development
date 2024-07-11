@@ -25,7 +25,7 @@ const NewsPage = () => {
         </p>
       </div>
       <Link
-        href={"/user/news/allnews"}
+        href={"/user/news/all"}
         className="text-lg text-primaryColor font-semibold underline"
       >
         <h4>See all news</h4>
