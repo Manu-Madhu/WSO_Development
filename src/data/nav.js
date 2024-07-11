@@ -25,7 +25,17 @@ export const navBar =  [
           "lid": 2,
           "subTitle":"events",
           "subLink":"/user/events"
-        }
+        },
+        {
+          "lid": 3,
+          "subTitle":"publications",
+          "subLink":"/user/publication"
+        },
+        {
+          "lid": 4,
+          "subTitle":"newsletters",
+          "subLink":"/user/newsletter"
+        },
       ]
     },
     {

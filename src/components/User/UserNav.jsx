@@ -10,7 +10,7 @@ import { navBar } from "@/data/nav.js";
 import { usePathname, useRouter } from "next/navigation";
 import { FiMenu } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { getSession, signOut } from "next-auth/react";
+import { getSession, signOut, useSession } from "next-auth/react";
 
 const getSessionData = async () => {
   const userData = await getSession();
@@ -24,6 +24,9 @@ const UserNav = () => {
   const [modal, setModal] = useState(false);
   const [LoginModal, setLoginModal] = useState(false);
   const [userData, setUserData] = useState({});
+
+  const { data: session, status } = useSession();
+
 
   const [dropArr, setDropArr] = useState([
     { title: "Media", value: false },
@@ -63,6 +66,10 @@ const UserNav = () => {
 
     fetchSessionData();
   }, []);
+
+  useEffect(() => {
+   
+}, [status])
 
   return (
     <>
@@ -110,32 +117,36 @@ const UserNav = () => {
         {/* Buttons */}
         <div className="buttons flex gap-3 text-black text-[13px] font-medium capitalize">
           {
-            !userData
-            &&
-            <Link href={"/user/membership"}>
-              <button className=" border-2 border-primaryColor p-2 px-5 rounded-lg">
-                Register as member
-              </button>
-            </Link>
-          }
-          <div>
-            {userData ? (
-              <button
+            (status === "authenticated")
+            ?
+            <button
                 onClick={() => signOut({ callbackUrl: "/" })}
                 className=" text-white bg-red-600 p-2 px-5 rounded-lg"
               >
                 Logout
               </button>
-            ) : (
+
+            :
+            (
+              <>
+              <button 
+              onClick={()=> router.push("/user/membership")}
+              className=" border-2 border-primaryColor p-2 px-5 rounded-lg">
+                Register as member
+              </button>
+
               <button
                 onClick={() => setLoginModal(!LoginModal)}
                 className=" text-white bg-primaryColor p-2 px-5 rounded-lg"
               >
                 Login
               </button>
-            )}
-          </div>
+              </>
+            )
+          }
+           
         </div>
+        
       </div>
 
       {/* Mobile view */}
@@ -198,37 +209,34 @@ const UserNav = () => {
 
                 <div className="buttons w-full flex flex-col items-center justify-center mt-5 gap-3 text-black text-[13px] font-medium capitalize">
                   {
-                    !userData
-                    &&
-                    <Link
-                      href={"/"}
-                      className="w-full flex items-center  justify-center"
-                    >
-                      <button className="w-1/2 border-2 border-primaryColor p-2 px-5 rounded-lg">
-                        Register as member
-                      </button>
-                    </Link>
+            (status === "authenticated")
+            ?
+            <button
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className="w-1/2 sm:w-fit text-white bg-red-600 p-2 px-5 rounded-lg"
+              >
+                Logout
+              </button>
 
-                  }
+            :
+            (
+              <>
+              <button 
+              onClick={()=> router.push("/user/membership")}
+              className="w-1/2 sm:w-fit border-2 border-primaryColor p-2 px-5 rounded-lg">
+                Register as member
+              </button>
 
-                  {/* Login Logout */}
-                  <div className="w-full flex items-center  justify-center">
-                    {userData ? (
-                      <button
-                        onClick={() => signOut({ callbackUrl: "/" })}
-                        className=" w-1/2 text-white bg-red-600 p-2 px-5 rounded-lg"
-                      >
-                        Logout
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => setLoginModal(!LoginModal)}
-                        className=" w-1/2 text-white bg-primaryColor p-2 px-5 rounded-lg"
-                      >
-                        Login
-                      </button>
-                    )}
-                  </div>
+              <button
+                onClick={() => setLoginModal(!LoginModal)}
+                className="w-1/2 sm:w-fit text-white bg-primaryColor p-2 px-5 rounded-lg"
+              >
+                Login
+              </button>
+              </>
+            )
+          }
+
                 </div>
               </div>
             </div>

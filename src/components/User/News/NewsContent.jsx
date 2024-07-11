@@ -107,70 +107,84 @@ const NewsContent = () => {
     return ''
   }``
   return (
-    loading ?
-      <div className="fixed h-screen w-screen inset-0 ">
-        <Loader />
-      </div> :
-      <div className='w-full relative '>
-        <div className=" mx-auto slider-container relative ">
-          <Slider
-            ref={slider => {
-              sliderRef = slider;
-            }}
+    (
 
-            {...settings}
-          >
-            {
-              news?.map((item, index) => (
-                <div key={index}
-                  onClick={() => console.log('lower')}
-                  className={`w-full h-[400px] sm:h-[500px] relative
-                  ${index === slideIndex ? 'slide slide-active' : 'slide'}
-                  `}
-                >
-                  <Image src={cover} alt="image"
-                    className="w-full h-full object-cover rounded-xl" />
+      loading ?
+        <div className="fixed h-screen w-screen inset-0 ">
+          <Loader />
+        </div> :
+        <div className='w-full relative '>
+          <div className=" mx-auto slider-container relative ">
+            <Slider
+              ref={slider => {
+                sliderRef = slider;
+              }}
+  
+              {...settings}
+            >
+              {
+                news?.map((item, index) => (
+                  <div key={index}
+                    onClick={() => console.log('lower')}
+                    className={`w-full h-[400px] sm:h-[500px] relative
+                    ${index === slideIndex ? 'slide slide-active' : 'slide'}
+                    `}
+                  >
+                    {
+                      item?.thumbnail?.location
+                      ?
+                      <img
+                      src={item?.thumbnail?.location}
+                      alt="image"
+                        className="w-full h-full object-cover rounded-xl"
+                      />
+                      :
+                      <Image src={cover} alt="image"
+                        className="w-full h-full object-cover rounded-xl" />
 
-                  <Link
-                    href={`/user/news/${item._id}`}
-                    onClick={(e) => { e.stopPropagation(); console.log('upper') }}
-                    className="absolute top-0 w-full h-[400px] sm:h-[500px] flex flex-col justify-between items-center
-                  p-8 ">
-                    <div className="w-full flex flex-col gap-4  ">
-                      <p className=" text-white font-semibold line-clamp-2 ">
-                        {item?.title}
-                      </p>
-                      <span className="w-fit py-1 px-2 rounded-full bg-primaryColor text-sm text-white ">
-                        {
-                          formatDate(item?.createdAt)
-                        }
-                      </span>
-                    </div>
-
-                    <div
-                      dangerouslySetInnerHTML={{ __html: item?.description }}
-                      className="w-full h-fit text-white text-sm font-light line-clamp-6 "
-                    />
-
-                  </Link>
-
-                </div>
-
-              ))
-
-            }
-
-          </Slider>
-
+                    }
+  
+                    <Link
+                      href={`/user/news/${item._id}`}
+                      onClick={(e) => { e.stopPropagation(); console.log('upper') }}
+                      className="absolute top-0 w-full h-[400px] sm:h-[500px] flex flex-col justify-between items-center
+                    p-8 ">
+                      <div className="w-full flex flex-col gap-4  ">
+                        <p className=" text-white font-semibold line-clamp-2 ">
+                          {item?.title}
+                        </p>
+                        <span className="w-fit py-1 px-2 rounded-full bg-primaryColor text-sm text-white ">
+                          {
+                            formatDate(item?.createdAt)
+                          }
+                        </span>
+                      </div>
+  
+                      <div
+                        dangerouslySetInnerHTML={{ __html: item?.description }}
+                        className="w-full h-fit text-white text-sm font-light line-clamp-6 "
+                      />
+  
+                    </Link>
+  
+                  </div>
+  
+                ))
+  
+              }
+  
+            </Slider>
+  
+          </div>
+  
+          <span className=" z-40 cursor-pointer absolute top-[200px] sm:top-[250px] left-0  " onClick={previous} >
+            <IoIosArrowDropleft size={40} color="#266941" />
+          </span>
+          <span className=" z-40 cursor-pointer absolute top-[200px] sm:top-[250px] right-0" onClick={next} >
+            <IoIosArrowDropright size={40} color="#266941" />
+          </span>
         </div>
-
-        <span className=" z-50 cursor-pointer absolute top-[200px] sm:top-[250px] left-0  " onClick={previous} >
-          <IoIosArrowDropleft size={40} color="#266941" />
-        </span>
-        <span className=" z-50 cursor-pointer absolute top-[200px] sm:top-[250px] right-0" onClick={next} >
-          <IoIosArrowDropright size={40} color="#266941" />
-        </span>
-      </div>
+    )
 
   )
 }
