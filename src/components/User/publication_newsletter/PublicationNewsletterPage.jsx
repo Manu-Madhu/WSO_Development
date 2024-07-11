@@ -45,20 +45,23 @@ function PublicationNewsletterPage({ name }) {
 
     return (
 
-        (
-            (status === "authenticated")
-                ?
-                (
-                    (status === 'loading' || loading)
-                        ?
-                        <div className="fixed h-screen w-screen inset-0 ">
-                            <Loader />
+        <div className='w-11/12 mx-auto mb-16'>
+            <h1 className='text-title max-sm:text-2xl font-semibold my-8'>
+                {name}
+            </h1>
+            {
+                (status === 'loading' || loading)
+                    ?
+                    (
+                        <div className="min-h-[55vh]  h-full w-full grid place-items-center">
+                            <LoaderData />
                         </div>
-                        :
-                        <div className='w-11/12 mx-auto mb-16'>
-                            <h1 className='text-title max-sm:text-2xl font-semibold my-8'>
-                                {name}
-                            </h1>
+
+                    )
+                    :
+                    (
+                        (status === "authenticated")
+                            ?
                             <div className='w-full grid grid-cols-4 max-sm:grid-cols-1 max-md:grid-cols-2 gap-x-4 gap-y-8 max-sm:gap-y-5'>
                                 {
                                     data?.map((item, index) => {
@@ -72,23 +75,18 @@ function PublicationNewsletterPage({ name }) {
                                     })
                                 }
                             </div>
-                        </div>
-                )
-                :
-                (
-                    (status === 'loading' || loading)
-                        ?
-                        <div className="fixed h-screen w-screen inset-0 ">
-                            <Loader />
-                        </div>
-                        :
-                        <div className='w-full grid place-items-center my-16 '>
-                            <p className="text-primaryColor px-4 text-sm sm:text-base">The content on this page is available exclusively to World Spice Organisation members.</p>
-                            <UserLogin />
-                        </div>
-                )
 
-        )
+                            :
+                            <div className='w-full grid place-items-center my-16 '>
+                                <p className="text-primaryColor px-4 text-sm sm:text-base">The content on this page is available exclusively to World Spice Organisation members.</p>
+                                <UserLogin />
+                            </div>
+
+                    )
+
+
+            }
+        </div>
     )
 }
 
