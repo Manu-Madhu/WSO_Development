@@ -4,46 +4,44 @@ import PublicationNewsletterCard from "./PublicationNewsletterCard"
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from "react";
 import Loader from "@/app/loading";
-import LoginPage from "@/components/Common/Login";
 import UserLogin from "@/components/Common/UserLogin";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
+import LoaderData from "@/components/Common/Loader";
 
 function PublicationNewsletterPage({ name }) {
     const { data: session, status } = useSession();
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
 
-    async function getData(name, token) {
+    const axiosPrivate = useAxiosPrivate()
+
+    async function getData(name) {
         try {
             setLoading(true)
 
-            const res = await fetch(`${baseUrl}${name === "Publications" ? getAllPublications : getAllNewsletters}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + token,
-                    },
-                }
-            );
+            const res = await axiosPrivate.get(`${baseUrl}${name === "Publications" ? getAllPublications : getAllNewsletters}`);
+
             if (res.status === 200) {
-                const data = await res.json();
                 if (name === "Publications") {
-                    setData(data.publication);
+                    setData(res?.data?.publication);
                 } else {
-                    setData(data.newsletter);
+                    setData(res?.data?.newsletter);
                 }
             }
 
-        } catch {
-            console.error("Error in fetching data");
+        } catch (error) {
+            console.error("Error in fetching data", error);
         }
         setLoading(false)
     }
 
     useEffect(() => {
         if (status === "authenticated") {
-            getData(name, session?.user?.accessToken);
+            getData(name);
         }
     }, [status])
+
+    console.log({ status })
 
     return (
 
@@ -51,7 +49,7 @@ function PublicationNewsletterPage({ name }) {
             (status === "authenticated")
                 ?
                 (
-                    loading
+                    (status === 'loading' || loading)
                         ?
                         <div className="fixed h-screen w-screen inset-0 ">
                             <Loader />
@@ -66,6 +64,7 @@ function PublicationNewsletterPage({ name }) {
                                     data?.map((item, index) => {
                                         return (
                                             <PublicationNewsletterCard
+                                                key={index}
                                                 title={item?.title}
                                                 location={item?.file?.location}
                                             />
@@ -76,10 +75,18 @@ function PublicationNewsletterPage({ name }) {
                         </div>
                 )
                 :
-                <div className='w-full grid place-items-center my-16 '>
-                    <p className="text-primaryColor px-4 text-sm sm:text-base">The content on this page is available exclusively to World Spice Organisation members.</p>
-                    <UserLogin />
-                </div>
+                (
+                    (status === 'loading' || loading)
+                        ?
+                        <div className="fixed h-screen w-screen inset-0 ">
+                            <Loader />
+                        </div>
+                        :
+                        <div className='w-full grid place-items-center my-16 '>
+                            <p className="text-primaryColor px-4 text-sm sm:text-base">The content on this page is available exclusively to World Spice Organisation members.</p>
+                            <UserLogin />
+                        </div>
+                )
 
         )
     )
