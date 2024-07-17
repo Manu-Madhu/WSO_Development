@@ -1,4 +1,4 @@
-export const baseUrl = 'http://localhost:8800'
+export const baseUrl = 'http://20.244.88.141'
 // export const baseUrl = 'http://localhost:8800'
 
 //auth
