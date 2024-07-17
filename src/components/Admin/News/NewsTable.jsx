@@ -51,7 +51,7 @@ const NewsTable = () => {
             data?.length > 0
             &&
             data?.map((item, i) => (
-              <tr>
+              <tr key={i}>
                 <td className="px-5 py-6">{i + 1}</td>
                 <td className="px-5 py-6">{item?.title}</td>
                 <td className="px-5 py-6">{parse(item?.description)}</td>
