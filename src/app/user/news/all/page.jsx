@@ -30,7 +30,7 @@ async function Page() {
             </h1>
             <div className='w-full flex flex-wrap  gap-4 '>
                 {
-                    Newses.map((news) => (<NewsCard News={news} />))
+                    Newses.map((news,i) => (<NewsCard key={i} News={news} />))
                 }
             </div>
         </div>
