@@ -1,4 +1,5 @@
 export const baseUrl = 'http://localhost:8800'
+// export const baseUrl = 'http://localhost:8800'
 
 //auth
 export const login = '/api/auth/login'

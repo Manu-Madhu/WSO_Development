@@ -1,8 +1,10 @@
-"use client";
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import 'react-quill/dist/quill.snow.css';
-import './NewsArea.css';
+"use client"
+import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
+import 'react-quill/dist/quill.snow.css'
+import './NewsArea.css'
+
+
 const ReactQuill = dynamic(() => import('react-quill'), {
     ssr: false,
     loading: () => <input className="py-3" placeholder="Loading editor..." disabled />,

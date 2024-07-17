@@ -22,7 +22,7 @@ const NewsComponent = ({ News }) => {
         return (
           <div
             key={item?._id}
-            className="w-full sm:min-w-[300px] min-h-[280px] border-rounded-xl relative "
+            className="w-full sm:min-w-[300px] h-[280px] border-rounded-xl relative "
           >
             <div className="bg-primaryColor rounded-xl w-full h-full">
               <Link href={`/user/news/${item?._id}`}>
