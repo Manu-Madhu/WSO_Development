@@ -10,7 +10,7 @@ const authOptions = {
 
             async authorize(credentials) {
                 try {
-                    const res = await fetch(`${baseUrl}${credentials?.route}`, {
+                    const res = await fetch(`${baseUrl}/${credentials?.route}`, {
                         method: 'POST',
                         body: JSON.stringify(credentials),
                         headers: { 'Content-Type': 'application/json' },
