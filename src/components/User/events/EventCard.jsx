@@ -13,7 +13,7 @@ const EventCard = ({ data }) => {
             {
                 data?.thumbnail
                     ?
-                    <img src={data?.thumbnail?.location} alt=''
+                    <img src={data?.thumbnail?.location} alt='thumbnail'
                         className='w-full h-[180px] object-cover'
                     />
                     :

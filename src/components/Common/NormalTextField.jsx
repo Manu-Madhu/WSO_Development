@@ -1,3 +1,5 @@
+"use client"
+
 function NormalTextField({ type, label, placeholder, editable = false, top = false, value, onChange }) {
     return (
         <div className={`flex max-md:flex-col  ${editable ? 'w-full' : 'w-10/12'} max-md:w-full ${top ? '' : 'border-t'} border-gray-300 py-5 justify-between`}>

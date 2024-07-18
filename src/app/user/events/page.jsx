@@ -2,7 +2,6 @@ import EventCard from '@/components/User/events/EventCard'
 import { baseUrl, getAllEvents } from '@/utils/Endpoint'
 
 async function getData() {
-    console.log("get data")
     try {
         const res = await fetch(`${baseUrl}${getAllEvents}`, {
             method: 'GET',
@@ -11,12 +10,13 @@ async function getData() {
             },
         })
         const data = await res.json()
-        console.log({data})
         return data?.event
     } catch (error) {
         console.log("error" + error)
     }
 }
+
+
 const Events = async () => {
     const data = await getData()
 
