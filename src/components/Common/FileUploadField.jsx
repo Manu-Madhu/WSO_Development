@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import { CiCircleRemove } from "react-icons/ci";
 
@@ -72,8 +72,10 @@ const FileUploadField = ({
         setPreview(null);
     };
 
+    const inputRef = useRef()
+
     const handleUploadClick = () => {
-        document.getElementById('dropzone-file').click();
+        inputRef?.current?.click()
     };
 
     return (
@@ -119,7 +121,7 @@ const FileUploadField = ({
                 )}
             </div>
             <input
-                id="dropzone-file"
+                ref={inputRef}
                 type="file"
                 className="hidden"
                 onChange={handleFileChange}
