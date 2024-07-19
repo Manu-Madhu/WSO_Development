@@ -4,9 +4,9 @@ import { FiUploadCloud } from 'react-icons/fi';
 import { CiCircleRemove } from "react-icons/ci";
 
 const FileUploadField = ({
-    fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+    fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document','image/jpeg', 'image/png', 'image/gif'],
     sizeLimit = 20 * 1024 * 1024,
-    typeNames = ['PDF', 'DOC', 'DOCX'],
+    typeNames = ['PDF', 'DOC', 'DOCX','JPEG', 'PNG'],
     value,
     onChange
 }) => {

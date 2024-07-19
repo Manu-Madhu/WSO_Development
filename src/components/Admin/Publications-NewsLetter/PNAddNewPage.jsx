@@ -96,7 +96,7 @@ function PNAddNewPage({ name }) {
 
                 </div>
                 <div className="w-6/12 max-md:w-full">
-                    <FileUploadField file={data?.file} setFile={(el)=> setData((prev)=> ({...prev, file: el}))} />
+                    <FileUploadField value={data?.file} onChange={(el)=> setData((prev)=> ({...prev, file: el}))} />
                 </div>
             </div>
             <div className="flex sm:hidden mt-3">

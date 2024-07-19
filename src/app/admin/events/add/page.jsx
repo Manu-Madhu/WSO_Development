@@ -132,7 +132,7 @@ function Page() {
 
                 </div>
                 <div className="w-6/12 max-md:w-full">
-                    <FileUploadField file={data?.thumbnail} setFile={(elem) => setData((prev) => ({ ...prev, thumbnail: elem }))} />
+                    <FileUploadField value={data?.thumbnail} onChange={(elem) => setData((prev) => ({ ...prev, thumbnail: elem }))} />
                 </div>
             </div>
 
@@ -147,7 +147,7 @@ function Page() {
 
                 </div>
                 <div className="w-6/12 max-md:w-full">
-                    <FileUploadField file={data?.document} setFile={(elem) => setData((prev) => ({ ...prev, document: elem }))} />
+                    <FileUploadField value={data?.document} onChange={(elem) => setData((prev) => ({ ...prev, document: elem }))} />
                 </div>
             </div>
 
