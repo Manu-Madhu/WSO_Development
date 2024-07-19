@@ -58,7 +58,7 @@ const PNTable = ({name}) => {
                                 <td>
                                     <div className='px-6 py-4 max-w-[90%]  max-md:max-w-52 flex items-center max-md:overflow-clip'>
                                         <Link 
-                                        href={item?.file?.location}
+                                        href={item?.file?.location ?? ''}
                                         download={item?.file?.name}
                                         className="bg-[#F4EBFF] p-3 rounded-full">
                                              <LiaFileDownloadSolid size={24} />
