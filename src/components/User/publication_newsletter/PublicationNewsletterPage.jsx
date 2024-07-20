@@ -51,7 +51,7 @@ function PublicationNewsletterPage({ name }) {
   console.log({ status });
 
   return (
-    <div className="w-11/12 mx-auto mb-16">
+    <div className="max-w-[1280px] mx-auto mb-16 p-3">
       <h1 className="text-title max-sm:text-2xl font-semibold my-8">{name}</h1>
       {status === "loading" || loading ? (
         <div className="min-h-[55vh]  h-full w-full grid place-items-center">
