@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import log from "@/../../public/Assets/user/nav/logo.png";
+import log from "@/../../public/Assets/user/nav/logov1.png";
+import log1 from "@/../../public/Assets/user/nav/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import LoginPage from "../Common/Login";
@@ -68,20 +69,24 @@ const UserNav = () => {
   }, []);
 
   useEffect(() => {
-   
-}, [status])
+
+  }, [status])
 
   return (
     <>
       {/* Desktop view */}
-      <div className="max-w-[1280px] mx-auto w-full hidden md:flex items-center justify-between">
+      <div className={`max-w-[1280px] mx-auto w-full hidden z-50 md:flex items-center justify-between ${path == '/' ? "absolute top-0 text-white" : "text-black "}`}>
         <div className="logo">
-          <Image src={log} alt="logo" className="w-[220px]" />
+          {
+            path == '/' ?
+              <Image src={log} alt="logo" className="w-[220px]" /> :
+              <Image src={log1} alt="logo" className="w-[220px]" />
+          }
         </div>
 
         {/* Navigation links */}
         <div className="list">
-          <div className="flex gap-5">
+          <div className="flex gap-5 ">
             {navBar.map((item, index) =>
               item.list.length > 0 ? (
                 <Dropdown
@@ -105,7 +110,7 @@ const UserNav = () => {
               ) : (
                 <li
                   key={index}
-                  className="text-black flex items-center gap-2 text-[15px]  capitalize"
+                  className=" flex items-center gap-2 text-[15px]  capitalize"
                 >
                   <Link href={item.link}>{item.title}</Link>
                 </li>
@@ -115,38 +120,37 @@ const UserNav = () => {
         </div>
 
         {/* Buttons */}
-        <div className="buttons flex gap-3 text-black text-[13px] font-medium capitalize">
+        <div className="buttons flex gap-3 text-[13px] font-medium capitalize">
           {
             (status === "authenticated")
-            ?
-            <button
+              ?
+              <button
                 onClick={() => signOut({ callbackUrl: "/" })}
-                className=" text-white bg-red-600 p-2 px-5 rounded-lg"
+                className=" bg-red-600 p-2 px-5 rounded-lg"
               >
                 Logout
               </button>
 
-            :
-            (
-              <>
-              <button 
-              onClick={()=> router.push("/user/membership")}
-              className=" border-2 border-primaryColor p-2 px-5 rounded-lg">
-                Register as member
-              </button>
+              :
+              (
+                <>
+                  <button
+                    onClick={() => router.push("/user/membership")}
+                    className=" border-2  p-2 px-5 rounded-lg">
+                    Register as member
+                  </button>
 
-              <button
-                onClick={() => setLoginModal(!LoginModal)}
-                className=" text-white bg-primaryColor p-2 px-5 rounded-lg"
-              >
-                Login
-              </button>
-              </>
-            )
+                  <button
+                    onClick={() => setLoginModal(!LoginModal)}
+                    className=" text-white bg-primaryColor p-2 px-5 rounded-lg"
+                  >
+                    Login
+                  </button>
+                </>
+              )
           }
-           
+
         </div>
-        
       </div>
 
       {/* Mobile view */}
@@ -209,33 +213,33 @@ const UserNav = () => {
 
                 <div className="buttons w-full flex flex-col items-center justify-center mt-5 gap-3 text-black text-[13px] font-medium capitalize">
                   {
-            (status === "authenticated")
-            ?
-            <button
-                onClick={() => signOut({ callbackUrl: "/" })}
-                className="w-1/2 sm:w-fit text-white bg-red-600 p-2 px-5 rounded-lg"
-              >
-                Logout
-              </button>
+                    (status === "authenticated")
+                      ?
+                      <button
+                        onClick={() => signOut({ callbackUrl: "/" })}
+                        className="w-1/2 sm:w-fit text-white bg-red-600 p-2 px-5 rounded-lg"
+                      >
+                        Logout
+                      </button>
 
-            :
-            (
-              <>
-              <button 
-              onClick={()=> router.push("/user/membership")}
-              className="w-1/2 sm:w-fit border-2 border-primaryColor p-2 px-5 rounded-lg">
-                Register as member
-              </button>
+                      :
+                      (
+                        <>
+                          <button
+                            onClick={() => router.push("/user/membership")}
+                            className="w-1/2 sm:w-fit border-2 border-primaryColor p-2 px-5 rounded-lg">
+                            Register as member
+                          </button>
 
-              <button
-                onClick={() => setLoginModal(!LoginModal)}
-                className="w-1/2 sm:w-fit text-white bg-primaryColor p-2 px-5 rounded-lg"
-              >
-                Login
-              </button>
-              </>
-            )
-          }
+                          <button
+                            onClick={() => setLoginModal(!LoginModal)}
+                            className="w-1/2 sm:w-fit text-white bg-primaryColor p-2 px-5 rounded-lg"
+                          >
+                            Login
+                          </button>
+                        </>
+                      )
+                  }
 
                 </div>
               </div>

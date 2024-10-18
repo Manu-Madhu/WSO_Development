@@ -14,8 +14,8 @@ const AboutPart = () => {
       <div className="w-full rounded-xl">
         <TopBanner />
       </div>
-      <div className="flex flex-col ">
-        <h1 className="my-5 md:my-8 text-3xl font-[500]">About WSO</h1>
+      <div className="flex flex-col mb-5">
+        <h1 className="my-5 md:my-8 text-4xl font-[400]">About WSO</h1>
         <div className="flex flex-col md:flex-row">
           {/* left side text + Scroll option */}
           <div className="w-full ">
@@ -35,6 +35,10 @@ const AboutPart = () => {
               methods.
             </p>
 
+            <Link href={`/user/about`} className="bg-primaryColor text-white text-xs md:text-sm p-3 px-5 rounded-lg lg:mt-5 hidden w-fit lg:flex">
+              Learn More
+            </Link>
+
             <div className="my-3 w-full">
               <ScrollLogo />
             </div>
@@ -51,7 +55,7 @@ const AboutPart = () => {
                 for an organized movement of partners from across the globe to
                 build a healthy (content for this)
               </p>
-              <Link href={`/user/membership`} className="p-2 px-5 text-primaryColor rounded-lg font-[600] bg-white text-xs">
+              <Link href={`/user/membership`} className="p-3 px-5 text-primaryColor rounded-lg font-[600] bg-white text-xs">
                 Register as a Member
               </Link>
 
@@ -71,14 +75,11 @@ const AboutPart = () => {
                 />
               </div>
             </div>
-
-
-
           </div>
-
         </div>
       </div>
-      <Link href={`/user/about`} className="bg-primaryColor text-white text-xs md:text-sm p-3 px-5 rounded-lg mt-5 ">
+
+      <Link href={`/user/about`} className="bg-primaryColor text-white text-xs md:text-sm p-3 px-5 rounded-lg lg:mt-5 block w-fit lg:hidden">
         Learn More
       </Link>
     </div>

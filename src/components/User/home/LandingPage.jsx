@@ -4,18 +4,11 @@ import LandingImage from "@/../../public/Assets/user/home/landingBg.png";
 
 const LandingPage = () => {
   return (
-    <div className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
-      <div className="absolute right-0 bottom-0 -z-10 w-full flex items-end justify-end">
-        <Image
-          src={LandingImage}
-          alt=""
-          className=" object-contain md:w-1/2 h-full "
-        />
-      </div>
-      <div className="max-w-[1280px] w-full h-full flex flex-col items-start sm:justify-center mx-auto p-3 z-10 mt-12 sm:mt-0">
+    <div className={`relative w-full h-[50vh] md:h-screen overflow-hidden bg-cover bg-center bg-[url('/Assets/banner.jpg')]`}>
+      <div className="max-w-[1280px] w-full h-full text-white flex flex-col items-start sm:justify-center mx-auto p-3 z-10 mt-12 sm:mt-0">
         <h1 className="text-3xl md:text-7xl">Welcome to the World</h1>
         <h1 className="text-3xl md:text-7xl">
-          <span className="italic  text-primaryColor">Spice</span> Organisation
+          <span className="italic  font-bold">Spice</span> Organisation
         </h1>
         <p className="mt-5 sm:w-1/2 text-wrap text-xs sm:text-sm">
           The World Spice Organisation is a collaborative platform that unites

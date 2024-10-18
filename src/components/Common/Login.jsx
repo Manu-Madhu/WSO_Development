@@ -62,7 +62,7 @@ const LoginPage = ({ modal }) => {
   };
 
   return (
-    <div className="fixed z-50  top-18 right-0 md:right-[8%] bg-white shadow rounded w-full md:w-[300px] p-5 md:p-10">
+    <div className="fixed z-50 top-20 right-0 md:right-[8%] bg-white shadow rounded w-full md:w-[300px] p-5 md:p-10">
       <form
         onSubmit={submitHandler}
         action=""

@@ -5,7 +5,7 @@ import UserFooter from "@/components/User/footer/UserFooter";
 export default function Page() {
   return (
     <>
-      <div className="w-full bg-white">
+      <div className="w-full bg-transparent flex items-center justify-center">
         <UserNav />
       </div>
 
