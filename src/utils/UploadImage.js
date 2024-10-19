@@ -1,5 +1,6 @@
 
 export const UploadImage = async (data, url, axiosPrivate) => {
+    
     const formData = new FormData();
     formData.append("file", data);
     

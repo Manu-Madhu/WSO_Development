@@ -98,25 +98,27 @@ function Calendar() {
 
   return (
     <div className="border rounded-xl border-gray-400 flex max-lg:flex-col justify-between">
-      <div className="p-6 font-semibold felx flex-col items-center">
-        <h2>
+      <div className="p-5 font-semibold flex flex-col items-center ">
+        <h2 className="text-start w-full">
           {months[selectedDate.getMonth()] + " " + selectedDate.getFullYear()}
         </h2>
-        <button
-          onClick={prevMonth}
-          className="bg-primary-green text-white px-4 py-1 rounded-lg mt-2"
-        >
-          Prev
-        </button>
-        <button
-          className="bg-primary-green text-white px-4 py-1 rounded-lg mt-2 ml-2"
-          onClick={nextMonth}
-        >
-          Next
-        </button>
+        <div className="flex w-full text-start">
+          <button
+            onClick={prevMonth}
+            className="bg-primary-green text-white px-4 py-1 rounded-lg mt-2"
+          >
+            Prev
+          </button>
+          <button
+            className="bg-primary-green text-white px-4 py-1 rounded-lg mt-2 ml-2"
+            onClick={nextMonth}
+          >
+            Next
+          </button>
+        </div>
       </div>
-      <div className="max-sm:p-3">
-        <div className="grid grid-cols-7 m-6  max-sm:m-0  w-fit  max-sm:w-full border-r">
+      <div className="max-sm:p-3 ">
+        <div className="grid grid-cols-7  max-sm:m-0 w-fit max-sm:w-full border-r">
 
           {dayOfTheWeek.map((day, index) => (
             <div

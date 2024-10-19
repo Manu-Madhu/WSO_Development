@@ -41,11 +41,11 @@ function Page() {
                         <h2 className="font-semibold text-xl">
                             Member list
                         </h2>
-                        
+
                     </div>
                 </div>
                 <div className='w-full max-md:overflow-x-scroll'>
-                    <MemberTable/>
+                    <MemberTable />
                 </div>
             </div>
         </div>

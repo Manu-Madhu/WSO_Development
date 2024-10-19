@@ -3,7 +3,7 @@ import SaveButton from "@/components/Admin/common/SaveButton";
 import CancelButton from "@/components/Admin/common/CancelButton";
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { adminEventRoute, guestEventRoute } from "@/utils/Endpoint";
+import { adminEventRoute, baseUrl, guestEventRoute } from "@/utils/Endpoint";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { LiaFileDownloadSolid } from "react-icons/lia";
@@ -12,9 +12,7 @@ import DeleteButton from "@/components/Admin/News/DeleteButton";
 
 function Page({ params }) {
     const axiosPrivate = useAxiosPrivate();
-
     const router = useRouter()
-
     const { id } = params;
 
     const [data, setData] = useState({
@@ -24,7 +22,6 @@ function Page({ params }) {
         thumbnail: null,
         document: null,
     })
-
 
     const fetchData = async () => {
         try {
@@ -47,8 +44,6 @@ function Page({ params }) {
         }
     }
 
-    console.log({ data })
-
     useEffect(() => {
         fetchData()
     }, [])
@@ -60,12 +55,12 @@ function Page({ params }) {
                 View event
             </h1>
             <div className="flex  justify-between mt-2 py-5 max-md:py-3">
-                    
-                    <h5 className="pt-1">
-                        View your event here
-                    </h5>
-               
-                    <DeleteButton name={"event"} id={id} />
+
+                <h5 className="pt-1">
+                    View your event here
+                </h5>
+
+                <DeleteButton name={"event"} id={id} />
             </div>
 
             <div className=" py-5 flex items-start max-md:flex-col max-md:gap-y-2">
@@ -73,9 +68,9 @@ function Page({ params }) {
                     <label className="text-base font-semibold">
                         Thumbnail
                     </label>
-                   
+
                 </div>
-                <img src={data?.thumbnail?.location} alt=""
+                <img src={`${baseUrl}${data?.thumbnail?.location}`} alt=""
                     className="w-[200px] h-[150px] object-contain"
                 />
             </div>
@@ -85,15 +80,15 @@ function Page({ params }) {
                     <label className="text-base font-semibold">
                         Document
                     </label>
-                    
+
                 </div>
-                    <Link
-                        href={data?.document?.location ?? ''}
-                        className="bg-[#F4EBFF] p-3 rounded-full ">
-                <div className="">
+                <Link
+                    href={data?.document?.location ?? ''}
+                    className="bg-[#F4EBFF] p-3 rounded-full ">
+                    <div className="">
                         <LiaFileDownloadSolid size={24} />
-                </div>
-                    </Link>
+                    </div>
+                </Link>
             </div>
 
             <div className="border-y py-5 flex max-md:flex-col items-start">
@@ -120,7 +115,7 @@ function Page({ params }) {
                     <label className="text-base font-semibold">
                         Description
                     </label>
-                    
+
                 </div>
                 <textarea
                     name='description'

@@ -2,10 +2,11 @@
 import SaveButton from "@/components/Admin/common/SaveButton";
 import CancelButton from "@/components/Admin/common/CancelButton";
 import FileUploadField from "@/components/Common/FileUploadField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { adminEventRoute } from "@/utils/Endpoint";
+import { adminEventRoute, uploadImageUrl } from "@/utils/Endpoint";
 import { toast } from "react-toastify";
+import { UploadImage } from "@/utils/UploadImage";
 
 function Page() {
 
@@ -16,6 +17,8 @@ function Page() {
         thumbnail: null,
         document: null,
     })
+    const [thumbnail, setThumbnail] = useState()
+    const [document, setDocument] = useState()
 
     const axiosPrivate = useAxiosPrivate();
 
@@ -26,19 +29,51 @@ function Page() {
         }))
     }
 
+    useEffect(() => {
+        const uploadThumbnail = async () => {
+            if (data?.thumbnail) {
+                try {
+                    const res = await UploadImage(data?.thumbnail, uploadImageUrl, axiosPrivate);
+                    setThumbnail(res?.data?.file);
+                } catch (error) {
+                    console.error("Failed to upload thumbnail:", error);
+                }
+            }
+        };
+
+        uploadThumbnail();
+    }, [data?.thumbnail, axiosPrivate]);
+
+    useEffect(() => {
+        const uploadThumbnail = async () => {
+            if (data?.document) {
+                try {
+                    const res = await UploadImage(data?.document, uploadImageUrl, axiosPrivate);
+                    setDocument(res?.data?.file);
+                } catch (error) {
+                    console.error("Failed to upload thumbnail:", error);
+                }
+            }
+        };
+
+        uploadThumbnail();
+    }, [data?.document, axiosPrivate]);
+
+
     const submitHandler = async () => {
         try {
-            const formData = new FormData();
-            formData.append("title", data?.title)
-            formData.append("date", data?.date)
-            formData.append("description", data?.description);
-            formData.append("thumbnail", data?.thumbnail);
-            formData.append("document", data?.document);
+            const formData = {
+                title: data?.title,
+                date: data?.date,
+                description: data?.description,
+                thumbnail: thumbnail,
+                document: document,
+            }
 
             const response = await axiosPrivate.post(adminEventRoute, formData,
                 {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'application/json'
                     }
                 }
             )
@@ -58,10 +93,6 @@ function Page() {
             toast.error("Failed to submit")
         }
     }
-
-    console.log({ data })
-
-
     return (
         <div className="flex flex-col bg-white min-h-screen w-full px-10 max-md:px-5 pt-12 max-md:pt-20 text-black">
             <h1 className="font-semibold text-title">
@@ -78,9 +109,9 @@ function Page() {
                 </div>
                 <div className="flex max-sm:hidden">
                     <CancelButton />
-                    <SaveButton 
-                    submitHandler={submitHandler}
-                    title="Add this event?" content={`Click Confirm to save this event`} />
+                    <SaveButton
+                        submitHandler={submitHandler}
+                        title="Add this event?" content={`Click Confirm to save this event`} />
                 </div>
             </div>
             <div className="border-y py-5 flex max-md:flex-col items-start">
@@ -88,8 +119,8 @@ function Page() {
                     Event title
                 </label>
                 <input type="text" name="title"
-                value={data?.title}
-                onChange={changeHandler}
+                    value={data?.title}
+                    onChange={changeHandler}
                     className="w-7/12 max-md:w-full border border-gray-400 mt-1 px-5 py-3 rounded-lg placeholder:text-gray-400 placeholder:font-light" placeholder="Some title here" />
             </div>
             <div className=" py-5 flex max-md:flex-col items-start">
@@ -97,8 +128,8 @@ function Page() {
                     Event date
                 </label>
                 <input type="date" name="date"
-                value={data?.date}
-                onChange={changeHandler}
+                    value={data?.date}
+                    onChange={changeHandler}
                     className="w-7/12 max-md:w-full border border-gray-400 mt-1 px-5 py-3 rounded-lg placeholder:text-gray-400 placeholder:font-light" />
             </div>
 
@@ -153,9 +184,9 @@ function Page() {
 
             <div className="flex mt-6 sm:hidden">
                 <CancelButton />
-                <SaveButton 
-                submitHandler={submitHandler}
-                title="Add this event?" content={`Click Confirm to save this event`} />
+                <SaveButton
+                    submitHandler={submitHandler}
+                    title="Add this event?" content={`Click Confirm to save this event`} />
             </div>
         </div>
     )
