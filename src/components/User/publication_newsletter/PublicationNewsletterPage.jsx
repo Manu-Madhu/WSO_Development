@@ -22,7 +22,6 @@ function PublicationNewsletterPage({ name }) {
   async function getData(name) {
     try {
       setLoading(true);
-
       const res = await axiosPrivate.get(
         `${baseUrl}${
           name === "Publications" ? getAllPublications : getAllNewsletters
@@ -31,6 +30,7 @@ function PublicationNewsletterPage({ name }) {
 
       if (res.status === 200) {
         if (name === "Publications") {
+          console.log(res.data)
           setData(res?.data?.publication);
         } else {
           setData(res?.data?.newsletter);
@@ -48,7 +48,7 @@ function PublicationNewsletterPage({ name }) {
     }
   }, [status]);
 
-  console.log({ status });
+  console.log(data)
 
   return (
     <div className="max-w-[1280px] mx-auto mb-16 p-3">

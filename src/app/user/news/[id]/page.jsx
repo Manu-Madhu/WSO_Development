@@ -29,7 +29,7 @@ const NewsDetailed = async ({ params }) => {
                 {
                     News?.thumbnail
                     ?
-                    <img src={News?.thumbnail?.location} alt="image"
+                    <img src={`${baseUrl}${News?.thumbnail?.location}`} alt="image"
                         className="w-full sm:w-1/2 h-[400px] object-cover rounded-lg" />
                         :
                         <Image src={cover} alt="image"

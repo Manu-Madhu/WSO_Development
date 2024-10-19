@@ -59,7 +59,6 @@ function Page() {
         uploadThumbnail();
     }, [data?.document, axiosPrivate]);
 
-
     const submitHandler = async () => {
         try {
             const formData = {
@@ -93,6 +92,7 @@ function Page() {
             toast.error("Failed to submit")
         }
     }
+    
     return (
         <div className="flex flex-col bg-white min-h-screen w-full px-10 max-md:px-5 pt-12 max-md:pt-20 text-black">
             <h1 className="font-semibold text-title">

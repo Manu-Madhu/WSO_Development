@@ -2,8 +2,10 @@ import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import cover from "../../../../public/Assets/user/news/cover.png"
 import Image from "next/image";
+import { baseUrl } from "@/utils/Endpoint";
 
 function NewsCard({ News }) {
+    console.log(News)
     return (
         <div className="w-full sm:max-w-sm rounded overflow-hidden relative">
             {
@@ -11,7 +13,7 @@ function NewsCard({ News }) {
                 ?
                 <img
                     className="w-full rounded-lg aspect-[4/3]"
-                    src={News?.thumbnail?.location}
+                    src={`${baseUrl}${News?.thumbnail?.location}`}
                     alt="Spices"
                 />
                 :

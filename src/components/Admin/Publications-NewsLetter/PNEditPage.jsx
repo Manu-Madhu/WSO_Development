@@ -15,6 +15,8 @@ function PNEditPage({ name, id }) {
         file: null,
     })
 
+    console.log(name)
+
     const fetchData = async () => {
         try {
             const getRoute = (name === "publication") ? memberPublicationRoute : memberNewsletterRoute;
@@ -46,9 +48,10 @@ function PNEditPage({ name, id }) {
             // upload the file using this function
             const res = await UploadImage(data.file, uploadImageUrl, axiosPrivate);
             if (res.status === 200) {
+                console.log(res.data)
                 const finalData = {
                     title: data?.title,
-                    thumbnail: res?.data?.file
+                    file: res?.data?.file
                 }
                 const putRoute = (name === "publication") ? adminPublicationRoute : adminNewsletterRoute;
 
@@ -62,10 +65,6 @@ function PNEditPage({ name, id }) {
 
                 if (response.status === 200) {
                     toast.success("Data Updated")
-                    setData({
-                        title: "",
-                        file: null,
-                    })
                 }
             }
         } catch (error) {

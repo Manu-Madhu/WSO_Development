@@ -134,7 +134,7 @@ const NewsContent = () => {
                       item?.thumbnail?.location
                       ?
                       <img
-                      src={item?.thumbnail?.location}
+                      src={`${baseUrl}${item?.thumbnail?.location}`}
                       alt="image"
                         className="w-full h-full object-cover rounded-xl"
                       />

@@ -25,8 +25,6 @@ function Page() {
         }));
     };
 
-
-
     const submitHandler = async () => {
         try {
             if (data?.thumbnail) {

@@ -109,8 +109,6 @@ function Page({ params }) {
         }
     }
 
-    console.log({ data })
-
     useEffect(() => {
         fetchData()
     }, [])
@@ -155,7 +153,6 @@ function Page({ params }) {
                     onChange={changeHandler}
                     className="w-7/12 max-md:w-full border border-gray-400 mt-1 px-5 py-3 rounded-lg placeholder:text-gray-400 placeholder:font-light" />
             </div>
-
             <div className="border-b py-5 flex max-md:flex-col items-start">
                 <div className="flex flex-col  w-1/4 max-md:w-full max-md:pb-3">
                     <label className="text-base font-semibold">
@@ -174,7 +171,6 @@ function Page({ params }) {
                     rows="4"
                 />
             </div>
-
             <div className=" py-5 flex items-start max-md:flex-col max-md:gap-y-2">
                 <div className="flex flex-col w-4/12 max-md:w-full">
                     <label className="text-base font-semibold">
@@ -189,7 +185,6 @@ function Page({ params }) {
                     <FileUploadField value={data?.thumbnail} onChange={(elem) => setData((prev) => ({ ...prev, thumbnail: elem }))} />
                 </div>
             </div>
-
             <div className=" py-5 flex items-start max-md:flex-col max-md:gap-y-2">
                 <div className="flex flex-col w-4/12 max-md:w-full">
                     <label className="text-base font-semibold">
@@ -204,7 +199,6 @@ function Page({ params }) {
                     <FileUploadField value={data?.document} onChange={(elem) => setData((prev) => ({ ...prev, document: elem }))} />
                 </div>
             </div>
-
             <div className="flex mt-6 sm:hidden">
                 <CancelButton />
                 <SaveButton

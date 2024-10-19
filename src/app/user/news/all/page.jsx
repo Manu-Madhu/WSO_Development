@@ -1,37 +1,38 @@
 import NewsCard from '@/components/User/News/NewsCard'
 import { baseUrl, getAllNews } from '@/utils/Endpoint'
-import { toast } from 'react-toastify'
-const getNews = async () => {
+
+// This can be an async function in the app directory
+async function Page() {
+    let newsData = []
+
     try {
         const res = await fetch(`${baseUrl}${getAllNews}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
+            cache: 'no-store' // Ensures the data is fetched on each request (similar to SSR behavior)
         })
-        if (res.ok) {
-            const data = await res.json()
-            return data.news
-        } else {
-            return []
-        }
 
+        const data = await res.json()
+        newsData = data?.news || []
     } catch (error) {
-        return []
+        console.error("Error fetching news:", error)
     }
-}
 
-async function Page() {
-    const Newses = await getNews()
     return (
-        <div className='w-10/12 mx-auto'>
+        <div className='w-10/12 mx-auto mb-20'>
             <h1 className='text-title py-8 font-semibold'>
                 News
             </h1>
-            <div className='w-full flex flex-wrap  gap-4 '>
-                {
-                    Newses.map((news,i) => (<NewsCard key={i} News={news} />))
-                }
+            <div className='w-full flex flex-wrap gap-4 '>
+                {newsData.length > 0 ? (
+                    newsData.map((newsItem, i) => (
+                        <NewsCard key={i} News={newsItem} />
+                    ))
+                ) : (
+                    <p>No news available</p>
+                )}
             </div>
         </div>
     )

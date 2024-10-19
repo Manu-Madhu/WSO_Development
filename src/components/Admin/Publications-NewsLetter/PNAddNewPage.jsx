@@ -30,9 +30,10 @@ function PNAddNewPage({ name }) {
             const res = await UploadImage(data.file, uploadImageUrl, axiosPrivate);
 
             if (res.status === 200) {
+                console.log(res.data)
                 const finalData = {
                     title: data?.title,
-                    thumbnail: res?.data?.file
+                    file: res?.data?.file
                 }
                 const postRoute = (name === "publication") ? adminPublicationRoute : adminNewsletterRoute;
                 const response = await axiosPrivate.post(postRoute, finalData,

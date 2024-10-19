@@ -3,13 +3,15 @@ import React from "react";
 import cardpic from "../../../../public/Assets/user/events/cardpic.png";
 import { HiOutlineDownload } from "react-icons/hi";
 import Link from "next/link";
+import { baseUrl } from "@/utils/Endpoint";
 
 const EventCard = ({ data }) => {
+  console.log(data)
   return (
     <div className="w-full sm:w-[300px] h-[260px] flex flex-col rounded-lg overflow-hidden relative">
       {data?.thumbnail ? (
         <img
-          src={data?.thumbnail?.location}
+          src={`${baseUrl}${data?.thumbnail?.location}`}
           alt="thumbnail"
           className="w-full h-[180px] object-cover"
         />
@@ -31,12 +33,12 @@ const EventCard = ({ data }) => {
       </div>
 
       <Link
-        href={data?.document?.location ?? ""}
+        href={`${baseUrl}${data?.document?.location}`} target="blank"
         className="absolute top-4 right-4 cursor-pointer"
       >
         <HiOutlineDownload size={32} color="#777" />
       </Link>
-    </div>
+    </div >
   );
 };
 

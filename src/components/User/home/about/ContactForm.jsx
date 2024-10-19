@@ -67,9 +67,7 @@ const ContactForm = () => {
         toast.error("Comment is required")
         return
       }
-      const response = await axios.post(
-        `${baseUrl}${contactRoute}`, 
-        postData)
+      const response = await axios.post(`${baseUrl}${contactRoute}`, postData)
 
       if (response.status === 200) {
         toast.success('Message Sent');
