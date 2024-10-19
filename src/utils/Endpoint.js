@@ -1,6 +1,6 @@
-export const baseUrl = 'https://development-server.qmarkdesk.com'
+// export const baseUrl = 'https://development-server.qmarkdesk.com'
 // export const baseUrl = 'http://20.244.88.141'
-// export const baseUrl = 'http://localhost:8800'
+export const baseUrl = 'http://localhost:8800'
 
 //auth
 export const login = '/api/auth/login'
@@ -43,3 +43,6 @@ export const getAllPublications = '/api/member/publication'
 
 // newsletter
 export const getAllNewsletters = '/api/member/newsletter'
+
+// common image upload route
+export const uploadImageUrl = '/api/admin/upload'

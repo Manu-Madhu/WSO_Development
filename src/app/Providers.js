@@ -13,11 +13,11 @@ export const AuthProvider = ({ children }) => {
     return (
         // <Provider store={store}>
         //     <PersistGate loading={null} persistor={persistor} >
-                <SessionProvider>
+        <SessionProvider>
 
-                    {children}
+            {children}
 
-                </SessionProvider>
+        </SessionProvider>
 
         //     </PersistGate>
         // </Provider>
@@ -29,8 +29,6 @@ export const AdminProvider = ({ children }) => {
     const { data: session, status } = useSession();
     const router = useRouter();
 
-    console.log(session)
-
     useEffect(() => {
         if (status === 'loading') return;
         if (session?.user?.userInfo?.role !== 'admin' || session === null) {
@@ -41,9 +39,9 @@ export const AdminProvider = ({ children }) => {
     // Or render a loading spinner
     if (status === 'loading' || !session || session?.user?.userInfo?.role !== 'admin') {
         return (
-        <div className='h-screen w-full grid place-items-center'>
-        <LoaderData />
-        </div>);
+            <div className='h-screen w-full grid place-items-center'>
+                <LoaderData />
+            </div>);
     }
 
     return <>{children}</>

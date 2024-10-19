@@ -2,16 +2,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import { CiCircleRemove } from "react-icons/ci";
+import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 
 const FileUploadField = ({
-    fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document','image/jpeg', 'image/png', 'image/gif'],
+    fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png', 'image/gif'],
     sizeLimit = 20 * 1024 * 1024,
-    typeNames = ['PDF', 'DOC', 'DOCX','JPEG', 'PNG'],
+    typeNames = ['PDF', 'DOC', 'DOCX', 'JPEG', 'PNG'],
     value,
     onChange
 }) => {
     const [dragging, setDragging] = useState(false);
     const [preview, setPreview] = useState(value ? URL.createObjectURL(value) : null);
+    const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
         // Revoke the URL to avoid memory leaks
@@ -44,10 +46,13 @@ const FileUploadField = ({
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
+
+
         handleFile(selectedFile);
     };
 
-    const handleFile = (file) => {
+    const handleFile = async (file) => {
+
         if (file) {
             if (!fileTypes.includes(file.type)) {
                 alert('Invalid file type. Please upload a valid document or image.');

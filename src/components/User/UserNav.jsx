@@ -126,7 +126,7 @@ const UserNav = () => {
               ?
               <button
                 onClick={() => signOut({ callbackUrl: "/" })}
-                className=" bg-red-600 p-2 px-5 rounded-lg"
+                className=" bg-red-600 text-white p-2 px-5 rounded-lg"
               >
                 Logout
               </button>

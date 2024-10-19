@@ -70,9 +70,6 @@ function PNEditPage({ name, id }) {
             toast.error("Failed to submit")
         }
     }
-
-    console.log({data})
-
     useEffect(()=>{
         fetchData()
     },[])

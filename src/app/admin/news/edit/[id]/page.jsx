@@ -27,7 +27,6 @@ function Page({ params }) {
 
             if (response.status === 200) {
                 const news = response?.data?.news;
-                console.log({ fetchednews: news })
 
                 setData((prev) => ({
                     title: news?.title,
@@ -72,9 +71,6 @@ function Page({ params }) {
             toast.error("Failed to submit")
         }
     }
-
-    console.log({ data })
-
     useEffect(() => {
         fetchData()
     }, [])

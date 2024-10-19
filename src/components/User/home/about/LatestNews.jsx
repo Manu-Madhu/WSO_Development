@@ -13,13 +13,17 @@ async function getData() {
       },
     })
     const data = await res.json()
+    console.log(data)
     return data.news
   } catch (error) {
     console.error("Something went wrong")
   }
 }
+
+
 const LatestNews = async () => {
   const News = await getData()
+
   return (
     <div className="max-w-[1280px] mx-auto w-full px-3 ">
       <h1 className="my-5 md:my-8 text-3xl font-[500]">Latest Updates</h1>

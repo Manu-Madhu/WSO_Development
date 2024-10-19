@@ -8,6 +8,8 @@ import cover from "../../../../../public/Assets/user/news/cover.png"
 
 const NewsComponent = ({ News }) => {
 
+  console.log(News)
+
   return (
     <>
       {News?.map((item) => {
