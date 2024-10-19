@@ -89,7 +89,7 @@ const MemberTable = () => {
                                     {item?.phone ?? 'NIL'}
                                 </td>
                                 <td className='capitalize px-5'>
-                                    {item?.membershipType ?? 'NIL'}
+                                    {item?.membershipType?.value ?? 'NIL'}
                                 </td>
                                 <td className='capitalize px-5'>
                                     <StatusIndicator status={item?.isActive ? 'active' : 'inactive'} />

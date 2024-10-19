@@ -39,3 +39,4 @@ export const getAllNewsletters = '/api/member/newsletter'
 
 // common image upload route
 export const uploadImageUrl = '/api/admin/upload'
+export const uploadGustImageUrl = '/api/upload/' 

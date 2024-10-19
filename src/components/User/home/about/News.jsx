@@ -4,6 +4,7 @@ import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
 import cardpic from '../../../../../public/Assets/user/events/cardpic.png';
 import cover from "../../../../../public/Assets/user/news/cover.png"
+import { baseUrl } from "@/utils/Endpoint";
 
 
 const NewsComponent = ({ News }) => {
@@ -24,7 +25,7 @@ const NewsComponent = ({ News }) => {
         return (
           <div
             key={item?._id}
-            className="w-full sm:min-w-[300px] h-[280px] border-rounded-xl relative "
+            className="w-full sm:w-[300px] h-[280px] border-rounded-xl relative "
           >
             <div className="bg-primaryColor rounded-xl w-full h-full">
               <Link href={`/user/news/${item?._id}`}>
@@ -35,10 +36,10 @@ const NewsComponent = ({ News }) => {
               </Link>{" "}
               {
                 item?.thumbnail
-                ?
-                <img src={item?.thumbnail?.location} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
-                :
-                <Image src={cover} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
+                  ?
+                  <img src={`${baseUrl}${item?.thumbnail?.location}`} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
+                  :
+                  <Image src={cover} alt="cards" className="rounded-t-xl w-full h-[70%] object-cover" />
               }
               <div className=" p-3 text-white">
                 <div className="flex items-center justify-between">

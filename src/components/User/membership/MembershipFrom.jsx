@@ -3,10 +3,12 @@ import NormalTextField from '@/components/Common/NormalTextField';
 import FileUploadField from '@/components/Common/FileUploadField';
 import CountrySelector from './CountrySelector';
 import MembershipDropdown from './MembershipDropdown';
-import { useState } from 'react';
-import { baseUrl, register } from '@/utils/Endpoint';
+import { useEffect, useState } from 'react';
+import { baseUrl, register, uploadGustImageUrl } from '@/utils/Endpoint';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import useAxiosPrivate from '@/hooks/useAxiosPrivate';
+import { UploadImage } from '@/utils/UploadImage';
 
 const options = [
     { value: '1', label: 'option 1' },
@@ -41,8 +43,11 @@ const initialUserdata = {
     payMode: '',
     file: null
 };
+
 function MembershipForm() {
     const [userdata, setuserdata] = useState(initialUserdata);
+    const [imageData, setImage] = useState()
+    const axiosPrivate = useAxiosPrivate()
 
     const handleChange = (field, value) => {
 
@@ -51,7 +56,6 @@ function MembershipForm() {
         if (field.includes('.')) {
             const fields = field.split('.');
             let nestedField = updatedUserdata;
-
 
             for (let i = 0; i < fields.length - 1; i++) {
                 nestedField = nestedField[fields[i]];
@@ -64,6 +68,21 @@ function MembershipForm() {
 
         setuserdata(updatedUserdata);
     };
+
+    useEffect(() => {
+        const uploadThumbnail = async () => {
+            if (userdata?.file) {
+                try {
+                    const res = await UploadImage(userdata?.file, uploadGustImageUrl, axiosPrivate);
+                    setImage(res?.data?.file);
+                } catch (error) {
+                    console.error("Failed to upload thumbnail:", error);
+                }
+            }
+        };
+
+        uploadThumbnail();
+    }, [userdata?.file])
 
     const findEmptyField = (data) => {
         const fieldsToCheck = [
@@ -113,26 +132,44 @@ function MembershipForm() {
             return;
         }
 
-        const formData = new FormData(formElement);
+        const submitUserData = {
+            username: userdata?.username,
+            password: userdata?.password,
+            applicantName: userdata?.applicantName,
+            address: userdata?.address,
+            state: userdata?.state,
+            country: userdata?.country,
+            phone: userdata?.phone,
+            fax: userdata?.fax,
+            email: userdata?.email,
+            website: userdata?.website,
+            contactPerson: userdata?.contactPerson,
+            membershipType: userdata?.membershipType,
+            business: {
+                nature: userdata?.business?.nature,
+                name: userdata?.business?.name,
+                address: userdata?.business?.address,
+                regNum: userdata?.business?.regNum,
+                regDate: userdata?.business?.regDate,
+                commenceDate: userdata?.business?.commenceDate,
+                authRep: userdata?.business?.authRep,
+                altAuthRep: userdata?.business?.altAuthRep,
+                meetAuthRep: userdata?.business?.meetAuthRep
+            },
+            hasRenewal: userdata?.hasRenewal,
+            payMode: userdata?.payMode,
+            idProof: imageData
+        };
 
-        Object.keys(userdata).forEach(key => {
-            if (typeof userdata[key] === 'object' && userdata[key] !== null) {
-                Object.keys(userdata[key]).forEach(nestedKey => {
-                    formData.append(`${key}.${nestedKey}`, userdata[key][nestedKey]);
-                });
-            } else {
-                formData.append(key, userdata[key]);
-            }
-        });
-
-        if (userdata.file) {
-            formData.append('file', userdata.file);
-        }
+        console.log(submitUserData)
 
         try {
             const response = await fetch(`${baseUrl}${register}`, {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submitUserData),
             });
 
             if (!response.ok) {
@@ -144,7 +181,7 @@ function MembershipForm() {
             console.log(result);
             setuserdata(initialUserdata);
             toast.success("Form submitted successfully.");
-            
+
         } catch (error) {
             toast.error("Failed to submit the form. Please try again.");
             console.error('There was a problem with the fetch operation:', error);
@@ -312,6 +349,7 @@ function MembershipForm() {
                         fileTypes={['image/jpeg', 'image/png', 'image/gif', 'application/pdf']}
                         value={userdata.file}
                         onChange={(file) => handleChange('file', file)}
+                        url={uploadGustImageUrl}
                     />
                 </div>
             </div>

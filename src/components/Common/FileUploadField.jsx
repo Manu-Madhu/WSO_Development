@@ -3,13 +3,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import { CiCircleRemove } from "react-icons/ci";
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
+import { UploadImage } from '@/utils/UploadImage';
 
 const FileUploadField = ({
     fileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png', 'image/gif'],
     sizeLimit = 20 * 1024 * 1024,
     typeNames = ['PDF', 'DOC', 'DOCX', 'JPEG', 'PNG'],
     value,
-    onChange
+    onChange,
+    url
 }) => {
     const [dragging, setDragging] = useState(false);
     const [preview, setPreview] = useState(value ? URL.createObjectURL(value) : null);
@@ -46,8 +48,6 @@ const FileUploadField = ({
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
-
-
         handleFile(selectedFile);
     };
 
@@ -65,6 +65,8 @@ const FileUploadField = ({
             }
 
             if (onChange) onChange(file);
+            // const ImageData = await UploadImage(file, url, axiosPrivate);
+            // console.log(ImageData?.data)
             setPreview(file.type.startsWith('image/') ? URL.createObjectURL(file) : null);
         } else {
             if (onChange) onChange(null);
