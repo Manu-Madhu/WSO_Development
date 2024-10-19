@@ -4,7 +4,7 @@ import RejectBtn from "@/components/Admin/Buttons/RejectBtn";
 import NormalTextField from "@/components/Admin/Members/NormalTextField";
 import StatusIndicator from "@/components/Admin/Members/StatusIndicator";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { adminApplicationRoute } from "@/utils/Endpoint";
+import { adminApplicationRoute, baseUrl } from "@/utils/Endpoint";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -161,7 +161,7 @@ function Page({ params }) {
           {data?.idProof?.location ? (
             <img
               className="max-h-20 cursor-pointer"
-              src={data?.idProof?.location}
+              src={`${baseUrl}${data?.idProof?.location}`}
               alt="idProof"
             />
           ) : (

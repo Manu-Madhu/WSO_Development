@@ -5,7 +5,7 @@ import CancelButton from "@/components/Admin/common/CancelButton";
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
-import { adminNewsRoute, guestNewsRoute } from "@/utils/Endpoint";
+import { adminNewsRoute, baseUrl, guestNewsRoute } from "@/utils/Endpoint";
 import { useRouter } from "next/navigation";
 import parse from 'html-react-parser';
 
@@ -40,10 +40,6 @@ function Page({ params }) {
             console.log(error)
         }
     }
-
-
-
-
     console.log({ data })
 
     useEffect(() => {
@@ -76,7 +72,7 @@ function Page({ params }) {
                     {
                         data?.thumbnail?.location
                             ?
-                            <img className='max-h-20 cursor-pointer' src={data?.thumbnail?.location} alt="" />
+                            <img className='max-h-20 cursor-pointer' src={`${baseUrl}${data?.thumbnail?.location}`} alt="" />
                             :
                             <span>NIL</span>
                     }

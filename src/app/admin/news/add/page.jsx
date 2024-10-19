@@ -7,6 +7,7 @@ import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
 import { adminNewsRoute, uploadImageUrl } from "@/utils/Endpoint";
 import FileUploadField from "@/components/Common/FileUploadField";
+import { UploadImage } from "@/utils/UploadImage";
 
 function Page() {
     const [data, setData] = useState({
@@ -24,42 +25,38 @@ function Page() {
         }));
     };
 
+
+
     const submitHandler = async () => {
         try {
-            const formData = new FormData();
-
-            // Upload image first, if there's a thumbnail
             if (data?.thumbnail) {
-                const imageUploadFormData = new FormData();
-                imageUploadFormData.append("file", data.thumbnail);
+                // try to upload the image individually 
+                const res = await UploadImage(data.thumbnail, uploadImageUrl, axiosPrivate);
 
-                const imageUploadResponse = await axiosPrivate.post(uploadImageUrl, imageUploadFormData);
-                if (imageUploadResponse.status === 200) {
-                    const imageUrl = imageUploadResponse.data?.url; 
-                    formData.append("thumbnail", imageUrl);
-                } else {
-                    throw new Error("Image upload failed");
+                if (res.status === 200) {  
+                   // value initializing for final form submition 
+                    const finalData = {
+                        title: data?.title,
+                        description: data?.description,
+                        thumbnail: res?.data?.file
+                    }
+                    const response = await axiosPrivate.post(adminNewsRoute, finalData, {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+
+                    if (response.status === 200) {
+                        toast.success("Data Added");
+                        setData({
+                            title: "",
+                            description: "",
+                            thumbnail: null,
+                        });
+                    }
                 }
             }
 
-            // Append the rest of the form data
-            formData.append("title", data?.title);
-            formData.append("description", data?.description);
-
-            const response = await axiosPrivate.post(adminNewsRoute, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-
-            if (response.status === 200) {
-                toast.success("Data Added");
-                setData({
-                    title: "",
-                    description: "",
-                    thumbnail: null,
-                });
-            }
         } catch (error) {
             console.error("Failed to submit:", error);
             toast.error("Failed to submit");
@@ -69,6 +66,7 @@ function Page() {
     return (
         <div className="flex flex-col bg-white min-h-screen w-full px-10 max-md:px-5 pt-12 max-md:pt-16 mb-6 text-black">
             <h1 className="font-semibold text-title">Add news</h1>
+
             <div className="flex justify-between mt-2 py-5">
                 <div>
                     <h2 className="font-semibold text-xl">New news</h2>
@@ -79,6 +77,7 @@ function Page() {
                     <SaveButton submitHandler={submitHandler} title="Add this news?" content={`Click confirm to save this news`} />
                 </div>
             </div>
+
             <div className="border-y py-5 flex max-md:flex-col items-start">
                 <label className="text-base font-semibold w-1/4 max-md:w-full">Title</label>
                 <input
@@ -90,6 +89,7 @@ function Page() {
                     placeholder="Some title here"
                 />
             </div>
+
             <div className="border-b py-5 flex max-md:flex-col items-start">
                 <div className="flex flex-col  w-1/4 max-md:w-full max-md:pb-3">
                     <label className="text-base font-semibold">News</label>

@@ -5,9 +5,10 @@ import CancelButton from "@/components/Admin/common/CancelButton";
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
-import { adminNewsRoute, guestNewsRoute } from "@/utils/Endpoint";
+import { adminNewsRoute, guestNewsRoute, uploadImageUrl } from "@/utils/Endpoint";
 import FileUploadField from "@/components/Common/FileUploadField";
 import { useRouter } from "next/navigation";
+import { UploadImage } from "@/utils/UploadImage";
 
 function Page({ params }) {
     const axiosPrivate = useAxiosPrivate();
@@ -49,28 +50,36 @@ function Page({ params }) {
 
     const submitHandler = async () => {
         try {
-            const formData = new FormData();
-            formData.append("title", data?.title)
-            formData.append("description", data?.description);
-            formData.append("thumbnail", data?.thumbnail);
+            if (data?.thumbnail) {
+                // try to upload the image individually 
+                const res = await UploadImage(data.thumbnail, uploadImageUrl, axiosPrivate);
+                if (res.status === 200) {
+                    // value initializing for final form submition 
+                    const finalData = {
+                        title: data?.title,
+                        description: data?.description,
+                        thumbnail: res?.data?.file
+                    }
+                    const response = await axiosPrivate.put(`${adminNewsRoute}/${id}`, finalData,
+                        {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }
+                    )
 
-            const response = await axiosPrivate.put(`${adminNewsRoute}/${id}`, formData,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
+                    if (response.status === 200) {
+                        toast.success("Data Updated")
+                        router.push("/admin/news")
                     }
                 }
-            )
-
-            if (response.status === 200) {
-                toast.success("Data Updated")
-                router.push("/admin/news")
             }
         } catch (error) {
             console.log(error)
             toast.error("Failed to submit")
         }
     }
+
     useEffect(() => {
         fetchData()
     }, [])

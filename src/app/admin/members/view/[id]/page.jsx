@@ -2,7 +2,7 @@
 import NormalTextField from '@/components/Admin/Members/NormalTextField'
 import StatusIndicator from '@/components/Admin/Members/StatusIndicator';
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
-import { adminMemberRoute } from '@/utils/Endpoint';
+import { adminMemberRoute, baseUrl } from '@/utils/Endpoint';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -67,7 +67,7 @@ function Page({ params }) {
     console.log(data)
     return (
         <div className='flex flex-col w-full px-10 pt-12 max-md:pt-20 mb-28'>
-                <div className='flex flex-col sm:flex-row sm:items-center gap-5 mb-6 '>
+            <div className='flex flex-col sm:flex-row sm:items-center gap-5 mb-6 '>
                 <span className="font-semibold text-title ">
                     View Member
                 </span>
@@ -91,10 +91,10 @@ function Page({ params }) {
                 <div className='w-[64%] max-md:w-full'>
                     {
                         data?.idProof?.location
-                        ?
-                        <img className='max-h-20 cursor-pointer' src={data?.idProof?.location} alt="" />
-                        :
-                        <span>NIL</span>
+                            ?
+                            <img className='max-h-20 cursor-pointer' src={`${baseUrl}${data?.idProof?.location}`} alt="" />
+                            :
+                            <span>NIL</span>
                     }
                 </div>
             </div>

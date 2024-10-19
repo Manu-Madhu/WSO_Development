@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import StatusIndicator from '@/components/Admin/Members/StatusIndicator';
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
-import { adminApplicationRoute } from '@/utils/Endpoint';
+import { adminApplicationRoute, baseUrl } from '@/utils/Endpoint';
 import { TbArrowsDiagonal } from "react-icons/tb";
 import { applnStatus } from '@/data/filter';
 
@@ -94,7 +94,7 @@ const ApplicationTable = () => {
 
                                     <td className='pl-5'>
                                         <div className='w-fit flex items-center py-3 '>
-                                            <img src={item?.idProof?.location} className="h-12 w-12 bg-gray-300 object-contain rounded-full" alt='' />
+                                            <img src={`${baseUrl}${item?.idProof?.location}`} className="h-12 w-12 bg-gray-300 object-contain rounded-full" alt='' />
                                             <div className='ml-4 truncate'>
                                                 <h4 className="font-semibold max-md:text-sm text-base capitalize">
                                                     {item?.applicantName ?? 'NIL'}
