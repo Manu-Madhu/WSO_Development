@@ -7,6 +7,7 @@ import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { adminApplicationRoute, baseUrl } from "@/utils/Endpoint";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { IoDocumentText } from "react-icons/io5";
 
 function Page({ params }) {
   const axiosPrivate = useAxiosPrivate();
@@ -57,16 +58,6 @@ function Page({ params }) {
       label: "Contact Person",
       placeholder: "Contact Person",
       key: "contactPerson",
-    },
-    {
-      label: "Membership applied for",
-      placeholder: "Membership applied for",
-      key: "membershipType",
-    },
-    {
-      label: "Mode of Payment",
-      placeholder: "Mode of Payment",
-      key: "payMode",
     },
   ];
 
@@ -140,6 +131,31 @@ function Page({ params }) {
         />
       ))}
 
+      <div className="flex flex-col lg:flex-row justify-between border-t w-10/12 max-md:w-full border-gray-3 py-5">
+        <div className="w-[35%] max-md:w-fit font-medium">
+          <h2>Membership applied for</h2>
+        </div>
+        <div className="w-[64%] max-md:w-fit">
+          <input
+            name={data?.membershipType?.value}
+            value={data?.membershipType?.label}
+            className="w-full border border-gray-400 mt-1 px-4 py-3 rounded-lg placeholder:text-gray-400 placeholder:font-light"
+          />
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row justify-between border-t w-10/12 max-md:w-full border-gray-3 py-5">
+        <div className="w-[35%] max-md:w-fit font-medium">
+          <h2>Mode of payment</h2>
+        </div>
+        <div className="w-[64%] max-md:w-fit">
+          <input
+            name={data?.payMode?.value}
+            value={data?.payMode?.label}
+            className="w-full border border-gray-400 mt-1 px-4 py-3 rounded-lg placeholder:text-gray-400 placeholder:font-light"
+          />
+        </div>
+      </div>
+
       <div className="flex justify-between border-t w-10/12 max-md:w-full border-gray-3 py-5">
         <div className="w-[35%] max-md:w-fit font-medium">
           <h2>Includes Renewal Payment</h2>
@@ -159,14 +175,22 @@ function Page({ params }) {
         </div>
         <div className="w-[64%] max-md:w-full">
           {data?.idProof?.location ? (
-            <img
-              className="max-h-20 cursor-pointer"
-              src={`${baseUrl}${data?.idProof?.location}`}
-              alt="idProof"
-            />
+            <a href={`${baseUrl}${data?.idProof?.location}`} target="_blank" rel="noopener noreferrer">
+              {/\.(pdf|doc|docx)$/.test(data.idProof.location) ? (
+                // Render a dummy image for PDF or Word files
+                <IoDocumentText size={40} />
+              ) : (
+                <img
+                  className="max-h-20 cursor-pointer rounded"
+                  src={`${baseUrl}${data.idProof.location}`}
+                  alt="idProof"
+                />
+              )}
+            </a>
           ) : (
-            <span>NIL</span>
+            <p>No ID proof available</p>
           )}
+
         </div>
       </div>
 

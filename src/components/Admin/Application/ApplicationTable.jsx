@@ -6,6 +6,8 @@ import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import { adminApplicationRoute, baseUrl } from '@/utils/Endpoint';
 import { TbArrowsDiagonal } from "react-icons/tb";
 import { applnStatus } from '@/data/filter';
+import { IoDocumentText } from 'react-icons/io5';
+import { CgProfile } from "react-icons/cg";
 
 const ApplicationTable = () => {
     const [data, setData] = useState([]);
@@ -52,10 +54,10 @@ const ApplicationTable = () => {
                     }
                 </div>
 
-                <select 
-                value={status}
-                onChange={(e)=> setStatus(e.target.value)}
-                className='w-fit shadow-lg rounded-lg p-2 outline-none '>
+                <select
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                    className='w-fit shadow-lg rounded-lg p-2 outline-none '>
                     <option value=''>Status</option>
                     {
                         applnStatus?.map((item, i) => (
@@ -94,7 +96,16 @@ const ApplicationTable = () => {
 
                                     <td className='pl-5'>
                                         <div className='w-fit flex items-center py-3 '>
-                                            <img src={`${baseUrl}${item?.idProof?.location}`} className="h-12 w-12 bg-gray-300 object-contain rounded-full" alt='' />
+                                            {/\.(pdf|doc|docx)$/.test(item.idProof.location) ? (
+                                                // Render a dummy image for PDF or Word files
+                                                <CgProfile  size={40} /> 
+                                            ) : (
+                                                <img
+                                                    className="max-h-10 cursor-pointer rounded-full w-10"
+                                                    src={`${baseUrl}${item.idProof.location}`}
+                                                    alt="idProof"
+                                                />
+                                            )}
                                             <div className='ml-4 truncate'>
                                                 <h4 className="font-semibold max-md:text-sm text-base capitalize">
                                                     {item?.applicantName ?? 'NIL'}

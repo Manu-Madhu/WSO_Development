@@ -17,9 +17,11 @@ const getNews = async (id) => {
         console.log("error" + error)
     }
 }
+
 const NewsDetailed = async ({ params }) => {
     const News = await getNews(params.id)
-
+    
+    console.log(News)
     return (
         <div className="max-w-[1280px] mx-auto w-full p-3 flex flex-col items-center justify-center 
     my-5 mb-10 md:mb-20 gap-8">

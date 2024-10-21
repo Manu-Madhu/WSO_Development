@@ -11,6 +11,7 @@ import { MdChecklistRtl, MdFilterListOff } from "react-icons/md";
 import ActivateBtn from '../Buttons/ActivateBtn';
 import DeactivateBtn from '../Buttons/DeactivateBtn';
 import Image from 'next/image';
+import { CgProfile } from 'react-icons/cg';
 
 
 const MemberTable = () => {
@@ -69,12 +70,16 @@ const MemberTable = () => {
                             <tr key={index} className='border-t border-gray-400 '>
                                 <td className='pl-5'>
                                     <div className='flex items-center py-3 '>
-                                        <img src={`${baseUrl}${item?.idProof?.location}`}
-                                            className="h-12 w-12 bg-gray-300 object-contain rounded-full"
-                                            // width={500}
-                                            // height={500}
-                                            alt=''
-                                        />
+                                        {/\.(pdf|doc|docx)$/.test(item.idProof.location) ? (
+                                            // Render a dummy image for PDF or Word files
+                                            <CgProfile size={40} />
+                                        ) : (
+                                            <img
+                                                className="max-h-10 cursor-pointer rounded-full w-10"
+                                                src={`${baseUrl}${item.idProof.location}`}
+                                                alt="idProof"
+                                            />
+                                        )}
                                         <div className='ml-4 truncate'>
                                             <h4 className="font-semibold max-md:text-sm text-base capitalize">
                                                 {item?.applicantName ?? 'NIL'}

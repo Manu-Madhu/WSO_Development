@@ -1,26 +1,32 @@
-"use client"
-import React, { useState } from 'react'
-import dynamic from 'next/dynamic'
-import 'react-quill/dist/quill.snow.css'
-import './NewsArea.css'
-
+"use client";
+import React from 'react';
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+import './NewsArea.css';
 
 const ReactQuill = dynamic(() => import('react-quill'), {
     ssr: false,
     loading: () => <input className="py-3" placeholder="Loading editor..." disabled />,
 });
 
-const TextEditor = ({value, setValue}) => {
-    // const [value, setValue] = useState('');
-
-    const handleChange = (content) => {
-        if (content.replace(/<[^>]*>/g, '').length <= 300) {
-            setValue(content);
-        }
-    };
-
+const TextEditor = ({ value, setValue }) => {
+    // Function to calculate the length of plain text by stripping out HTML tags
     const getTextLength = (content) => {
         return content.replace(/<[^>]*>/g, '').length;
+    };
+
+    // Handle changes in the editor, including both typing and pasting
+    const handleChange = (content) => {
+        const plainTextLength = getTextLength(content);
+
+        // Update the value regardless, but apply length restriction based on plain text length
+        if (plainTextLength <= 1000) {
+            setValue(content); // Update the editor's value with content
+        } else {
+            // If pasted content exceeds the limit, truncate it to fit the limit
+            const truncatedContent = content.substring(0, content.lastIndexOf(" ", 1000)); // Trim to the last valid space
+            setValue(truncatedContent);
+        }
     };
 
     const modules = {
@@ -44,7 +50,7 @@ const TextEditor = ({value, setValue}) => {
                 placeholder="Text here..."
             />
             <div className="char-count text-gray-600 font-light mt-2 text-sm">
-                {300 - getTextLength(value)} Characters left
+                {1000 - getTextLength(value)} Characters left
             </div>
         </div>
     );

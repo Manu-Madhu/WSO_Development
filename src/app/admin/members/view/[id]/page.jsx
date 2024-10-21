@@ -5,6 +5,7 @@ import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import { adminMemberRoute, baseUrl } from '@/utils/Endpoint';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import { IoDocumentText } from 'react-icons/io5';
 
 function Page({ params }) {
 
@@ -49,7 +50,6 @@ function Page({ params }) {
         { label: "Email", placeholder: "Email", key: "email", type: "email" },
         { label: "Website", placeholder: "Website", key: "website", type: "url" },
         { label: "Contact Person", placeholder: "Contact Person", key: "contactPerson" },
-        { label: "Membership applied for", placeholder: "Membership applied for", key: 'membershipType' },
     ]
 
     const businessFields = [
@@ -84,18 +84,40 @@ function Page({ params }) {
                 ))
             }
 
+            <div className="flex flex-col lg:flex-row justify-between border-t w-10/12 max-md:w-full border-gray-3 py-5">
+                <div className="w-[35%] max-md:w-fit font-medium">
+                    <h2>Membership applied for</h2>
+                </div>
+                <div className="w-[64%] max-md:w-fit">
+                    <input
+                        name={data?.membershipType?.value}
+                        value={data?.membershipType?.label}
+                        className="w-full border border-gray-400 mt-1 px-4 py-3 rounded-lg placeholder:text-gray-400 placeholder:font-light"
+                    />
+                </div>
+            </div>
+
             <div className='flex max-md:flex-col justify-between border-t w-10/12 max-md:w-full border-gray-3 py-5'>
                 <div className='w-[35%] max-md:w-full font-medium'>
                     <h2>Identity Proof </h2>
                 </div>
                 <div className='w-[64%] max-md:w-full'>
-                    {
-                        data?.idProof?.location
-                            ?
-                            <img className='max-h-20 cursor-pointer' src={`${baseUrl}${data?.idProof?.location}`} alt="" />
-                            :
-                            <span>NIL</span>
-                    }
+                    {data?.idProof?.location ? (
+                        <a href={`${baseUrl}${data?.idProof?.location}`} target="_blank" rel="noopener noreferrer">
+                            {/\.(pdf|doc|docx)$/.test(data.idProof.location) ? (
+                                // Render a dummy image for PDF or Word files
+                                <IoDocumentText size={40} />
+                            ) : (
+                                <img
+                                    className="max-h-20 cursor-pointer rounded"
+                                    src={`${baseUrl}${data.idProof.location}`}
+                                    alt="idProof"
+                                />
+                            )}
+                        </a>
+                    ) : (
+                        <p>No ID proof available</p>
+                    )}
                 </div>
             </div>
 

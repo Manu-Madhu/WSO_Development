@@ -10,18 +10,20 @@ function NewsCard({ News }) {
         <div className="w-full sm:max-w-sm rounded overflow-hidden relative">
             {
                 News?.thumbnail?.location
-                ?
-                <img
-                    className="w-full rounded-lg aspect-[4/3]"
-                    src={`${baseUrl}${News?.thumbnail?.location}`}
-                    alt="Spices"
-                />
-                :
-                <Image
-                    className="w-full rounded-lg aspect-[4/3]"
-                    src={cover}
-                    alt="Spices"
-                />
+                    ?
+                    <Link href={`/user/news/${News._id}`}>
+                        <img
+                            className="w-full rounded-lg aspect-[4/3]"
+                            src={`${baseUrl}${News?.thumbnail?.location}`}
+                            alt="Spices"
+                        />
+                    </Link>
+                    :
+                    <Image
+                        className="w-full rounded-lg aspect-[4/3]"
+                        src={cover}
+                        alt="Spices"
+                    />
 
             }
             <div className="pt-2 relative">
