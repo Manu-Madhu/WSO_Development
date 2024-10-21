@@ -1,12 +1,9 @@
 "use client"
-import NewsArea from "@/components/Admin/News/NewsArea";
-import SaveButton from "@/components/Admin/common/SaveButton";
-import CancelButton from "@/components/Admin/common/CancelButton";
+
 import { useEffect, useState } from "react";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { toast } from "react-toastify";
-import { adminNewsRoute, baseUrl, guestNewsRoute } from "@/utils/Endpoint";
+import { baseUrl, guestNewsRoute } from "@/utils/Endpoint";
 import { useRouter } from "next/navigation";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import parse from 'html-react-parser';
 
 
