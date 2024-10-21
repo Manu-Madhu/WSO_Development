@@ -13,7 +13,7 @@ function NewsCard({ News }) {
                     ?
                     <Link href={`/user/news/${News._id}`}>
                         <img
-                            className="w-full rounded-lg aspect-[4/3]"
+                            className="w-full rounded-lg aspect-[4/3] object-cover"
                             src={`${baseUrl}${News?.thumbnail?.location}`}
                             alt="Spices"
                         />
