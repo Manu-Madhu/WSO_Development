@@ -49,6 +49,7 @@ function Page({ params }) {
     }
 
     const submitHandler = async () => {
+
         try {
             if (data?.thumbnail) {
                 // try to upload the image individually 
@@ -60,6 +61,7 @@ function Page({ params }) {
                         description: data?.description,
                         thumbnail: res?.data?.file
                     }
+                    console.log(finalData)
                     const response = await axiosPrivate.put(`${adminNewsRoute}/${id}`, finalData,
                         {
                             headers: {

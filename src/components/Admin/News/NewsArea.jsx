@@ -20,11 +20,11 @@ const TextEditor = ({ value, setValue }) => {
         const plainTextLength = getTextLength(content);
 
         // Update the value regardless, but apply length restriction based on plain text length
-        if (plainTextLength <= 1000) {
-            setValue(content); // Update the editor's value with content
+        if (plainTextLength <= 2000) {
+            setValue(content);
         } else {
             // If pasted content exceeds the limit, truncate it to fit the limit
-            const truncatedContent = content.substring(0, content.lastIndexOf(" ", 1000)); // Trim to the last valid space
+            const truncatedContent = content.substring(0, content.lastIndexOf(" ", 2000));
             setValue(truncatedContent);
         }
     };
@@ -50,7 +50,7 @@ const TextEditor = ({ value, setValue }) => {
                 placeholder="Text here..."
             />
             <div className="char-count text-gray-600 font-light mt-2 text-sm">
-                {1000 - getTextLength(value)} Characters left
+                {2000 - getTextLength(value)} Characters left
             </div>
         </div>
     );
