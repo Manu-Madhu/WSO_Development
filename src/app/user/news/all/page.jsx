@@ -22,13 +22,20 @@ async function Page() {
 
     return (
         <div className='w-10/12 mx-auto mb-20'>
-            <h1 className='text-title py-8 font-semibold'>
+            <h1 data-aos='fade-up' data-aos-duration='700' className='text-title py-8 font-semibold'>
                 News
             </h1>
             <div className='w-full flex flex-wrap gap-4 '>
                 {newsData.length > 0 ? (
                     newsData.map((newsItem, i) => (
-                        <NewsCard key={i} News={newsItem} />
+                        <div
+                            key={i}
+                            data-aos="fade-up"
+                            data-aos-duration="700"
+                            data-aos-delay={i * 100}
+                        >
+                            <NewsCard News={newsItem} />
+                        </div>
                     ))
                 ) : (
                     <p>No news available</p>

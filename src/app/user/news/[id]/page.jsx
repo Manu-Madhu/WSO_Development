@@ -47,7 +47,7 @@ const NewsDetailed = ({ params }) => {
     return (
         <div className="max-w-[1280px] mx-auto w-full p-3 flex flex-col items-center justify-center 
       my-5 mb-10 md:mb-20 gap-8">
-            <h1 className=" text-[#101828] font-bold text-xl self-start ">{news?.title}</h1>
+            <h1 data-aos='fade-up' data-aos-duration='700' className=" text-[#101828] font-bold text-xl self-start ">{news?.title}</h1>
 
             <div className='w-full flex flex-col sm:flex-row gap-8'>
                 {news?.thumbnail ? (
@@ -58,6 +58,7 @@ const NewsDetailed = ({ params }) => {
                     />
                 ) : (
                     <Image
+                        data-aos='fade-up' data-aos-duration='700'
                         src={cover}
                         alt="image"
                         className="w-full sm:w-1/2 h-[400px] object-cover rounded-lg"
@@ -66,6 +67,7 @@ const NewsDetailed = ({ params }) => {
 
                 <div className='w-full sm:w-1/2 flex flex-col gap-4 '>
                     <div
+                        data-aos='fade-up' data-aos-duration='700'
                         dangerouslySetInnerHTML={{ __html: news?.description }}
                     />
                 </div>

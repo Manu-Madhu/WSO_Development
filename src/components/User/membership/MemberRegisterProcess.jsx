@@ -2,7 +2,7 @@ import React from "react";
 
 const MemberRegisterProcess = () => {
   return (
-    <div>
+    <div data-aos='fade-up' data-aos-duration='700'>
       <ol className="flex flex-col gap-5 text-sm font-medium">
         <li>
           1. Understand Member benefits, Membership Options and Fee Details.

@@ -113,7 +113,7 @@ const NewsContent = () => {
         <Loader />
       </div>
     ) : (
-      <div className="w-full relative">
+      <div  className="w-full relative">
         <div className=" mx-auto slider-container relative">
           <Slider
             ref={(slider) => {

@@ -16,13 +16,13 @@ const NSC = async () => {
       className="max-w-[1280px] mx-auto w-full flex flex-col p-3 py-5 xl:py-10 px-4 xl:px-0
     gap-12 "
     >
-      <h1 className="text-[#101828] font-bold text-2xl self-start ">
+      <h1 data-aos='fade-up' data-aos-duration='700' className="text-[#101828] font-bold text-2xl self-start ">
         NSC (National Spice Conference)
       </h1>
 
       <div className="w-full h-full flex flex-col-reverse lg:flex-row gap-5">
         <div className="w-full lg:w-3/5 flex flex-col justify-between gap-8">
-          <div className="w-full flex flex-col gap-4 ">
+          <div data-aos='fade-up' data-aos-duration='700' className="w-full flex flex-col gap-4 ">
             {nscdata?.map((item, i) => (
               <div key={i} className="text-sm">
                 <p>{item?.para}</p>
@@ -39,12 +39,12 @@ const NSC = async () => {
             ))}
           </div>
 
-          <button className=" w-full lg:w-fit bg-primaryColor text-white p-2 text-sm  px-5 rounded-md">
+          <button data-aos='fade-up' data-aos-duration='700' className=" w-full lg:w-fit bg-primaryColor text-white p-2 text-sm  px-5 rounded-md">
             Visit NSC
           </button>
         </div>
 
-        <Image src={hall} className="w-full lg:w-2/5 h-50 object-cover" alt="banner"/>
+        <Image data-aos='fade-left' data-aos-duration='700' src={hall} className="w-full lg:w-2/5 h-50 object-cover" alt="banner"/>
       </div>
     </div>
   );

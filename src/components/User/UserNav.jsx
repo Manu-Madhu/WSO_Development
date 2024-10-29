@@ -154,9 +154,7 @@ const UserNav = () => {
       </div>
 
       {/* Mobile view */}
-      <div className="max-w-[1280px] mx-auto w-full md:hidden flex justify-between items-center">
-        {/* <MobileView logo={log} /> */}
-
+      <div className="max-w-[1280px] mx-auto w-full md:hidden flex justify-between items-center ">
         <>
           <div className="logo">
             <Image src={log} alt="logo" className="w-[220px]" />

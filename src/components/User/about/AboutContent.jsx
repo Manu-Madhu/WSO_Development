@@ -4,7 +4,7 @@ import MemberCard from "./MemberCard";
 function AboutContent({ currentIndex, setCurrentIndex }) {
     return (
         <div className="w-full flex max-lg:flex-col  mt-10">
-            <div className="w-4/12 max-sm:w-10/12 max-lg:w-full max-md:mx-auto">
+            <div data-aos='fade-up' data-aos-duration='700' className="w-4/12 max-sm:w-10/12 max-lg:w-full max-md:mx-auto">
                 {
                     about_us.map((item, index) => (
                         <div key={index} className={`cursor-pointer ${currentIndex === index ? 'text-primaryColor font-semibold' : 'text-gray-900 font-medium'} mb-2 `} onClick={() => setCurrentIndex(index)}>
@@ -13,7 +13,7 @@ function AboutContent({ currentIndex, setCurrentIndex }) {
                     ))
                 }
             </div>
-            <div className="w-8/12 max-sm:w-10/12 max-lg:w-full max-md:mx-auto max-lg:mt-10">
+            <div data-aos='fade-up' data-aos-duration='700' className="w-8/12 max-sm:w-10/12 max-lg:w-full max-md:mx-auto max-lg:mt-10">
                 {
                     about_us[currentIndex].content.map((item, index) => {
                         if (Array.isArray(item)) {

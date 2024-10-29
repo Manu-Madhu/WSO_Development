@@ -16,7 +16,7 @@ import ContactForm from "./ContactForm";
 
 const Contact = () => {
   return (
-    <div className="max-w-[1280px] mx-auto w-full px-3 ">
+    <div data-aos='fade-up' data-aos-duration='700' className="max-w-[1280px] mx-auto w-full px-3 ">
       <div className="flex flex-col md:flex-row items-start justify-center  gap-4">
 
         {/* Right Side Card */}

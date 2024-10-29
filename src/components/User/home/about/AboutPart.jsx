@@ -11,14 +11,14 @@ import Image from "next/image";
 const AboutPart = () => {
   return (
     <div className="max-w-[1280px] mx-auto w-full px-3">
-      <div className="w-full rounded-xl">
+      <div data-aos='fade-up' data-aos-duration='700' className="w-full rounded-xl">
         <TopBanner />
       </div>
       <div className="flex flex-col mb-5">
-        <h1 className="my-5 md:my-8 text-4xl font-[400]">About WSO</h1>
+        <h1 data-aos='fade-right' data-aos-duration='700' className="my-5 md:my-8 text-4xl font-[400]">About WSO</h1>
         <div className="flex flex-col md:flex-row">
           {/* left side text + Scroll option */}
-          <div className="w-full ">
+          <div data-aos='fade-up' data-aos-duration='700' className="w-full ">
             <p className="text-xs md:text-sm text-wrap  md:w-[90%] text-black/80">
               WSO owes its genesis to the realisation that there was a need for
               an organised movement of partners from across the globe to build a
@@ -45,7 +45,7 @@ const AboutPart = () => {
           </div>
 
           {/* Right side Green part */}
-          <div className="w-full md:w-2/5">
+          <div data-aos='fade-left' data-aos-duration='700' className="w-full md:w-2/5">
             <div className="relative bg-primaryColor p-7 rounded-lg overflow-clip">
               <h1 className="text-white font-semibold text-[27px] ">
                 Want to be a member?

@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./Providers";
 import { ToastContainer } from "react-toastify";
+import AOSInitializer from "@/components/AOSInitializer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AuthProvider>
           <div>
+            <AOSInitializer />
             <ToastContainer />
             {children}
           </div>

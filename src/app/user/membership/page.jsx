@@ -9,7 +9,7 @@ const images = [image1, image2, image4, image3];
 function Page() {
   return (
     <div className="md:w-10/12 mx-auto p-3  mb-10 md:mb-20">
-      <h1 className="text-[#101828] font-bold text-2xl self-start my-5">
+      <h1 data-aos='fade-up' data-aos-duration='700' className="text-[#101828] font-bold text-2xl self-start my-5">
         The Member Registration Process:
       </h1>
       <div className="flex flex-col md:flex-row h-fit my-10 gap-3">

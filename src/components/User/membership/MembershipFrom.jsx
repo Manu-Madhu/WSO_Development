@@ -189,7 +189,7 @@ function MembershipForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className='flex flex-col w-full px-10 max-md:p-4 border-separate text-sm rounded-xl border mr-10 max-md:mr-0 pb-10'>
+        <form data-aos='fade-up' data-aos-duration='700' onSubmit={handleSubmit} className='flex flex-col w-full px-10 max-md:p-4 border-separate text-sm rounded-xl border mr-10 max-md:mr-0 pb-10'>
             <NormalTextField
                 editable
                 label="Username"
