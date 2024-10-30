@@ -20,6 +20,7 @@ const NewsComponent = ({ News }) => {
         }
         return (
           <div
+            data-aos='fade-up' data-aos-duration='700'
             key={item?._id}
             className="w-full sm:w-[300px] h-[280px] overflow-hidden border-rounded-xl relative"
           >

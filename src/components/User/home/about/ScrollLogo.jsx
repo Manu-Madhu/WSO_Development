@@ -1,21 +1,27 @@
+'use client'
 import { Logos } from "@/data/about";
 import Image from "next/image";
 import React from "react";
+import Marquee from "react-marquee-slider";
 
 const ScrollLogo = () => {
   return (
-    <div className="w-full h-[110px] flex flex-col items-start justify-start overflow-hidden mt-10">
-      <h1 className="mb-5 text-2xl font-[400]">Our Members</h1>
-      <div className="flex gap-5 overflow-x-scroll my-custom-scrollbar">
+    <div className="w-full flex flex-col items-start justify-start overflow-hidden mt-10">
+      <h1 className="mb-5  text-2xl font-[400]">Our Members</h1>
+      <Marquee velocity={20} resetAfterTries={100} direction="left">
+        {/* Wrap logos in a container for spacing */}
         {Logos.map((items) => (
-          <Image
-            key={items?.id}
-            src={items?.logo}
-            alt="logo"
-            className="w-20  object-contain"
-          />
+          <div key={items.id} className="flex items-center justify-center mx-5 lg:mx-14 mb-5 lg:mb-0"> {/* Add margin for spacing */}
+            <Image
+              src={items.logo}
+              alt="logo"
+              width={80}
+              height={80}
+              className="object-contain w-24"
+            />
+          </div>
         ))}
-      </div>
+      </Marquee>
     </div>
   );
 };

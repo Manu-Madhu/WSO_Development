@@ -29,8 +29,8 @@ const LatestNews = () => {
   }, []);
 
   return (
-    <div data-aos='fade-up' data-aos-duration='700' className="max-w-[1280px] mx-auto w-full px-3 ">
-      <h1 className="my-5 md:my-8 text-3xl font-[500]">Latest Updates</h1>
+    <div  className="max-w-[1280px] mx-auto w-full px-3 ">
+      <h1 data-aos='fade-up' data-aos-duration='700' className="my-5 md:my-8 text-3xl font-[500]">Latest Updates</h1>
       <div className="flex flex-col w-full h-fit sm:flex-row gap-5 overflow-x-scroll my-custom-scrollbar py-3 ">
         <NewsComponent News={News} /> {/* Ensure News is passed correctly */}
       </div>
