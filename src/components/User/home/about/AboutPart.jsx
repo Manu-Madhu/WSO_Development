@@ -10,7 +10,7 @@ import Image from "next/image";
 
 const AboutPart = () => {
   return (
-    <div className="max-w-[1280px] mx-auto w-full px-3">
+    <div className="max-w-[1280px] mx-auto w-full px-3 overflow-hidden">
       <div data-aos='fade-up' data-aos-duration='700' className="w-full rounded-xl">
         <TopBanner />
       </div>
