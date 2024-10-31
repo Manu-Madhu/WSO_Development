@@ -18,7 +18,7 @@ const AboutPart = () => {
         <h1 data-aos='fade-right' data-aos-duration='700' className="my-5 md:my-8 text-4xl font-[400]">About WSO</h1>
         <div className="flex flex-col md:flex-row">
           {/* left side text + Scroll option */}
-          <div data-aos='fade-up' data-aos-duration='700' className="w-full ">
+          <div data-aos='fade-up' data-aos-duration='700' className="w-full lg:w-3/5">
             <p className="text-xs md:text-sm text-wrap  md:w-[90%] text-black/80">
               WSO owes its genesis to the realisation that there was a need for
               an organised movement of partners from across the globe to build a
@@ -38,15 +38,11 @@ const AboutPart = () => {
             <Link href={`/user/about`} className="bg-primaryColor text-white text-xs md:text-sm p-3 px-5 rounded-lg lg:mt-5 hidden w-fit lg:flex">
               Learn More
             </Link>
-
-            <div className="my-3 w-full">
-              <ScrollLogo />
-            </div>
           </div>
 
           {/* Right side Green part */}
-          <div data-aos='fade-left' data-aos-duration='700' className="w-full md:w-2/5">
-            <div className="relative bg-primaryColor p-7 rounded-lg overflow-clip">
+          <div data-aos='fade-left' data-aos-duration='700' className="w-full lg:w-2/5 flex items-start justify-center mt-5 lg:mt-0">
+            <div className="relative bg-primaryColor p-7 rounded-lg overflow-clip w-full lg:w-3/4">
               <h1 className="text-white font-semibold text-[27px] ">
                 Want to be a member?
               </h1>
@@ -76,6 +72,10 @@ const AboutPart = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="my-3  lg:w-3/5">
+          <ScrollLogo />
         </div>
       </div>
 
