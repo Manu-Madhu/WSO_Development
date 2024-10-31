@@ -14,7 +14,7 @@ const AboutPart = () => {
       <div data-aos='fade-up' data-aos-duration='700' className="w-full rounded-xl">
         <TopBanner />
       </div>
-      <div className="flex flex-col mb-5">
+      <div className="flex flex-col mb-5 lg:mb-0">
         <h1 data-aos='fade-right' data-aos-duration='700' className="my-5 md:my-8 text-4xl font-[400]">About WSO</h1>
         <div className="flex flex-col md:flex-row">
           {/* left side text + Scroll option */}
@@ -74,7 +74,7 @@ const AboutPart = () => {
           </div>
         </div>
 
-        <div className="my-3  lg:w-3/5">
+        <div className="my-3 lg:w-3/5">
           <ScrollLogo />
         </div>
       </div>

@@ -6,15 +6,15 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-10 lg:gap-20 pb-20">
       <LandingPage />
-      <div className="my-6 md:my-28">
+      <div className="">
         <AboutPart />
       </div>
-      <div className="my-6 md:my-28">
+      <div className="">
         <LatestNews />
       </div>
-      <div className="my-6 md:my-28">
+      <div className="">
         <Contact />
       </div>
     </div>

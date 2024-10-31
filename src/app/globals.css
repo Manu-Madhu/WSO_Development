@@ -21,6 +21,8 @@
   transform: scale(1);
 }
 
+/* Marquee */
+
 .containerMarquee {
   display: flex;
   flex-shrink: 0;
@@ -41,6 +43,7 @@
 
 .brand {
   height: 60px;
+  width: 120px;
   padding: 0px 16px;
 }
 

@@ -21,7 +21,7 @@ const ScrollLogo = () => {
   ];
 
   return (
-    <div className="w-full overflow-hidden mt-10">
+    <div className="w-full overflow-hidden mt-10 ">
       <h1 className="mb-5 lg:mb-10 text-2xl font-[400]">Our Members</h1>
       <div className="containerMarquee">
         <motion.div animate={marqueeAnimation} className="marquee">
@@ -30,7 +30,7 @@ const ScrollLogo = () => {
               key={index}
               src={imgSrc}
               alt={`Image ${index + 1}`}
-              className="brand"
+              className="brand "
             />
           ))}
         </motion.div>
