@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 
 const ScrollLogo = () => {
   const marqueeAnimation = {
-    x: ['0%', '-100%'],
+    x: ['-100%', '0%'],
     transition: {
-      duration: 3,
+      duration: 6,
       ease: 'linear',
       repeat: Infinity,
     }
